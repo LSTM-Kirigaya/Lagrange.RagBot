@@ -1,0 +1,9 @@
+app
+docs
+blog-vecdb
+dist
+node_modules
+__pycache__
+*.pyc
+*.pyd
+*.pyi

@@ -1,0 +1,36 @@
+{
+    "create api function": {
+        "scope": "typescript",
+        "prefix": "api",
+        "body": [
+            "export const api$1 = (req: api$1Request) => r<CommonResponse<api$1Data>>({",
+            "\turl: '$2', method: '$3',",
+            "\t",
+            "});",
+            "",
+            "export interface api$1Request {",
+            "}",
+            "",
+            "export type api$1Data = EmptyObject;"
+        ]
+    },
+    "vue template": {
+        "scope": "vue",
+        "prefix": "vue",
+        "body": [
+            "<template>",
+            "\t<div>",
+            "",
+            "\t</div>",
+            "</template>",
+            "",
+            "<script setup lang=\"ts\">",
+            "",
+            "</script>",
+            "",
+            "<style>",
+            "",
+            "</style>"
+        ]
+    }
+}
