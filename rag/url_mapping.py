@@ -21,7 +21,6 @@ class UrlMappingRegister:
                 except Exception as e:
                     return ''
 
-
 urlmapping = UrlMappingRegister()
 
 # 样例： docs/kirigaya.cn/129.md
@@ -32,7 +31,6 @@ def kirigaya_cn(source: str) -> str:
     article_id = int(markdown_name.split('.')[0])
     template = f'https://kirigaya.cn/blog/article?seq={article_id}'
     return template
-
 
 # 样例： docs/digital-document/guide/quick-start.md
 # 目标： https://sterben.nitcloud.cn/zh/guide/quick-start.html

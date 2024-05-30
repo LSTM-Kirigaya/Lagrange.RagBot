@@ -2,6 +2,7 @@ import * as fs from 'fs';
 
 import WebSocket from 'ws';
 
+import { onMessage, onClose } from './event';
 import { apiQueryVecdb } from './api/vecdb';
 
 const lagrangeBuffer = fs.readFileSync('./app/publish/appsettings.json', 'utf-8');
@@ -19,22 +20,16 @@ socket.on('connection', (ws: WebSocket) => {
     console.log('完成 ws 连接，启动参数如下');
     console.table(connectionParam);
     
-    ws.on('message', (event: Buffer) => {
-        const messageBuffer = event.toString('utf-8');
-        const messageJson = JSON.parse(messageBuffer);
-        if (messageJson.post_type === 'meta_event') {
-            return;
+    ws.on('message', onMessage);
+    ws.on('close', onClose);
+    
+    const testMsg = {
+        action: 'send_private_msg',
+        params: {
+            user_id: 1193466151,
+            message: '你好'
         }
-        console.info(messageJson);
+    }
 
-        for (const item of messageJson.message) {
-            console.log(item.type);
-            console.log(item.data);
-        }
-    });
-
-    ws.on('close', () => {
-        console.log('服务器连接关闭');
-    });
+    ws.send(JSON.stringify(testMsg));
 });
-
