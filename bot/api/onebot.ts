@@ -9,12 +9,12 @@
 import * as Lagrange from '../type';
 
 /**
- * @description  发送私聊消息
+ * @description 发送私聊消息
  * @param user_id 对方 QQ 号
  * @param message 要发送的内容
  * @param auto_escape 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
  */
-export function sendPrivateMsg(user_id: number, message: Lagrange.Message, auto_escape: boolean = false) {
+export function sendPrivateMsg(user_id: number, message: string | Lagrange.Send.Default[], auto_escape: boolean = false) {
     return {
         action: 'send_private_msg',
         params: { user_id, message, auto_escape }
@@ -22,12 +22,12 @@ export function sendPrivateMsg(user_id: number, message: Lagrange.Message, auto_
 }
 
 /**
- * @description  发送群消息
+ * @description 发送群消息
  * @param group_id 群号
  * @param message 要发送的内容
  * @param auto_escape 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
  */
-export function sendGroupMsg(group_id: number, message: Lagrange.Message, auto_escape: boolean = false) {
+export function sendGroupMsg(group_id: number, message: string | Lagrange.Send.Default[], auto_escape: boolean = false) {
     return {
         action: 'send_group_msg',
         params: { group_id, message, auto_escape }
@@ -35,14 +35,14 @@ export function sendGroupMsg(group_id: number, message: Lagrange.Message, auto_e
 }
 
 /**
- * @description  发送消息
+ * @description 发送消息
  * @param message_type 消息类型，支持 private、group，分别对应私聊、群组，如不传入，则根据传入的 *_id 参数判断
  * @param user_id 对方 QQ 号（消息类型为 private 时需要）
  * @param group_id 群号（消息类型为 group 时需要）
  * @param message 要发送的内容
  * @param auto_escape 消息内容是否作为纯文本发送（即不解析 CQ 码），只在 message 字段是字符串时有效
  */
-export function sendMsg(message_type: string, user_id: number, group_id: number, message: Lagrange.Message, auto_escape: boolean = false) {
+export function sendMsg(message_type: string, user_id: number, group_id: number, message: string | Lagrange.Send.Default[], auto_escape: boolean = false) {
     return {
         action: 'send_msg',
         params: { message_type, user_id, group_id, message, auto_escape }
@@ -50,7 +50,7 @@ export function sendMsg(message_type: string, user_id: number, group_id: number,
 }
 
 /**
- * @description  撤回消息
+ * @description 撤回消息
  * @param message_id 消息 ID
  */
 export function deleteMsg(message_id: number) {
@@ -61,7 +61,7 @@ export function deleteMsg(message_id: number) {
 }
 
 /**
- * @description  获取消息
+ * @description 获取消息
  * @param message_id 消息 ID
  */
 export function getMsg(message_id: number) {
@@ -72,7 +72,7 @@ export function getMsg(message_id: number) {
 }
 
 /**
- * @description  获取合并转发消息
+ * @description 获取合并转发消息
  * @param id 合并转发 ID
  */
 export function getForwardMsg(id: string) {
@@ -83,7 +83,7 @@ export function getForwardMsg(id: string) {
 }
 
 /**
- * @description  发送好友赞
+ * @description 发送好友赞
  * @param user_id 对方 QQ 号
  * @param times 赞的次数，每个好友每天最多 10 次
  */
@@ -95,7 +95,7 @@ export function sendLike(user_id: number, times: number = 1) {
 }
 
 /**
- * @description  群组踢人
+ * @description 群组踢人
  * @param group_id 群号
  * @param user_id 要踢的 QQ 号
  * @param reject_add_request 拒绝此人的加群请求
@@ -108,7 +108,7 @@ export function setGroupKick(group_id: number, user_id: number, reject_add_reque
 }
 
 /**
- * @description  群组单人禁言
+ * @description 群组单人禁言
  * @param group_id 群号
  * @param user_id 要禁言的 QQ 号
  * @param duration 禁言时长，单位秒，0 表示取消禁言
@@ -121,7 +121,7 @@ export function setGroupBan(group_id: number, user_id: number, duration: number 
 }
 
 /**
- * @description  群组匿名用户禁言
+ * @description 群组匿名用户禁言
  * @param group_id 群号
  * @param anonymous 可选，要禁言的匿名用户对象（群消息上报的 anonymous 字段）
  * @param anonymous_flag 可选，要禁言的匿名用户的 flag（需从群消息上报的数据中获得）
@@ -135,7 +135,7 @@ export function setGroupAnonymousBan(group_id: number, anonymous: object, anonym
 }
 
 /**
- * @description  群组全员禁言
+ * @description 群组全员禁言
  * @param group_id 群号
  * @param enable 是否禁言
  */
@@ -147,7 +147,7 @@ export function setGroupWholeBan(group_id: number, enable: boolean = true) {
 }
 
 /**
- * @description  群组设置管理员
+ * @description 群组设置管理员
  * @param group_id 群号
  * @param user_id 要设置管理员的 QQ 号
  * @param enable true 为设置，false 为取消
@@ -160,7 +160,7 @@ export function setGroupAdmin(group_id: number, user_id: number, enable: boolean
 }
 
 /**
- * @description  群组匿名
+ * @description 群组匿名
  * @param group_id 群号
  * @param enable 是否允许匿名聊天
  */
@@ -172,7 +172,7 @@ export function setGroupAnonymous(group_id: number, enable: boolean = true) {
 }
 
 /**
- * @description  设置群名片（群备注）
+ * @description 设置群名片（群备注）
  * @param group_id 群号
  * @param user_id 要设置的 QQ 号
  * @param card 群名片内容，不填或空字符串表示删除群名片
@@ -185,7 +185,7 @@ export function setGroupCard(group_id: number, user_id: number, card: string = "
 }
 
 /**
- * @description  设置群名
+ * @description 设置群名
  * @param group_id 群号
  * @param group_name 新群名
  */
@@ -197,7 +197,7 @@ export function setGroupName(group_id: number, group_name: string) {
 }
 
 /**
- * @description  退出群组
+ * @description 退出群组
  * @param group_id 群号
  * @param is_dismiss 是否解散，如果登录号是群主，则仅在此项为 true 时能够解散
  */
@@ -209,7 +209,7 @@ export function setGroupLeave(group_id: number, is_dismiss: boolean = false) {
 }
 
 /**
- * @description  设置群组专属头衔
+ * @description 设置群组专属头衔
  * @param group_id 群号
  * @param user_id 要设置的 QQ 号
  * @param special_title 专属头衔，不填或空字符串表示删除专属头衔
@@ -223,7 +223,7 @@ export function setGroupSpecialTitle(group_id: number, user_id: number, special_
 }
 
 /**
- * @description  处理加好友请求
+ * @description 处理加好友请求
  * @param flag 加好友请求的 flag（需从上报的数据中获得）
  * @param approve 是否同意请求
  * @param remark 添加后的好友备注（仅在同意时有效）
@@ -236,7 +236,7 @@ export function setFriendAddRequest(flag: string, approve: boolean = true, remar
 }
 
 /**
- * @description  处理加群请求／邀请
+ * @description 处理加群请求／邀请
  * @param flag 加群请求的 flag（需从上报的数据中获得）
  * @param sub_type add 或 invite，请求类型（需要和上报消息中的 sub_type 字段相符）
  * @param approve 是否同意请求／邀请
@@ -250,7 +250,7 @@ export function setGroupAddRequest(flag: string, sub_type: string, approve: bool
 }
 
 /**
- * @description  获取登录号信息
+ * @description 获取登录号信息
  */
 export function getLoginInfo() {
     return {
@@ -260,7 +260,7 @@ export function getLoginInfo() {
 }
 
 /**
- * @description  获取陌生人信息
+ * @description 获取陌生人信息
  * @param user_id QQ 号
  * @param no_cache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
  */
@@ -272,7 +272,7 @@ export function getStrangerInfo(user_id: number, no_cache: boolean = false) {
 }
 
 /**
- * @description  获取好友列表
+ * @description 获取好友列表
  */
 export function getFriendList() {
     return {
@@ -282,7 +282,7 @@ export function getFriendList() {
 }
 
 /**
- * @description  获取群信息
+ * @description 获取群信息
  * @param group_id 群号
  * @param no_cache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
  */
@@ -294,7 +294,7 @@ export function getGroupInfo(group_id: number, no_cache: boolean = false) {
 }
 
 /**
- * @description  获取群列表
+ * @description 获取群列表
  */
 export function getGroupList() {
     return {
@@ -304,7 +304,7 @@ export function getGroupList() {
 }
 
 /**
- * @description  获取群成员信息
+ * @description 获取群成员信息
  * @param group_id 群号
  * @param user_id QQ 号
  * @param no_cache 是否不使用缓存（使用缓存可能更新不及时，但响应更快）
@@ -317,7 +317,7 @@ export function getGroupMemberInfo(group_id: number, user_id: number, no_cache: 
 }
 
 /**
- * @description  获取群成员列表
+ * @description 获取群成员列表
  * @param group_id 群号
  */
 export function getGroupMemberList(group_id: number) {
@@ -328,7 +328,7 @@ export function getGroupMemberList(group_id: number) {
 }
 
 /**
- * @description  获取群荣誉信息
+ * @description 获取群荣誉信息
  * @param group_id 群号
  * @param type 要获取的群荣誉类型，可传入 talkative performer legend strong_newbie emotion 以分别获取单个类型的群荣誉数据，或传入 all 获取所有数据
  */
@@ -340,7 +340,7 @@ export function getGroupHonorInfo(group_id: number, type: string) {
 }
 
 /**
- * @description  获取 Cookies
+ * @description 获取 Cookies
  * @param domain 需要获取 cookies 的域名
  */
 export function getCookies(domain: string = "") {
@@ -351,7 +351,7 @@ export function getCookies(domain: string = "") {
 }
 
 /**
- * @description  获取 CSRF Token
+ * @description 获取 CSRF Token
  */
 export function getCsrfToken() {
     return {
@@ -361,7 +361,7 @@ export function getCsrfToken() {
 }
 
 /**
- * @description  获取 QQ 相关接口凭证
+ * @description 获取 QQ 相关接口凭证
  */
 export function getCredentials() {
     return {
@@ -371,7 +371,7 @@ export function getCredentials() {
 }
 
 /**
- * @description  获取语音
+ * @description 获取语音
  */
 export function getRecord() {
     return {
@@ -381,7 +381,7 @@ export function getRecord() {
 }
 
 /**
- * @description  获取图片
+ * @description 获取图片
  * @param file 收到的图片文件名（消息段的 file 参数），如 6B4DE3DFD1BD271E3297859D41C530F5.jpg
  */
 export function getImage(file: string) {
@@ -392,7 +392,7 @@ export function getImage(file: string) {
 }
 
 /**
- * @description  检查是否可以发送图片
+ * @description 检查是否可以发送图片
  */
 export function canSendImage() {
     return {
@@ -402,7 +402,7 @@ export function canSendImage() {
 }
 
 /**
- * @description  检查是否可以发送语音
+ * @description 检查是否可以发送语音
  */
 export function canSendRecord() {
     return {
@@ -412,7 +412,7 @@ export function canSendRecord() {
 }
 
 /**
- * @description  获取运行状态
+ * @description 获取运行状态
  */
 export function getStatus() {
     return {
@@ -422,7 +422,7 @@ export function getStatus() {
 }
 
 /**
- * @description  获取版本信息
+ * @description 获取版本信息
  */
 export function getVersionInfo() {
     return {
@@ -432,7 +432,7 @@ export function getVersionInfo() {
 }
 
 /**
- * @description  重启 OneBot 实现
+ * @description 重启 OneBot 实现
  */
 export function setRestart() {
     return {
@@ -442,7 +442,7 @@ export function setRestart() {
 }
 
 /**
- * @description  清理缓存
+ * @description 清理缓存
  */
 export function cleanCache() {
     return {

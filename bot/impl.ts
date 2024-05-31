@@ -1,13 +1,15 @@
 import lagrangeMapper from './lagrange-mapping';
+import { apiQueryVecdb } from './api/vecdb';
+
 import type * as Lagrange from './type';
 
 
-class Impl {
+export class Impl {
 
-    @lagrangeMapper.onPrivateUser({ user_id: 1193466151 })
-    async handleJinhui(message: Lagrange.PrivateMessage) {
+    @lagrangeMapper.onPrivateUser(1193466151)
+    async handleJinhui(c: Lagrange.PrivateUserInvokeContext) {
+        console.log('raw message:' + c.message.raw_message);
         
     }
-
 
 }

@@ -1,8 +1,9 @@
 import assert from 'assert';
+
 import type * as Lagrange from './type';
 
-type PrivateUserInvoker = (message: Lagrange.PrivateMessage) => void;
-type GroupUserInvoker = (message: Lagrange.GroupMessage) => void;
+type PrivateUserInvoker = (context: Lagrange.PrivateUserInvokeContext) => Lagrange.Thenable<undefined | void | string | Lagrange.Send.Default>;
+type GroupUserInvoker = (context: Lagrange.GroupUserInvokeContext) => Lagrange.Thenable<undefined | void | string | Lagrange.Send.Default>;
 
 type MessageInvoker = PrivateUserInvoker | GroupUserInvoker;
 
@@ -17,7 +18,7 @@ interface CustomDescriptor<T extends MessageInvoker> {
 
 interface MessageInvokerStorage<T extends MessageInvoker> {
     invoker: T;
-    config: Partial<Lagrange.CommonMessage>
+    config?: Partial<Lagrange.CommonMessage>
 }
 
 class LagrangeMapper {
@@ -37,24 +38,33 @@ class LagrangeMapper {
         return this._groupStorage;
     }
     
-    public matchPrivateUser(message: Lagrange.PrivateMessage) {
+    public resolvePrivateUser(message: Lagrange.PrivateMessage, send: Lagrange.SendApi) {
         const user_id = message.user_id;
         const userStorage = this._privateUserStorage.get(user_id);
+        console.log(user_id);
+        console.log(userStorage);
+        
         if (userStorage) {
-            userStorage.invoker(message);
+            userStorage.invoker({ message, send });
+        }
+    }
+
+    public resolveGroup(message: Lagrange.GroupMessage, send: Lagrange.SendApi) {
+        const group_id = message.group_id;
+        const groupStorage = this._groupStorage.get(group_id);
+        if (groupStorage) {
+            groupStorage.invoker({ message, send });
         }
     }
     
-    public onPrivateUser(config: Partial<Lagrange.CommonMessage>) {
-        assert(config.user_id, 'onPrivateUser 中 user_id 不能为空');
-        const _this = this;
+    public onPrivateUser(user_id: number) {
+        const _this = this;        
         return function(target: any, propertyKey: string, descriptor: CustomDescriptor<PrivateUserInvoker>) {
-            const user_id = config.user_id;
-            if (_this.privateUserStorage.has(user_id)) {
+            if (_this._privateUserStorage.has(user_id)) {
                 console.warn(`${propertyKey} -> 用户 ${user_id} 已经被注册过了，该操作将覆盖原本的！`);
             }
             const invoker = descriptor.value;
-            _this.privateUserStorage.set(user_id, { invoker, config });
+            _this._privateUserStorage.set(user_id, { invoker });
         }
     }
 

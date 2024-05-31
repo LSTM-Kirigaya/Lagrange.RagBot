@@ -1,4 +1,5 @@
-import type * as Lagrange from './type';
+import * as Lagrange from './type';
+
 
 class Plugins {
     registeredPlugins: Map<string, Function>;

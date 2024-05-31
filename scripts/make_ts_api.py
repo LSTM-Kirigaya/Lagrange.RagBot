@@ -96,11 +96,11 @@ for el in soup.find_all('h2'):
                     }
                 
                 if param['type'] == 'message':
-                    param['type'] = 'Lagrange.Message'
+                    param['type'] = 'string | Lagrange.Send.Default[]'
                 
                 params.append(param)
         
-        t1 = function_desc
+        t1 = function_desc.strip()
         t2 = '\n'
         for param in params:
             t2 += ' * @param {} {}\n'.format(param['name'], param['desc'])
