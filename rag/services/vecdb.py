@@ -1,10 +1,10 @@
 from flask import Flask, request, jsonify
 import json
 
-from embedding import db
-from constant import StatusCode, MsgCode
-from url_mapping import urlmapping
-from admin import app
+from rag.api.admin import app
+from rag.db.embedding import db
+from rag.api.constant import StatusCode, MsgCode
+from rag.utils.url_mapping import urlmapping
 
 @app.route('/vecdb/similarity_search_with_score', methods=['post'])
 def post_similarity_search_with_score():
@@ -31,13 +31,14 @@ def post_similarity_search_with_score():
         source = meta.get('source', '')
         if len(source) > 0:
             source = urlmapping.url_from_mapping(source)
+            
         result_data.append({
             'content': page_content.strip(),
             'meta': meta,
             'source': source,
             'score': float(score)
         })
-
+    
     response = jsonify({
         'code': StatusCode.success.value,
         'data': result_data,

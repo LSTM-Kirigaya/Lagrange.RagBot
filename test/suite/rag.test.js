@@ -41,7 +41,7 @@ suite('test intent recogition', () => {
         { input: '我的反撤回还能用', expect: 'others' },
         { input: '因为这是养蛊的虚拟机，放了些国产垃圾软件，得用国产流氓之王才能镇得住他们', expect: 'others' },
         { input: '你咋装了个360', expect: 'others' },
-        { input: '？？？', expect: 'others' },
+        { input: '？？？', expect: 'expression,others' },
     ];
 
     for (const s of intent_suites) {

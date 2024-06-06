@@ -99,3 +99,35 @@ interface CommonResponse<T> {
 - 非必要，请不要随意宣传本项目。
 - 虽然曾经无数个 QQ 相关的项目都死了，但是基本的 API 端口算是传承了下来。拉格朗日的返回类型，请参考 [go-cqhttp 帮助中心 - API 篇](https://docs.go-cqhttp.org/api/) 中的内容。
 
+---
+
+## 启动
+
+```bash
+# 1. 启动 拉格朗日
+tsc
+pm2 start dist/main.js --name Lagrange.onebot
+pm2 start rag/main.py --name rag
+```
+
+---
+
+## 测试命令
+
+### 重训练 embedding -> intent 分类层
+
+```bash
+curl -X POST http://127.0.0.1:8081/intent/retrain-embedding-mapping
+```
+
+### 获取意图
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"query": "真的开线程是要tcl指令去改的"}' http://127.0.0.1:8081/intent/get-intent-recogition
+```
+
+### 获取向量数据库中的 topk
+
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"query": "这个插件有什么比较好的文档吗？"}' http://127.0.0.1:8081/vecdb/similarity_search_with_score
+```

@@ -4,6 +4,8 @@ import * as fs from 'fs';
 import * as yaml from 'yaml';
 import axios from 'axios';
 
+
+// 配置 向量数据库 的请求参数
 // 得到配置文件，组装基础路由
 const vecdbBuffer = fs.readFileSync('./config/vecdb.yml', 'utf-8');
 const vecdbConfig = yaml.parse(vecdbBuffer);
@@ -36,6 +38,7 @@ vecdbRequests.interceptors.response.use(
         return new Error('fail to get response');
     }
 );
+
 
 export {
     vecdbRequests,

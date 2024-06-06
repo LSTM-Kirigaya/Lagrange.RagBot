@@ -47,7 +47,8 @@ export interface apiGetIntentRecogitionRequest {
 
 export interface apiGetIntentRecogitionData {
     id: number,
-    name: string
+    name: string,
+    uncertainty: number
 }
 
 export interface apiIntentRetrainRequest {

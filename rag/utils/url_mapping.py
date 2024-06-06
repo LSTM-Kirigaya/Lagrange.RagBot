@@ -13,6 +13,7 @@ class UrlMappingRegister:
         return lambda func: register(start, func)
     
     def url_from_mapping(self, source: str) -> str:
+        source = source.lstrip('.').lstrip('/')
         for pattern in self.startsWith_patterns:
             func = self.startsWith_patterns[pattern]
             if source.startswith(pattern):
@@ -32,6 +33,7 @@ def kirigaya_cn(source: str) -> str:
     template = f'https://kirigaya.cn/blog/article?seq={article_id}'
     return template
 
+
 # 样例： docs/digital-document/guide/quick-start.md
 # 目标： https://sterben.nitcloud.cn/zh/guide/quick-start.html
 @urlmapping.startsWith('docs/digital-document')
@@ -39,6 +41,16 @@ def digital_document(source: str) -> str:
     router = source.replace('docs/digital-document', 'https://sterben.nitcloud.cn/zh')
     if router.endswith('.md'):
         router = router.replace('.md', '.html')
+    return router
+
+
+# 样例： docs/digital-issue/issue-2/issue.md
+# 目标： https://github.com/Digital-EDA/Digital-IDE/issues/2
+@urlmapping.startsWith('docs/digital-issue')
+def digital_document(source: str) -> str:
+    parts = source.split('/')
+    issue_id = parts[2].split('-')[-1]
+    router = f'https://github.com/Digital-EDA/Digital-IDE/issues/{issue_id}'
     return router
 
 

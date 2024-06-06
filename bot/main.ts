@@ -1,8 +1,8 @@
 import * as fs from 'fs';
 
 import { server } from 'lagrange.onebot';
-import './test';
-import './digital-ide';
+import './services/test';
+import './services/digital-ide';
 
 const buffer = fs.readFileSync('./app/publish/appsettings.json', 'utf-8');
 const config = JSON.parse(buffer);

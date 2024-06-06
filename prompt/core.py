@@ -73,7 +73,7 @@ class PromptEngine:
                 if children is None:
                     children = []
                 
-                if name not in self.intent2id:
+                if name != 'root' and name not in self.intent2id:
                     assign_id = len(self.intent2id)
                     self.intent2id[name] = assign_id
                     self.id2intent[assign_id] = name
@@ -267,4 +267,4 @@ class TreeIntent(ABC):
 if __name__ == '__main__':
     prompt_engine = PromptEngine('./config/story.yml')
     prompt_engine.merge_stories_from_yml('./config/github-issue.story.yml')
-    print(len(prompt_engine.stories))
+    print(prompt_engine.id2intent)

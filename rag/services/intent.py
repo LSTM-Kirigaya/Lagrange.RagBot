@@ -2,12 +2,14 @@ from flask import Flask, request, jsonify
 import numpy as np
 import joblib
 import json
-from sklearn.linear_model import LogisticRegression
+import torch
 
-from embedding import embedding
-from constant import StatusCode, MsgCode
-from admin import app
-from configs import necessary_files
+
+from rag.db.embedding import embedding
+from rag.api.constant import StatusCode, MsgCode
+from rag.api.admin import app
+from rag.api.config import necessary_files
+from rag.model.enn import LinearEnn, train_enn
 
 import sys
 import os
@@ -17,16 +19,22 @@ from prompt import PromptEngine
 
 class IntentRecogition:
     def __init__(self) -> None:
-        self.embed_intent_classificator = joblib.load(necessary_files['intent-classifier'])
         self.engine = PromptEngine(necessary_files['intent-story'])
+        self.classifier = LinearEnn(in_dim=768, out_dim=7, focal=0, alpha_kl=0)
+        self.classifier.load_state_dict(torch.load(necessary_files['intent-classifier']))
     
     def get_intent_recogition(self, query: str) -> dict:
         query_embed = embedding.embed_documents([query])
-        result_id = self.embed_intent_classificator.predict(query_embed)[0]
-        result_id = int(result_id)
+        prob, u = self.classifier.predict(query_embed)
+        
+        result_id = prob.argmax(dim=1)
+        u = u.item()
+        
+        result_id = int(result_id.item())
         return {
-            'id': result_id,
-            'name': self.engine.id2intent[result_id]
+            'id': int(result_id),
+            'name': self.engine.id2intent[result_id],
+            'uncertainty': float(u)
         }
 
 intent_recogition = IntentRecogition()
@@ -34,7 +42,7 @@ intent_recogition = IntentRecogition()
 @app.route('/intent/reload-embedding-mapping', methods=['post'])
 def reload_embedding_mapping():
     try:
-        intent_recogition.embed_intent_classificator = joblib.load(necessary_files['intent-classifier'])
+        intent_recogition.classifier.load_state_dict(torch.load(necessary_files['intent-classifier']))
     except Exception as e:
         response = jsonify({
             'code': StatusCode.process_error.value,
@@ -56,21 +64,18 @@ def reload_embedding_mapping():
 def retrain_embedding_mapping():
     engine = PromptEngine(necessary_files['intent-story'])
     engine.merge_stories_from_yml(necessary_files['issue-story'])
-    model = LogisticRegression()
     sentences = []
     labels = []
     for story in engine.stories:
         sentences.append(story.message)
         labels.append(engine.intent2id[story.intent])
-    
     try:
         labels = np.array(labels)
         embed = embedding.embed_documents(sentences)
-        model.fit(embed, labels)
+        enn_model = intent_recogition.classifier
+        train_enn(enn_model, embed, labels, bs=64, lr=1e-3, epoch=100)
+        torch.save(enn_model.state_dict(), necessary_files['intent-classifier'])
         
-        intent_recogition.engine = engine
-        intent_recogition.embed_intent_classificator = model
-        joblib.dump(model, necessary_files['intent-classifier'])    
     except Exception as e:
         response = jsonify({
             'code': StatusCode.process_error.value,
@@ -79,7 +84,6 @@ def retrain_embedding_mapping():
         })
         response.status_code = StatusCode.success.value
         return response
-
 
     response = jsonify({
         'code': StatusCode.success.value,
