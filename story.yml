@@ -1,0 +1,148 @@
+schema:
+  root:
+    name: root
+    children:
+      - name: usage
+        description: 使用查询
+        children:
+      - name: bug
+        description: bug 查询
+        children:
+      - name: command
+        description: 指令
+        children:
+      - name: advice
+        description: 建议
+        children:
+      - name: expression
+        description: 情绪表达
+        children:
+      - name: joke
+        description: 玩尬
+        children:
+      - name: others
+        description: 其他
+        children:
+
+stories:
+  - message: 请问 property.json 如何配置？
+    intent: usage
+  - message: 我的自动补全无法使用，是不是有bug？
+    intent: bug
+  - message: 帮我上传一下这份数据
+    intent: command
+  - message: surface了解一下？
+    intent: others
+  - message: 大佬们，为啥我的digital ide启动之后所有功能都没启动捏？我配置了property文件，然后插件的vivado路经和modelsim路经都加上了
+    intent: usage
+  - message: 这群要被chisel夺舍了吗
+    intent: others
+  - message: Metals一开直接报错
+    intent: others
+  - message: 话说digital-ide打开大的verilog卡死了
+    intent: bug
+  - message: 请问一下，第一次点击对文件仿真可以出波形文件，再次点击的时候就会提示unknown module type了。是哪个配置没配置好？
+    intent: usage
+  - message: 怎么调整是哪个版本的vivado来构建工程呢
+    intent: usage
+  - message: 咱们这个插件win7的vscode是不是只能用很早之前的版本
+    intent: usage
+  - message: 帮我将这份数据保存到服务器上
+    intent: command
+  - message: 他这个意思是 单个功耗很低 但是功耗低那肯定性能就寄 频率肯定不高 靠人多
+    intent: others
+  - message: 我平时写代码就喜欢喝茶
+    intent: usage
+  - message: 感觉现在啥都在往AI靠 
+    intent: others
+  - message: 请问你们自动对齐插件用的啥？
+    intent: usage
+  - message: 不得不放一下我的咖啡笔记了
+    intent: others
+  - message: stm32有什么好玩的应用不
+    intent: usage
+  - message: 别人设置的肯定有点不合适自己的
+    intent: others
+  - message: http://hehezhou.cn/register2024/AArch64-regindex.html
+    intent: others
+  - message: 因为他们py本领不是很强，需要这些东西辅助
+    intent: others
+  - message: 写C写多了，顺手在pycharm写了个main.c
+    intent: others
+  - message: 好流畅的にほんじんです
+    intent: others
+  - message: 有没有接触过UI开发的，想做一款寄存器管理的工具，想把界面做的好看一点
+    intent: usage
+  - message: 现在嘉立创也在做FPGA了？
+    intent: usage
+  - message: 大佬们，更新0.3.3之后，用iverilog仿真，testbench中还是例化模块出错：unknown module type，这是什么原因啊？
+    intent: bug
+  - message: 查了一下记录，2017年买的静电容
+    intent: others
+  - message: 我小时候电脑刚买回来一星期就被我玩坏了
+    intent: others
+  - message: "command not found: python"
+    intent: others
+  - message: path top.v is not a hdlFile 请问报这个错误大概是啥原因啊
+    intent: usage
+  - message: 咖啡喝不了，喝了胃不舒服
+    intent: others
+  - message: 兄弟们有没有C语言绘图库推荐
+    intent: usage
+  - message: 在企业里面最大的问题是碰见傻逼怎么办？
+    intent: others
+  - message: 如何使用 digital ide 这个插件？
+    intent: usage
+  - message: 我早上开着机去打论文 回来发现我电脑切换到Linux了
+    intent: others
+  - message: 我在Windows下遇到的只要问题就是对于C程序，包管理和编译管理器偶尔会不认识彼此但除此之外，都很安稳（win11除外）
+    intent: others
+  - message: 不能理解在生产环境用arch的人。。
+    intent: others
+  - message: 请问一下xilinx fpga开发在win和linux平台哪个好？
+    intent: usage
+  - message: 好羡慕你们可以开发自己喜欢的东西
+    intent: others
+  - message: ???
+    intent: expression
+  - message: ？？？
+    intent: expression
+  - message: 我人麻了
+    intent: expression
+  - message: 艹
+    intent: expression
+  - message: 我人傻了
+    intent: expression
+  - message: 我tm
+    intent: expression
+  - message: tnnd
+    intent: expression
+  - message: funny mud goup
+    intent: expression
+  - message: 衣服混起来洗，有一件深色的掉色了，现在我一盆白T恤全变成泥土色了
+    intent: expression
+  - message: 这可是陪伴了我六七年的衣服啊
+    intent: expression
+  - message: 唉神金
+    intent: expression
+  - message: 为啥要用手机号码啊
+    intent: others
+  - message: 本人于今日12时点了4瓶500ml无糖可乐，收到四瓶888ml
+    intent: joke
+  - message: 我是小趴菜
+    intent: joke
+  - message: 我也想组乐队 www
+    intent: expression
+  - message: 这个乐队谱，我看哭了
+    intent: expression
+  - message: 我的手机最大的用处就是当一个麦克风+相机
+    intent: others
+  - message: 那你可能更适合iPhone，不过稍微贵点，入门级别5-6k，好一点的得8k-1w
+    intent: others
+  - message: 
+
+
+rejects:
+  - metal
+  - metals
+  - idea

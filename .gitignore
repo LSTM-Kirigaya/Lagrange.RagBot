@@ -12,3 +12,4 @@ audio
 images
 logs
 *.sklearn
+config/*.story.yml

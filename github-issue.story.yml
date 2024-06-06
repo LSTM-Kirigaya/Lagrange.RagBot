@@ -1,0 +1,131 @@
+stories:
+- intent: advice
+  message: 关于波形显示的一些建议
+- intent: bug
+  message: 采用iverilog生成的VCD貌似无法解析仿真数据
+- intent: bug
+  message: 【v0.3.2】模块调用后netlist生成错误，且仿真报错
+- intent: advice
+  message: 网表优化与插入文档
+- intent: bug
+  message: 插件文档导出问题
+- intent: bug
+  message: 【v0.3.2】testbench修改之后再次仿真会报错
+- intent: bug
+  message: '[0.3.2] [问题] 含参数的 Verilog 模块自动例化，代码格式不正确'
+- intent: bug
+  message: '【报错】RuntimeError: null function or function signature mismatch'
+- intent: bug
+  message: 报错：verilog解析器无法解析以下代码
+- intent: bug
+  message: 报错：verilog解析器的bug
+- intent: advice
+  message: 功能建议-能增加点类似Verilog-Mode的功能么
+- intent: bug
+  message: '报错：RuntimeError: null function or function signature mismatch、无法识别HDL文件'
+- intent: bug
+  message: 例化模块自动生成tb文件报错Unknown module type
+- intent: bug
+  message: 'Errors happen when parsing d:/danpj/fpga/modelsim/mod1/user/src/count4.v.
+    Error: "RuntimeError: null function or function signature mismatch". Just propose
+    a valuable issue in our github repo '
+- intent: bug
+  message: 自动例化报错
+- intent: bug
+  message: '【问题】【0.3.2】重复提示 Error: "RuntimeError: null function or function signature
+    mismatch"'
+- intent: bug
+  message: 【0.3.2】【问题】1无法解析localparam 2 带参数模块例化
+- intent: bug
+  message: 基础教程太少
+- intent: bug
+  message: .v源文件未被正确识别
+- intent: bug
+  message: 重复仿真时报错
+- intent: bug
+  message: 插件不能使用
+- intent: bug
+  message: 关于netlist的生成错误
+- intent: bug
+  message: '[0.3.2] 支持对verilator 的dpi-c机制的支持 '
+- intent: bug
+  message: '[0.3.2] 离线支持+SV支持'
+- intent: bug
+  message: Bad webstie connection on README
+- intent: bug
+  message: 在声明数据位宽时使用宏定义会报错
+- intent: bug
+  message: 0.3.2 无verilog语法检查，且提示RuntimeError
+- intent: bug
+  message: '[0.3.2] 模块定义跳转偶尔会出现问题'
+- intent: bug
+  message: '[0.3.2] 代码补全有多个内容完全相同的选项'
+- intent: bug
+  message: '[0.3.2] 例化模块的类型，模块名称的代码高亮不变色'
+- intent: bug
+  message: 文档中的params和ports数反了
+- intent: advice
+  message: '[建议]：优化Formatter与文档生成'
+- intent: bug
+  message: '[0.3.2] Linter(vivado)  启用无效 (还是说我用的vivado2023太新了?)'
+- intent: bug
+  message: '[0.3.2]module的#后的parameter能悬停显示数值, 但内部parameter的不能'
+- intent: bug
+  message: '[0.3.2]param语法错误会弹右下角报错弹窗, TreeView刷新按钮无效'
+- intent: bug
+  message: 0.3.0版本后存在bug,构建项目后仿真无法运行
+- intent: advice
+  message: 建议：模块例化可以基于文件夹来检索，当文件比较多时更整洁一点。
+- intent: bug
+  message: Add Questa-Sim into the linter option
+- intent: bug
+  message: 悬停提示对 /**/ 型的注释有误
+- intent: bug
+  message: 仿真时因为文件夹名字存在空格产生错误
+- intent: bug
+  message: filetype from json to jsonc (support comments)
+- intent: bug
+  message: 语法识别错误
+- intent: bug
+  message: code to doc
+- intent: bug
+  message: WSL环境点击“显示当前文件的FSM图”时会发生扩展远程主机终止的错误
+- intent: bug
+  message: 在架构里不能解析include后的模块
+- intent: bug
+  message: treeview在文件移动时遇到问题
+- intent: bug
+  message: treeview在文件变动时产生错误
+- intent: bug
+  message: '[0.3.0 beta] iverilog指令错误'
+- intent: bug
+  message: Will verilator be supported?
+- intent: bug
+  message: '[0.3.0 beta] 高亮颜色错误'
+- intent: bug
+  message: 状态机显示有问题
+- intent: bug
+  message: xdc文件无法高亮显示
+- intent: bug
+  message: Ubuntu环境下，digital ide对配置环境有问题。
+- intent: bug
+  message: '[0.3.0 beta] "定义跳转"定义位置出错'
+- intent: bug
+  message: '[0.3.0 beta] "library导入文件"模块解析报错'
+- intent: bug
+  message: '[0.3.0 beta] "对当前文件进行仿真"功能报错'
+- intent: bug
+  message: '[0.3.0 beta] 由于插件不能分析出使用了"include"语法, 从而导致Sim失败'
+- intent: bug
+  message: '[0.3.0 beta] 文件跳转功能失效'
+- intent: bug
+  message: '[0.3.0 beta] 例化中的[xx:xx]连线会导致后续颜色错误'
+- intent: bug
+  message: '[0.3.0 beta]"显示当前文件的netlist"无法正确显示出网表'
+- intent: bug
+  message: '[0.3.0 beta] Bitwidth of 1-bit signal is incorrectly recognized as "Unknown"
+    in auto instantiation and auto document'
+- intent: bug
+  message: '[0.3.3 beta] 含参数模型的例化存在问题以及拓展快捷键失效的问题'
+- intent: bug
+  message: '[0.3.2]数值悬停提示不支持''_''语法'

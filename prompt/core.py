@@ -51,7 +51,7 @@ class PromptEngine:
         self.schema = self.handle_schema(self.config['schema'])
         self.stories = self.handle_stories(self.config['stories'])
         self.rejects = self.handle_rejects(self.config['rejects'])
-    
+        
     def handle_schema(self, raw_schema: dict) -> IntentNode:
         raw_root = raw_schema.get('root', None)
         if raw_root is None:
@@ -104,6 +104,15 @@ class PromptEngine:
                 node.stories.append(story)
                 stories.append(story)
         return stories
+    
+    def merge_stories_from_yml(self, path: str):
+        config = yaml.load(open(path, 'r', encoding='utf-8'), Loader=yaml.Loader)
+        stories = config.get('stories', [])
+        self.merge_stories(stories)
+    
+    def merge_stories(self, raw_stories: list[dict]):
+        stories = self.handle_stories(raw_stories)
+        self.stories.extend(stories)
     
     def handle_rejects(self, raw_rejects: list[str]) -> list[str]:
         rejects = []
@@ -256,6 +265,6 @@ class TreeIntent(ABC):
         return results
 
 if __name__ == '__main__':
-    prompt_engine = PromptEngine('./story.yml')
-    msg = prompt_engine.generate_llm_message('如何解决 digital ide 无法载入配置文件的问题？')
-    print(msg)
+    prompt_engine = PromptEngine('./config/story.yml')
+    prompt_engine.merge_stories_from_yml('./config/github-issue.story.yml')
+    print(len(prompt_engine.stories))

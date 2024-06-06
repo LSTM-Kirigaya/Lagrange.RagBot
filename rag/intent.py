@@ -31,10 +31,31 @@ class IntentRecogition:
 
 intent_recogition = IntentRecogition()
 
+@app.route('/intent/reload-embedding-mapping', methods=['post'])
+def reload_embedding_mapping():
+    try:
+        intent_recogition.embed_intent_classificator = joblib.load(necessary_files['intent-classifier'])
+    except Exception as e:
+        response = jsonify({
+            'code': StatusCode.process_error.value,
+            'data': str(e),
+            'msg': MsgCode.query_not_empty.value
+        })
+        response.status_code = StatusCode.success.value
+        return response
+    
+    response = jsonify({
+        'code': StatusCode.success.value,
+        'data': 'load model from ' + necessary_files['intent-classifier'],
+        'msg': StatusCode.success.value
+    })
+    response.status_code = StatusCode.success.value
+    return response
 
 @app.route('/intent/retrain-embedding-mapping', methods=['post'])
 def retrain_embedding_mapping():
     engine = PromptEngine(necessary_files['intent-story'])
+    engine.merge_stories_from_yml(necessary_files['issue-story'])
     model = LogisticRegression()
     sentences = []
     labels = []
