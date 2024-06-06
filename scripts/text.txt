@@ -1,0 +1,13 @@
+Label a users message from a
+conversation with an intent. Reply ONLY with the name of the intent.
+
+The intent should be one of the following:
+{% for intent in intents %}
+- {{intent}}
+{% endfor %}
+{% for example in examples %}
+Message: {{example['text']}}
+Intent: {{example['intent']}}
+{% endfor %}
+Message: {{message}}
+Intent:

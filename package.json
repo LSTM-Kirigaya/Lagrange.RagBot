@@ -10,17 +10,30 @@
     "scripts": {
         "build": "tsc",
         "start": "serve dist",
-        "serve": "tsc -w & serve dist"
+        "serve": "tsc -w & serve dist",
+        "test": "mocha"
     },
     "dependencies": {
+        "@ptkdev/logger": "^1.8.0",
         "@types/node": "^20.12.12",
         "axios": "^1.7.2",
+        "fs": "^0.0.1-security",
+        "lagrange.onebot": "^1.0.0",
         "ws": "^8.17.0",
         "yaml": "^2.4.2"
     },
     "devDependencies": {
         "@types/ws": "^8.5.10",
+        "chai": "4.3.4",
         "serve": "^14.2.3",
-        "typescript": "^5.4.5"
+        "typescript": "^5.4.5",
+        "mocha": "^10.4.0",
+        "require-uncached": "^2.0.0",
+        "shelljs": "^0.8.5",
+        "should": "^13.2.3",
+        "sinon": "^18.0.0",
+        "jsverify": "^0.8.4",
+        "knuth-shuffle": "^1.0.8",
+        "@sinonjs/referee-sinon": "^12.0.0"
     }
 }

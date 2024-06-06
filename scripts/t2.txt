@@ -1,0 +1,18 @@
+Label a users message from a conversation with an intent. Reply ONLY with the name of the intent.
+
+The intent should be one of the following:
+- 0
+- 1
+- 2
+- 3
+
+Message: 大佬们，为啥我的digital ide启动之后所有功能都没启动捏？我配置了property文件，然后插件的vivado路经和modelsim路经都加上了
+Intent: { id: 0 }
+Message: 这群要被chisel夺舍了吗
+Intent: { id: 3 }
+Message: Metals一开直接报错
+Intent: { id: 3 }
+Message: 话说digital-ide打开大的verilog卡死了
+Intent: { id: 1 }
+Message: 请问一下，第一次点击对文件仿真可以出波形文件，再次点击的时候就会提示unknown module type了。是哪个配置没配置好？
+Intent: { id: <answer here> }

@@ -7,3 +7,8 @@ __pycache__
 *.pyc
 *.pyd
 *.pyi
+scripts/*.ts
+audio
+images
+logs
+*.sklearn

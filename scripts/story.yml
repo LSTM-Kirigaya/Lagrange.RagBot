@@ -1,0 +1,41 @@
+schema:
+  root:
+    name: root
+    children:
+      - name: usage
+        description: 使用查询
+        children:
+      - name: bug
+        description: bug 查询
+        children:
+      - name: command
+        description: 指令
+        children:
+      - name: others
+        description: 其他
+        children:
+
+stories:
+  - message: 请问 property.json 如何配置？
+    intent: usage
+  - message: 我的自动补全无法使用，是不是有bug？
+    intent: bug
+  - message: 帮我上传一下这份数据
+    intent: command
+  - message: surface了解一下？
+    intent: others
+  - message: 大佬们，为啥我的digital ide启动之后所有功能都没启动捏？我配置了property文件，然后插件的vivado路经和modelsim路经都加上了
+    intent: usage
+  - message: 这群要被chisel夺舍了吗
+    intent: others
+  - message: Metals一开直接报错
+    intent: others
+  - message: 话说digital-ide打开大的verilog卡死了
+    intent: bug
+  - message: 请问一下，第一次点击对文件仿真可以出波形文件，再次点击的时候就会提示unknown module type了。是哪个配置没配置好？
+    intent: usage
+
+rejects:
+  - metal
+  - metals
+  - idea

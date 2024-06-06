@@ -1,0 +1,16 @@
+Label a users message from a conversation with an intent. Reply ONLY with the name of the intent.
+The intent should be one of the following:
+- 0
+- 1
+- 2
+- 3
+Message: 请问 property.json 如何配置？
+Intent: { id: 0 }
+Message: 我的自动补全无法使用，是不是有bug？
+Intent: { id: 1 }
+Message: 帮我上传一下这份数据
+Intent: { id: 2 }
+Message: 为数不多我觉得很好的动漫了
+Intent: { id: 3 }
+Message: M1系列可以跑iPhone和iPad游戏
+Intent: { id: <answer here> }

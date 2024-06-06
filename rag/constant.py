@@ -6,6 +6,7 @@ class StatusCode(Enum):
     server_error = 4002
     resource_not_found = 4003
     timeout = 4004
+    process_error = 4005
     
 class MsgCode(Enum):
     success = '请求处理成功'

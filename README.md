@@ -32,12 +32,46 @@ pip install -r requirements.txt
 ## 架构
 
 ```mermaid
-graph LR
-a(拉格朗日 NTQQ server) <-->|http,ws| b(onebot layer)
+graph TB
+core(Lagrage.Core)
+onebot(Lagrange.onebot)
+vecdb(vecdb)
+llm(LLM)
+intent(intent tree)
 
-c(vecdb) -->|http| b
-d(LLM) -->|http| b
+core(Lagrange.Core) --> onebot(Lagrange.onebot)
+
+onebot -->|query| intent
+intent -->|intent| onebot
+
+subgraph Intent Recognition
+    intent -->|query| vecdb
+    vecdb -->|ktop| intent
+    intent -->|ktop,query| llm
+    llm -->|intent| intent
+end
+
+subgraph execution
+    onebot --> command{intent}
+    command --> query
+    command --> upload
+    command --> ...
+end
+
+subgraph third party
+LLM
+Google
+server
+end
+
+query --> LLM
+query --> Google
+upload --> server
 ```
+
+- `Lagrange.onebot` --> 📁bot
+- `vecdb` --> 📁rag
+- `intent tree` --> 📁prompt
 
 ---
 
