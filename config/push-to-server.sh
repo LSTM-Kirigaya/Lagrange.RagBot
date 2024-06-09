@@ -1,0 +1,1 @@
+scp -r config ubuntu@101.43.239.71:/home/ubuntu/files/data/llm-rag

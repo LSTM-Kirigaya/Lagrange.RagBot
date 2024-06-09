@@ -1,6 +1,6 @@
 import '../plugins/image';
 
-import { mapper, plugins, LagrangeContext, PrivateMessage, GroupMessage, Send } from 'lagrange.onebot'
+import { mapper, plugins, LagrangeContext, PrivateMessage, GroupMessage, Send, logger } from 'lagrange.onebot'
 
 import { apiGetIntentRecogition, apiQueryVecdb } from '../api/vecdb';
 
@@ -41,9 +41,16 @@ export class Impl {
             if (intentResult.uncertainty >= 0.33) {
                 intentResult.name = 'others';
             }
+            
             const uncertainty = Math.round(intentResult.uncertainty * 1000) / 1000;
-            c.sendMessage(`【意图: ${intentResult.name} 不确定度: ${uncertainty}】`);
-            handleGroupIntent(c, intentResult);
+            const intentDebug = `【意图: ${intentResult.name} 不确定度: ${uncertainty}】`;
+            const anwser = await handleGroupIntent(c, intentResult);
+            if (anwser === undefined) {
+                c.sendMessage('拒答' + '\n' + intentDebug);
+            } else {
+                c.sendMessage(anwser + '\n' + intentDebug);
+            }
+
         } else {
             c.sendMessage('RAG 系统目前离线');
         }

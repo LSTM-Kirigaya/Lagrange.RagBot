@@ -23,13 +23,15 @@ async function useRagLLM(c: LagrangeContext<GroupMessage>, intentResult: IntentR
             texts.push(msg.data.text);
         }
     }
-
-
-    const { data } = await apiQueryVecdb({ query: texts.join(' '), k: 3 });
+    const query = texts.join(' ').trim();
+    if (query.length === 0) {
+        return undefined;
+    }
+    const { data } = await apiQueryVecdb({ query, k: 3 });
     if (data.code === 200) {
-        const messages: apiQueryVecdbDataItem[] = data.data.filter(m => m.score <= 0.8);
+        const messages: apiQueryVecdbDataItem[] = data.data.filter(m => m.score <= 0.7);
         if (messages.length === 0) {
-            c.sendMessage('未在数据库中检索到相关内容。');
+            return '未在数据库中检索到相关内容。';
         } else {
             const query = makePrompt(messages);
             const res = await llm.answer([
@@ -40,16 +42,16 @@ async function useRagLLM(c: LagrangeContext<GroupMessage>, intentResult: IntentR
             ]);
             if (typeof res === 'string') {
                 const links = messages.map(m => m.source);
-                
-                const reference = ['参考链接：', ...links].join('\n');
+                const linkSet = new Set<string>(links);
+                const reference = ['参考链接：', ...linkSet].join('\n');
                 const anwser = res + '\n\n' + reference;
-                c.sendMessage(anwser);
+                return anwser;
             }
         }
 
     } else {
         logger.error('apiQueryVecdb 接口访问失败: ' + JSON.stringify(data));
-        return false;
+        return undefined;
     }
 }
 

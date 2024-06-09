@@ -8,6 +8,7 @@ import torch
 from rag.db.embedding import embedding
 from rag.api.constant import StatusCode, MsgCode
 from rag.api.admin import app
+from rag.api.admin import logger
 from rag.api.config import necessary_files
 from rag.model.enn import LinearEnn, train_enn
 
@@ -60,30 +61,31 @@ def reload_embedding_mapping():
     response.status_code = StatusCode.success.value
     return response
 
+# TODO: 删除该接口
 @app.route('/intent/retrain-embedding-mapping', methods=['post'])
 def retrain_embedding_mapping():
-    engine = PromptEngine(necessary_files['intent-story'])
-    engine.merge_stories_from_yml(necessary_files['issue-story'])
-    sentences = []
-    labels = []
-    for story in engine.stories:
-        sentences.append(story.message)
-        labels.append(engine.intent2id[story.intent])
-    try:
-        labels = np.array(labels)
-        embed = embedding.embed_documents(sentences)
-        enn_model = intent_recogition.classifier
-        train_enn(enn_model, embed, labels, bs=64, lr=1e-3, epoch=100)
-        torch.save(enn_model.state_dict(), necessary_files['intent-classifier'])
+    # engine = PromptEngine(necessary_files['intent-story'])
+    # engine.merge_stories_from_yml(necessary_files['issue-story'])
+    # sentences = []
+    # labels = []
+    # for story in engine.stories:
+    #     sentences.append(story.message)
+    #     labels.append(engine.intent2id[story.intent])
+    # try:
+    #     labels = np.array(labels)
+    #     embed = embedding.embed_documents(sentences)
+    #     enn_model = intent_recogition.classifier
+    #     train_enn(enn_model, embed, labels, bs=64, lr=1e-3, epoch=100)
+    #     torch.save(enn_model.state_dict(), necessary_files['intent-classifier'])
         
-    except Exception as e:
-        response = jsonify({
-            'code': StatusCode.process_error.value,
-            'data': str(e),
-            'msg': MsgCode.query_not_empty.value
-        })
-        response.status_code = StatusCode.success.value
-        return response
+    # except Exception as e:
+    #     response = jsonify({
+    #         'code': StatusCode.process_error.value,
+    #         'data': str(e),
+    #         'msg': MsgCode.query_not_empty.value
+    #     })
+    #     response.status_code = StatusCode.success.value
+    #     return response
 
     response = jsonify({
         'code': StatusCode.success.value,
@@ -112,6 +114,12 @@ def get_intent_recogition():
         return response
         
     result = intent_recogition.get_intent_recogition(query)
+    
+    logger_chunk = json.dumps({
+        'query': query,
+        'intent': result
+    }, ensure_ascii=False)
+    logger.debug(logger_chunk)
     
     response = jsonify({
         'code': StatusCode.success.value,

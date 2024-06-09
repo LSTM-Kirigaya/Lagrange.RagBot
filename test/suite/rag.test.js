@@ -42,6 +42,12 @@ suite('test intent recogition', () => {
         { input: '因为这是养蛊的虚拟机，放了些国产垃圾软件，得用国产流氓之王才能镇得住他们', expect: 'others' },
         { input: '你咋装了个360', expect: 'others' },
         { input: '？？？', expect: 'expression,others' },
+        { input: '有点怪，这里没有和竖线对齐', expect: 'others' },
+        { input: '调试时候下载bit流和ltx，固化需要在xdc约束里面添加spi或bpi相关约束后生成bit流。建议一开始xdc约束当中就添加相关约束，后续生成mcs文件需要先添加flash型号，根据相关型号生成对应的mcs文件后再固化到flash当中。', expect: 'advice,others' },
+        { input: 'at 触发不够人性化，很多用户不知道 Tip 的存在就不会去使用它', expect: 'expression,others' },
+        { input: '非问句会触发吗', expect: 'expression,others' },
+        { input: 'zlib', expect: 'expression,others' },
+        { input: 'https://github.com/Digital-EDA/Digital-IDE/discussions', expect: 'others' },
     ];
 
     for (const s of intent_suites) {
