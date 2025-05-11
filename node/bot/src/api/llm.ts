@@ -8,6 +8,7 @@ interface LlmMessageItem {
     content: string
 }
 
+// 已经废弃
 class ErineLLM {
     apiKey: string = process.env.BAIDU_API_KEY;
     secretKey: string = process.env.BAIDU_SECRET_KEY;
@@ -21,7 +22,7 @@ class ErineLLM {
             throw Error('百度 secret_key 为空');
         }
         
-        this.getAccessToken();
+        // this.getAccessToken();
     }
 
     public async getAccessToken() {

@@ -10,6 +10,6 @@
         "typeRoots": ["./types"]
     },
     "include": [
-        "bot/**/*"
+        "src/**/*"
     ]
 }

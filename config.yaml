@@ -1,0 +1,4 @@
+mcp-server:
+  port: 25565
+bot:
+  port: 25564

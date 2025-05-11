@@ -2,11 +2,6 @@ import * as fs from 'fs';
 
 import { server } from 'lagrange.onebot';
 import './services/test';
-import './services/digital-ide';
-
-const buffer = fs.readFileSync('./app/publish/appsettings.json', 'utf-8');
-const config = JSON.parse(buffer);
-const impl = config.Implementations[0];
 
 server.onMounted(c => {
     c.sendPrivateMsg(1193466151, '成功上线');
@@ -15,6 +10,11 @@ server.onMounted(c => {
 server.onUnmounted(c => {
     c.sendPrivateMsg(1193466151, '成功下线');
 });
+
+
+const buffer = fs.readFileSync('../Lagrange.Core/appsettings.json', 'utf-8');
+const config = JSON.parse(buffer);
+const impl = config.Implementations[0];
 
 server.run({
     host: impl.Host,
