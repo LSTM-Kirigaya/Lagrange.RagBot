@@ -1,14 +1,23 @@
 import * as fs from 'fs';
 
 import { server } from 'lagrange.onebot';
-import './services/test';
+
+import { TestChannel } from './test-channel/test-channel.controller';
+import { OpenMcpChannel } from './openmcp-dev/openmcp-dev.controller';
+import { qq_users } from './global';
+
+// 注册的模块
+export const InstallChannels = [
+    TestChannel,
+    OpenMcpChannel
+];
 
 server.onMounted(c => {
-    c.sendPrivateMsg(1193466151, '成功上线');
+    c.sendPrivateMsg(qq_users.JIN_HUI, '成功上线');
 });
 
 server.onUnmounted(c => {
-    c.sendPrivateMsg(1193466151, '成功下线');
+    c.sendPrivateMsg(qq_users.JIN_HUI, '成功下线');
 });
 
 
@@ -21,4 +30,8 @@ server.run({
     port: impl.Port,
     path: impl.Suffix,
     qq: 1542544558
+});
+
+InstallChannels.forEach(channel => {
+    console.log('上线模块：' + channel.name);
 });

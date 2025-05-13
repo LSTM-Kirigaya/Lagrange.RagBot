@@ -18,12 +18,15 @@
         "@types/node": "^20.12.12",
         "axios": "^1.7.2",
         "fs": "^0.0.1-security",
-        "lagrange.onebot": "^1.0.2",
+        "json-bigint": "^1.0.0",
+        "lagrange.onebot": "^1.0.8",
+        "node-schedule": "^2.1.1",
         "ws": "^8.17.0",
         "yaml": "^2.4.2"
     },
     "devDependencies": {
         "@sinonjs/referee-sinon": "^12.0.0",
+        "@types/node-schedule": "^2.1.7",
         "@types/ws": "^8.5.10",
         "chai": "4.3.4",
         "jsverify": "^0.8.4",

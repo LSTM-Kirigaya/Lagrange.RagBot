@@ -1,0 +1,635 @@
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "请通过 headless 的方式帮我搜集 https://news.ycombinator.com/ 最热门的前三条信息。\n\n请一步步寻找，先罗列所有元素剔除了 css class 后的 html 源代码，过滤可能是广告的元素后然后再从元素里面找到符合要求数量的有效元素。不要在第一步的时候就盲目获取元素的属性。\n\n然后帮我进入这些网站后总结相关信息，返回翻译好的简体中文，并且整理成一个简单的资讯。\n按以下格式输出（严格禁止添加任何额外引导语或总结句）：\n\n[用一句吸引人的话开头，例如：\"⌨️ 今日份 AI & CS 技术文章分享\"]\n\n📌 [翻译成简体中文的文章标题]\n摘要：[文章的核心观点，100字以内]\n作者：[若存在]\n发布时间：[若存在]\n链接：[文章URL]",
+      "extraInfo": {
+        "created": 1747075018823,
+        "state": "success",
+        "serverName": "deepseek"
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_0_50493cc6-7386-4170-8599-5ffbccdfe3d1",
+          "index": 0,
+          "type": "function",
+          "function": {
+            "name": "k_navigate",
+            "arguments": "{\"url\":\"https://news.ycombinator.com/\",\"launchOptions\":{\"headless\":true}}"
+          }
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075024104,
+        "state": "success",
+        "serverName": "deepseek"
+      }
+    },
+    {
+      "role": "tool",
+      "index": 0,
+      "tool_call_id": "call_0_50493cc6-7386-4170-8599-5ffbccdfe3d1",
+      "content": [
+        {
+          "type": "text",
+          "text": "Navigated to https://news.ycombinator.com/"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075028030,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 1071,
+          "completion_tokens": 37,
+          "total_tokens": 1108,
+          "prompt_tokens_details": {
+            "cached_tokens": 1024
+          },
+          "prompt_cache_hit_tokens": 1024,
+          "prompt_cache_miss_tokens": 47
+        }
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_0_05ffca75-9d6f-435c-b57b-e5b175f7ec11",
+          "index": 0,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\":\"document.documentElement.outerHTML\"}"
+          }
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075032529,
+        "state": "success",
+        "serverName": "deepseek"
+      }
+    },
+    {
+      "role": "tool",
+      "index": 0,
+      "tool_call_id": "call_0_05ffca75-9d6f-435c-b57b-e5b175f7ec11",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"<html lang=\\\"en\\\" op=\\\"news\\\"><head><meta name=\\\"referrer\\\" content=\\\"origin\\\"><meta name=\\\"viewport\\\" content=\\\"width=device-width, initial-scale=1.0\\\"><link rel=\\\"stylesheet\\\" type=\\\"text/css\\\" href=\\\"news.css?QenTladWfdCVY7wtluv0\\\">\\n        <link rel=\\\"icon\\\" href=\\\"y18.svg\\\">\\n                  <link rel=\\\"alternate\\\" type=\\\"application/rss+xml\\\" title=\\\"RSS\\\" href=\\\"rss\\\">\\n        <title>Hacker News</title></head><body><center><table id=\\\"hnmain\\\" border=\\\"0\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" width=\\\"85%\\\" bgcolor=\\\"#f6f6ef\\\">\\n        <tbody><tr><td bgcolor=\\\"#ff6600\\\"><table border=\\\"0\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\" width=\\\"100%\\\" style=\\\"padding:2px\\\"><tbody><tr><td style=\\\"width:18px;padding-right:4px\\\"><a href=\\\"https://news.ycombinator.com\\\"><img src=\\\"y18.svg\\\" width=\\\"18\\\" height=\\\"18\\\" style=\\\"border:1px white solid; display:block\\\"></a></td>\\n                  <td style=\\\"line-height:12pt; height:10px;\\\"><span class=\\\"pagetop\\\"><b class=\\\"hnname\\\"><a href=\\\"news\\\">Hacker News</a></b>\\n                            <a href=\\\"newest\\\">new</a> | <a href=\\\"front\\\">past</a> | <a href=\\\"newcomments\\\">comments</a> | <a href=\\\"ask\\\">ask</a> | <a href=\\\"show\\\">show</a> | <a href=\\\"jobs\\\">jobs</a> | <a href=\\\"submit\\\" rel=\\\"nofollow\\\">submit</a>            </span></td><td style=\\\"text-align:right;padding-right:4px;\\\"><span class=\\\"pagetop\\\">\\n                              <a href=\\\"login?goto=news\\\">login</a>\\n                          </span></td>\\n              </tr></tbody></table></td></tr>\\n<tr id=\\\"pagespace\\\" title=\\\"\\\" style=\\\"height:10px\\\"></tr><tr><td><table border=\\\"0\\\" cellpadding=\\\"0\\\" cellspacing=\\\"0\\\">\\n            <tbody><tr class=\\\"athing submission\\\" id=\\\"43964937\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">1.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43964937\\\" href=\\\"vote?id=43964937&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://alexschapiro.com/blog/security/vulnerability/2025/04/21/startups-need-to-take-security-seriously\\\">I hacked a dating app (and how not to treat a security researcher)</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=alexschapiro.com\\\"><span class=\\\"sitestr\\\">alexschapiro.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43964937\\\">242 points</span> by <a href=\\\"user?id=bearsyankees\\\" class=\\\"hnuser\\\">bearsyankees</a> <span class=\\\"age\\\" title=\\\"2025-05-12T16:39:10 1747067950\\\"><a href=\\\"item?id=43964937\\\">1 hour ago</a></span> <span id=\\\"unv_43964937\\\"></span> | <a href=\\\"hide?id=43964937&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43964937\\\">116&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43963868\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">2.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43963868\\\" href=\\\"vote?id=43963868&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://technicalwriting.dev/ml/embeddings/overview.html\\\">Embeddings Are Underrated</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=technicalwriting.dev\\\"><span class=\\\"sitestr\\\">technicalwriting.dev</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43963868\\\">240 points</span> by <a href=\\\"user?id=jxmorris12\\\" class=\\\"hnuser\\\">jxmorris12</a> <span class=\\\"age\\\" title=\\\"2025-05-12T15:05:44 1747062344\\\"><a href=\\\"item?id=43963868\\\">3 hours ago</a></span> <span id=\\\"unv_43963868\\\"></span> | <a href=\\\"hide?id=43963868&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43963868\\\">73&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43964136\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">3.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43964136\\\" href=\\\"vote?id=43964136&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://arslan.io/2025/05/12/barbican-estate/\\\">The Barbican</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=arslan.io\\\"><span class=\\\"sitestr\\\">arslan.io</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43964136\\\">158 points</span> by <a href=\\\"user?id=farslan\\\" class=\\\"hnuser\\\">farslan</a> <span class=\\\"age\\\" title=\\\"2025-05-12T15:28:38 1747063718\\\"><a href=\\\"item?id=43964136\\\">3 hours ago</a></span> <span id=\\\"unv_43964136\\\"></span> | <a href=\\\"hide?id=43964136&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43964136\\\">56&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43964827\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">4.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43964827\\\" href=\\\"vote?id=43964827&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://bcantrill.dtrace.org/2025/05/11/rip-usenix-atc/\\\">RIP Usenix ATC</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=dtrace.org\\\"><span class=\\\"sitestr\\\">dtrace.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43964827\\\">57 points</span> by <a href=\\\"user?id=joecobb\\\" class=\\\"hnuser\\\">joecobb</a> <span class=\\\"age\\\" title=\\\"2025-05-12T16:29:05 1747067345\\\"><a href=\\\"item?id=43964827\\\">2 hours ago</a></span> <span id=\\\"unv_43964827\\\"></span> | <a href=\\\"hide?id=43964827&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43964827\\\">6&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43964505\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">5.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43964505\\\" href=\\\"vote?id=43964505&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"item?id=43964505\\\">Launch HN: ParaQuery (YC X25) – GPU Accelerated Spark/SQL</a></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43964505\\\">54 points</span> by <a href=\\\"user?id=winwang\\\" class=\\\"hnuser\\\">winwang</a> <span class=\\\"age\\\" title=\\\"2025-05-12T16:01:31 1747065691\\\"><a href=\\\"item?id=43964505\\\">2 hours ago</a></span> <span id=\\\"unv_43964505\\\"></span> | <a href=\\\"hide?id=43964505&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43964505\\\">11&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43965354\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">6.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43965354\\\" href=\\\"vote?id=43965354&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://thecommunemag.com/egyptian-plane-with-boron-us-plane-checking-radioactivity-did-india-really-hit-pakistans-nuclear-centres/\\\">U.S. Nuclear Emergency Support aircraft touched down in Pakistan</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=thecommunemag.com\\\"><span class=\\\"sitestr\\\">thecommunemag.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43965354\\\">22 points</span> by <a href=\\\"user?id=rustoo\\\" class=\\\"hnuser\\\">rustoo</a> <span class=\\\"age\\\" title=\\\"2025-05-12T17:18:29 1747070309\\\"><a href=\\\"item?id=43965354\\\">1 hour ago</a></span> <span id=\\\"unv_43965354\\\"></span> | <a href=\\\"hide?id=43965354&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43965354\\\">1&nbsp;comment</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43965608\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">7.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43965608\\\" href=\\\"vote?id=43965608&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://openai.com/index/healthbench/\\\">HealthBench</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=openai.com\\\"><span class=\\\"sitestr\\\">openai.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43965608\\\">12 points</span> by <a href=\\\"user?id=mfiguiere\\\" class=\\\"hnuser\\\">mfiguiere</a> <span class=\\\"age\\\" title=\\\"2025-05-12T17:42:37 1747071757\\\"><a href=\\\"item?id=43965608\\\">53 minutes ago</a></span> <span id=\\\"unv_43965608\\\"></span> | <a href=\\\"hide?id=43965608&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43965608\\\">3&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43961908\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">8.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43961908\\\" href=\\\"vote?id=43961908&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.comaps.app/news/2025-05-12/3/\\\">A community-led fork of Organic Maps</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=comaps.app\\\"><span class=\\\"sitestr\\\">comaps.app</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43961908\\\">218 points</span> by <a href=\\\"user?id=maelito\\\" class=\\\"hnuser\\\">maelito</a> <span class=\\\"age\\\" title=\\\"2025-05-12T11:40:24 1747050024\\\"><a href=\\\"item?id=43961908\\\">6 hours ago</a></span> <span id=\\\"unv_43961908\\\"></span> | <a href=\\\"hide?id=43961908&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43961908\\\">144&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43965161\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">9.</span></td>      <td><img src=\\\"s.gif\\\" height=\\\"1\\\" width=\\\"14\\\"></td>       <td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.workatastartup.com/jobs/75011\\\" rel=\\\"nofollow\\\">Legion Health (YC S21) Is Hiring Founding Engineers to Fix Mental Health with AI</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=workatastartup.com\\\"><span class=\\\"sitestr\\\">workatastartup.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\">\\n        <span class=\\\"age\\\" title=\\\"2025-05-12T17:01:42 1747069302\\\"><a href=\\\"item?id=43965161\\\">1 hour ago</a></span> | <a href=\\\"hide?id=43965161&amp;goto=news\\\">hide</a>      </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43965099\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">10.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43965099\\\" href=\\\"vote?id=43965099&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://arxiv.org/abs/2412.09871\\\">Byte Latent Transformer: Patches Scale Better Than Tokens</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=arxiv.org\\\"><span class=\\\"sitestr\\\">arxiv.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43965099\\\">17 points</span> by <a href=\\\"user?id=dlojudice\\\" class=\\\"hnuser\\\">dlojudice</a> <span class=\\\"age\\\" title=\\\"2025-05-12T16:55:39 1747068939\\\"><a href=\\\"item?id=43965099\\\">1 hour ago</a></span> <span id=\\\"unv_43965099\\\"></span> | <a href=\\\"hide?id=43965099&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43965099\\\">4&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43962770\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">11.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43962770\\\" href=\\\"vote?id=43962770&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://bugs.ruby-lang.org/issues/21311\\\">Ruby 3.5 Feature: Namespace on read</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=ruby-lang.org\\\"><span class=\\\"sitestr\\\">ruby-lang.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43962770\\\">115 points</span> by <a href=\\\"user?id=ksec\\\" class=\\\"hnuser\\\">ksec</a> <span class=\\\"age\\\" title=\\\"2025-05-12T13:39:34 1747057174\\\"><a href=\\\"item?id=43962770\\\">4 hours ago</a></span> <span id=\\\"unv_43962770\\\"></span> | <a href=\\\"hide?id=43962770&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43962770\\\">56&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43964201\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">12.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43964201\\\" href=\\\"vote?id=43964201&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://github.com/airweave-ai/airweave\\\">Show HN: Airweave – Let agents search any app</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=github.com/airweave-ai\\\"><span class=\\\"sitestr\\\">github.com/airweave-ai</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43964201\\\">55 points</span> by <a href=\\\"user?id=lennertjansen\\\" class=\\\"hnuser\\\">lennertjansen</a> <span class=\\\"age\\\" title=\\\"2025-05-12T15:34:21 1747064061\\\"><a href=\\\"item?id=43964201\\\">3 hours ago</a></span> <span id=\\\"unv_43964201\\\"></span> | <a href=\\\"hide?id=43964201&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43964201\\\">19&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43963397\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">13.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43963397\\\" href=\\\"vote?id=43963397&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.core77.com/posts/136773/Reviving-a-Modular-Cargo-Bike-Design-from-the-1930s\\\">Reviving a Modular Cargo Bike Design from the 1930s</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=core77.com\\\"><span class=\\\"sitestr\\\">core77.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43963397\\\">73 points</span> by <a href=\\\"user?id=surprisetalk\\\" class=\\\"hnuser\\\">surprisetalk</a> <span class=\\\"age\\\" title=\\\"2025-05-12T14:29:33 1747060173\\\"><a href=\\\"item?id=43963397\\\">4 hours ago</a></span> <span id=\\\"unv_43963397\\\"></span> | <a href=\\\"hide?id=43963397&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43963397\\\">60&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43963747\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">14.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43963747\\\" href=\\\"vote?id=43963747&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://nixcademy.com/posts/secure-supply-chain-with-nix/\\\">Demonstrably Secure Software Supply Chains with Nix</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=nixcademy.com\\\"><span class=\\\"sitestr\\\">nixcademy.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43963747\\\">43 points</span> by <a href=\\\"user?id=todsacerdoti\\\" class=\\\"hnuser\\\">todsacerdoti</a> <span class=\\\"age\\\" title=\\\"2025-05-12T14:54:31 1747061671\\\"><a href=\\\"item?id=43963747\\\">3 hours ago</a></span> <span id=\\\"unv_43963747\\\"></span> | <a href=\\\"hide?id=43963747&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43963747\\\">7&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43962148\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">15.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43962148\\\" href=\\\"vote?id=43962148&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://news.utexas.edu/2025/05/05/university-of-texas-led-team-solves-a-big-problem-for-fusion-energy/\\\">University of Texas-led team solves a big problem for fusion energy</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=utexas.edu\\\"><span class=\\\"sitestr\\\">utexas.edu</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43962148\\\">165 points</span> by <a href=\\\"user?id=signa11\\\" class=\\\"hnuser\\\">signa11</a> <span class=\\\"age\\\" title=\\\"2025-05-12T12:21:33 1747052493\\\"><a href=\\\"item?id=43962148\\\">6 hours ago</a></span> <span id=\\\"unv_43962148\\\"></span> | <a href=\\\"hide?id=43962148&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43962148\\\">112&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43945660\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">16.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43945660\\\" href=\\\"vote?id=43945660&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://blog.janestreet.com/why-gadts-matter-for-performance/\\\">Why GADTs matter for performance (2015)</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=janestreet.com\\\"><span class=\\\"sitestr\\\">janestreet.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43945660\\\">20 points</span> by <a href=\\\"user?id=hyperbrainer\\\" class=\\\"hnuser\\\">hyperbrainer</a> <span class=\\\"age\\\" title=\\\"2025-05-10T13:55:43 1746885343\\\"><a href=\\\"item?id=43945660\\\">2 hours ago</a></span> <span id=\\\"unv_43945660\\\"></span> | <a href=\\\"hide?id=43945660&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43945660\\\">3&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43944007\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">17.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43944007\\\" href=\\\"vote?id=43944007&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://alvinng4.github.io/grav_sim/5_steps_to_n_body_simulation/\\\">5 Steps to N-Body Simulation</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=alvinng4.github.io\\\"><span class=\\\"sitestr\\\">alvinng4.github.io</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43944007\\\">9 points</span> by <a href=\\\"user?id=dargscisyhp\\\" class=\\\"hnuser\\\">dargscisyhp</a> <span class=\\\"age\\\" title=\\\"2025-05-10T08:10:18 1746864618\\\"><a href=\\\"item?id=43944007\\\">1 hour ago</a></span> <span id=\\\"unv_43944007\\\"></span> | <a href=\\\"hide?id=43944007&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43944007\\\">discuss</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43962992\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">18.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43962992\\\" href=\\\"vote?id=43962992&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://tailscale.com/blog/4via6-connectivity-to-edge-devices\\\">Tailscale 4via6 – Connect Edge Deployments at Scale</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=tailscale.com\\\"><span class=\\\"sitestr\\\">tailscale.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43962992\\\">54 points</span> by <a href=\\\"user?id=tiernano\\\" class=\\\"hnuser\\\">tiernano</a> <span class=\\\"age\\\" title=\\\"2025-05-12T14:00:32 1747058432\\\"><a href=\\\"item?id=43962992\\\">4 hours ago</a></span> <span id=\\\"unv_43962992\\\"></span> | <a href=\\\"hide?id=43962992&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43962992\\\">16&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43961226\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">19.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43961226\\\" href=\\\"vote?id=43961226&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://phys.org/news/2025-05-universe-decay-years-sooner-previously.html\\\">Universe expected to decay in 10⁷⁸ years, much sooner than previously thought</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=phys.org\\\"><span class=\\\"sitestr\\\">phys.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43961226\\\">107 points</span> by <a href=\\\"user?id=pseudolus\\\" class=\\\"hnuser\\\">pseudolus</a> <span class=\\\"age\\\" title=\\\"2025-05-12T09:46:36 1747043196\\\"><a href=\\\"item?id=43961226\\\">8 hours ago</a></span> <span id=\\\"unv_43961226\\\"></span> | <a href=\\\"hide?id=43961226&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43961226\\\">148&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43962138\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">20.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43962138\\\" href=\\\"vote?id=43962138&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://spade-lang.org/\\\">Spade Hardware Description Language</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=spade-lang.org\\\"><span class=\\\"sitestr\\\">spade-lang.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43962138\\\">82 points</span> by <a href=\\\"user?id=spmcl\\\" class=\\\"hnuser\\\">spmcl</a> <span class=\\\"age\\\" title=\\\"2025-05-12T12:19:50 1747052390\\\"><a href=\\\"item?id=43962138\\\">6 hours ago</a></span> <span id=\\\"unv_43962138\\\"></span> | <a href=\\\"hide?id=43962138&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43962138\\\">35&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43943673\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">21.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43943673\\\" href=\\\"vote?id=43943673&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://examine.com/research-feed/study/1jjKq1/\\\">Continuous glucose monitors reveal variable glucose responses to the same meals</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=examine.com\\\"><span class=\\\"sitestr\\\">examine.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43943673\\\">88 points</span> by <a href=\\\"user?id=Matrixik\\\" class=\\\"hnuser\\\">Matrixik</a> <span class=\\\"age\\\" title=\\\"2025-05-10T06:44:00 1746859440\\\"><a href=\\\"item?id=43943673\\\">7 hours ago</a></span> <span id=\\\"unv_43943673\\\"></span> | <a href=\\\"hide?id=43943673&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43943673\\\">52&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43963839\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">22.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43963839\\\" href=\\\"vote?id=43963839&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://openeox.org/\\\">OpenEoX to Standardize End-of-Life (EOL) and End-of-Support (EOS) Information</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=openeox.org\\\"><span class=\\\"sitestr\\\">openeox.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43963839\\\">18 points</span> by <a href=\\\"user?id=feldrim\\\" class=\\\"hnuser\\\">feldrim</a> <span class=\\\"age\\\" title=\\\"2025-05-12T15:02:48 1747062168\\\"><a href=\\\"item?id=43963839\\\">3 hours ago</a></span> <span id=\\\"unv_43963839\\\"></span> | <a href=\\\"hide?id=43963839&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43963839\\\">11&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43962427\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">23.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43962427\\\" href=\\\"vote?id=43962427&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://github.com/m-ahmed-elbeskeri/Starguard\\\">Show HN: CLI that spots fake GitHub stars, risky dependencies and licence traps</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=github.com/m-ahmed-elbeskeri\\\"><span class=\\\"sitestr\\\">github.com/m-ahmed-elbeskeri</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43962427\\\">54 points</span> by <a href=\\\"user?id=artski\\\" class=\\\"hnuser\\\">artski</a> <span class=\\\"age\\\" title=\\\"2025-05-12T12:59:19 1747054759\\\"><a href=\\\"item?id=43962427\\\">5 hours ago</a></span> <span id=\\\"unv_43962427\\\"></span> | <a href=\\\"hide?id=43962427&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43962427\\\">31&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43959403\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">24.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43959403\\\" href=\\\"vote?id=43959403&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://blog.es3n1n.eu/posts/how-i-ruined-my-vacation/\\\">I ruined my vacation by reverse engineering WSC</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=es3n1n.eu\\\"><span class=\\\"sitestr\\\">es3n1n.eu</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43959403\\\">306 points</span> by <a href=\\\"user?id=todsacerdoti\\\" class=\\\"hnuser\\\">todsacerdoti</a> <span class=\\\"age\\\" title=\\\"2025-05-12T03:34:26 1747020866\\\"><a href=\\\"item?id=43959403\\\">15 hours ago</a></span> <span id=\\\"unv_43959403\\\"></span> | <a href=\\\"hide?id=43959403&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43959403\\\">155&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43962528\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">25.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43962528\\\" href=\\\"vote?id=43962528&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.theverge.com/news/664730/ftc-delay-click-to-cancel-rule\\\">The FTC puts off enforcing its 'click-to-cancel' rule</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=theverge.com\\\"><span class=\\\"sitestr\\\">theverge.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43962528\\\">228 points</span> by <a href=\\\"user?id=speckx\\\" class=\\\"hnuser\\\">speckx</a> <span class=\\\"age\\\" title=\\\"2025-05-12T13:12:10 1747055530\\\"><a href=\\\"item?id=43962528\\\">5 hours ago</a></span> <span id=\\\"unv_43962528\\\"></span> | <a href=\\\"hide?id=43962528&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43962528\\\">126&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43944526\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">26.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43944526\\\" href=\\\"vote?id=43944526&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.youtube.com/watch?v=A98jyfB5mws\\\">A Typical Workday at a Japanese Hardware Tool Store [video]</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=youtube.com\\\"><span class=\\\"sitestr\\\">youtube.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43944526\\\">93 points</span> by <a href=\\\"user?id=Erikun\\\" class=\\\"hnuser\\\">Erikun</a> <span class=\\\"age\\\" title=\\\"2025-05-10T10:18:54 1746872334\\\"><a href=\\\"item?id=43944526\\\">8 hours ago</a></span> <span id=\\\"unv_43944526\\\"></span> | <a href=\\\"hide?id=43944526&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43944526\\\">34&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43927794\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">27.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43927794\\\" href=\\\"vote?id=43927794&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://reorientinglife.substack.com/p/optimizing-my-hacker-news-experience\\\">Optimizing My Hacker News Experience</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=reorientinglife.substack.com\\\"><span class=\\\"sitestr\\\">reorientinglife.substack.com</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43927794\\\">34 points</span> by <a href=\\\"user?id=fiveleavesleft\\\" class=\\\"hnuser\\\">fiveleavesleft</a> <span class=\\\"age\\\" title=\\\"2025-05-08T16:26:11 1746721571\\\"><a href=\\\"item?id=43927794\\\">4 hours ago</a></span> <span id=\\\"unv_43927794\\\"></span> | <a href=\\\"hide?id=43927794&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43927794\\\">15&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43943984\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">28.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43943984\\\" href=\\\"vote?id=43943984&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.in-ulm.de/~mascheck/various/ash/\\\">Ash (Almquist Shell) Variants</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=in-ulm.de\\\"><span class=\\\"sitestr\\\">in-ulm.de</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43943984\\\">62 points</span> by <a href=\\\"user?id=thefilmore\\\" class=\\\"hnuser\\\">thefilmore</a> <span class=\\\"age\\\" title=\\\"2025-05-10T08:01:30 1746864090\\\"><a href=\\\"item?id=43943984\\\">7 hours ago</a></span> <span id=\\\"unv_43943984\\\"></span> | <a href=\\\"hide?id=43943984&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43943984\\\">3&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43964896\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">29.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43964896\\\" href=\\\"vote?id=43964896&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://www.opte.org/the-internet\\\" rel=\\\"nofollow\\\">The Internet 1997 – 2021</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=opte.org\\\"><span class=\\\"sitestr\\\">opte.org</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43964896\\\">7 points</span> by <a href=\\\"user?id=smusamashah\\\" class=\\\"hnuser\\\">smusamashah</a> <span class=\\\"age\\\" title=\\\"2025-05-12T16:35:42 1747067742\\\"><a href=\\\"item?id=43964896\\\">1 hour ago</a></span> <span id=\\\"unv_43964896\\\"></span> | <a href=\\\"hide?id=43964896&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43964896\\\">1&nbsp;comment</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n                <tr class=\\\"athing submission\\\" id=\\\"43959071\\\">\\n      <td align=\\\"right\\\" valign=\\\"top\\\" class=\\\"title\\\"><span class=\\\"rank\\\">30.</span></td>      <td valign=\\\"top\\\" class=\\\"votelinks\\\"><center><a id=\\\"up_43959071\\\" href=\\\"vote?id=43959071&amp;how=up&amp;goto=news\\\"><div class=\\\"votearrow\\\" title=\\\"upvote\\\"></div></a></center></td><td class=\\\"title\\\"><span class=\\\"titleline\\\"><a href=\\\"https://pub.sakana.ai/ctm/\\\">Continuous Thought Machines</a><span class=\\\"sitebit comhead\\\"> (<a href=\\\"from?site=sakana.ai\\\"><span class=\\\"sitestr\\\">sakana.ai</span></a>)</span></span></td></tr><tr><td colspan=\\\"2\\\"></td><td class=\\\"subtext\\\"><span class=\\\"subline\\\">\\n          <span class=\\\"score\\\" id=\\\"score_43959071\\\">269 points</span> by <a href=\\\"user?id=hardmaru\\\" class=\\\"hnuser\\\">hardmaru</a> <span class=\\\"age\\\" title=\\\"2025-05-12T02:21:11 1747016471\\\"><a href=\\\"item?id=43959071\\\">16 hours ago</a></span> <span id=\\\"unv_43959071\\\"></span> | <a href=\\\"hide?id=43959071&amp;goto=news\\\">hide</a> | <a href=\\\"item?id=43959071\\\">28&nbsp;comments</a>        </span>\\n              </td></tr>\\n      <tr class=\\\"spacer\\\" style=\\\"height:5px\\\"></tr>\\n            <tr class=\\\"morespace\\\" style=\\\"height:10px\\\"></tr><tr><td colspan=\\\"2\\\"></td>\\n      <td class=\\\"title\\\"><a href=\\\"?p=2\\\" class=\\\"morelink\\\" rel=\\\"next\\\">More</a></td>    </tr>\\n  </tbody></table>\\n</td></tr>\\n<tr><td><img src=\\\"s.gif\\\" height=\\\"10\\\" width=\\\"0\\\"><table width=\\\"100%\\\" cellspacing=\\\"0\\\" cellpadding=\\\"1\\\"><tbody><tr><td bgcolor=\\\"#ff6600\\\"></td></tr></tbody></table><br>\\n<center><a href=\\\"https://www.ycombinator.com/apply/\\\">Consider applying for YC's Summer 2025 batch! Applications are open till May 13</a></center><br>\\n<center><span class=\\\"yclinks\\\"><a href=\\\"newsguidelines.html\\\">Guidelines</a> | <a href=\\\"newsfaq.html\\\">FAQ</a> | <a href=\\\"lists\\\">Lists</a> | <a href=\\\"https://github.com/HackerNews/API\\\">API</a> | <a href=\\\"security.html\\\">Security</a> | <a href=\\\"https://www.ycombinator.com/legal/\\\">Legal</a> | <a href=\\\"https://www.ycombinator.com/apply/\\\">Apply to YC</a> | <a href=\\\"mailto:hn@ycombinator.com\\\">Contact</a></span><br><br>\\n<form method=\\\"get\\\" action=\\\"//hn.algolia.com/\\\">Search: <input type=\\\"text\\\" name=\\\"q\\\" size=\\\"17\\\" autocorrect=\\\"off\\\" spellcheck=\\\"false\\\" autocapitalize=\\\"off\\\" autocomplete=\\\"off\\\"></form></center></td></tr>      </tbody></table></center>\\n      <script type=\\\"text/javascript\\\" src=\\\"hn.js?QenTladWfdCVY7wtluv0\\\"></script>\\n  \\n</body></html>\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075032544,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 1133,
+          "completion_tokens": 25,
+          "total_tokens": 1158,
+          "prompt_tokens_details": {
+            "cached_tokens": 1088
+          },
+          "prompt_cache_hit_tokens": 1088,
+          "prompt_cache_miss_tokens": 45
+        }
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_0_ed4b206b-4153-4e01-8109-441d2e84d7eb",
+          "index": 0,
+          "type": "function",
+          "function": {
+            "name": "k_navigate",
+            "arguments": "{\"url\": \"https://alexschapiro.com/blog/security/vulnerability/2025/04/21/startups-need-to-take-security-seriously\"}"
+          }
+        },
+        {
+          "id": "call_1_7e87d741-7c23-4dc3-bdcd-7887c3c30bc7",
+          "index": 1,
+          "type": "function",
+          "function": {
+            "name": "k_navigate",
+            "arguments": "{\"url\": \"https://technicalwriting.dev/ml/embeddings/overview.html\"}"
+          }
+        },
+        {
+          "id": "call_2_c4f46504-3313-4d9c-8e35-c676612037b5",
+          "index": 2,
+          "type": "function",
+          "function": {
+            "name": "k_navigate",
+            "arguments": "{\"url\": \"https://arslan.io/2025/05/12/barbican-estate/\"}"
+          }
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075045822,
+        "state": "success",
+        "serverName": "deepseek"
+      }
+    },
+    {
+      "role": "tool",
+      "index": 0,
+      "tool_call_id": "call_0_ed4b206b-4153-4e01-8109-441d2e84d7eb",
+      "content": [
+        {
+          "type": "text",
+          "text": "Navigated to https://alexschapiro.com/blog/security/vulnerability/2025/04/21/startups-need-to-take-security-seriously"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075047818,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 17840,
+          "completion_tokens": 118,
+          "total_tokens": 17958,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 16688
+        }
+      }
+    },
+    {
+      "role": "tool",
+      "index": 1,
+      "tool_call_id": "call_1_7e87d741-7c23-4dc3-bdcd-7887c3c30bc7",
+      "content": [
+        {
+          "type": "text",
+          "text": "Navigated to https://technicalwriting.dev/ml/embeddings/overview.html"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075049824,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 17840,
+          "completion_tokens": 118,
+          "total_tokens": 17958,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 16688
+        }
+      }
+    },
+    {
+      "role": "tool",
+      "index": 2,
+      "tool_call_id": "call_2_c4f46504-3313-4d9c-8e35-c676612037b5",
+      "content": [
+        {
+          "type": "text",
+          "text": "Navigated to https://arslan.io/2025/05/12/barbican-estate/"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075052756,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 17840,
+          "completion_tokens": 118,
+          "total_tokens": 17958,
+          "prompt_tokens_details": {
+            "cached_tokens": 1152
+          },
+          "prompt_cache_hit_tokens": 1152,
+          "prompt_cache_miss_tokens": 16688
+        }
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_0_3f1bc7ef-2844-43d7-bbf8-44badfddf6f8",
+          "index": 0,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\": \"document.title\"}"
+          }
+        },
+        {
+          "id": "call_1_d213f336-a56b-47b3-a1dc-75411aa4f269",
+          "index": 1,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\": \"document.title\"}"
+          }
+        },
+        {
+          "id": "call_2_f8a7357e-4847-4de0-b410-524188ef379a",
+          "index": 2,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\": \"document.title\"}"
+          }
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075062048,
+        "state": "success",
+        "serverName": "deepseek"
+      }
+    },
+    {
+      "role": "tool",
+      "index": 0,
+      "tool_call_id": "call_0_3f1bc7ef-2844-43d7-bbf8-44badfddf6f8",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"The Barbican\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075062053,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 18070,
+          "completion_tokens": 61,
+          "total_tokens": 18131,
+          "prompt_tokens_details": {
+            "cached_tokens": 17920
+          },
+          "prompt_cache_hit_tokens": 17920,
+          "prompt_cache_miss_tokens": 150
+        }
+      }
+    },
+    {
+      "role": "tool",
+      "index": 1,
+      "tool_call_id": "call_1_d213f336-a56b-47b3-a1dc-75411aa4f269",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"The Barbican\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075062059,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 18070,
+          "completion_tokens": 61,
+          "total_tokens": 18131,
+          "prompt_tokens_details": {
+            "cached_tokens": 17920
+          },
+          "prompt_cache_hit_tokens": 17920,
+          "prompt_cache_miss_tokens": 150
+        }
+      }
+    },
+    {
+      "role": "tool",
+      "index": 2,
+      "tool_call_id": "call_2_f8a7357e-4847-4de0-b410-524188ef379a",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"The Barbican\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075062063,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 18070,
+          "completion_tokens": 61,
+          "total_tokens": 18131,
+          "prompt_tokens_details": {
+            "cached_tokens": 17920
+          },
+          "prompt_cache_hit_tokens": 17920,
+          "prompt_cache_miss_tokens": 150
+        }
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "",
+      "tool_calls": [
+        {
+          "id": "call_0_4846a609-8d19-492e-b24c-1e54bf5f36c6",
+          "index": 0,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\": \"document.body.innerText\"}"
+          }
+        },
+        {
+          "id": "call_1_2c41def1-2eb9-4abd-aab4-b52345a330c4",
+          "index": 1,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\": \"document.body.innerText\"}"
+          }
+        },
+        {
+          "id": "call_2_4e96bad1-a280-4dea-96f2-463ae42fc5a2",
+          "index": 2,
+          "type": "function",
+          "function": {
+            "name": "k_evaluate",
+            "arguments": "{\"script\": \"document.body.innerText\"}"
+          }
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075071624,
+        "state": "success",
+        "serverName": "deepseek"
+      }
+    },
+    {
+      "role": "tool",
+      "index": 0,
+      "tool_call_id": "call_0_4846a609-8d19-492e-b24c-1e54bf5f36c6",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"Fatih Arslan\\nHome\\nDesign & Works\\nThoughts\\nAbout\\nMay 12, 2025\\nPhotography\\nThe Barbican\\n\\nThree years ago, while searching for Vitsoe setups, I stumbled upon Barbican. I delved deeper and discovered a building complex that was beyond my imaginations.\\n\\nYoung Fatih would definitely find it ugly; current me finds it beautiful. The estate was built between 1965 and 1976. And, since I first saw it, I started watching and reading everything I could find. There are a few YouTube videos where you can peek into the lives of the residents. And there are a few books as well.\\n\\nOf course, my dream was to visit the actual place. Stay there for a few hours, and discover more about this grandiose place. When I had a chance to visit London a few weeks ago, I planned to visit the estate. I had to.\\n\\nWhile researching, I discovered that Barbican was far more than I had imagined. The residents offered architecture tours, and I couldn’t resist the opportunity to attend one. I invited two friends along, and we embarked on a 2-hour-long tour.\\n\\nThe tour, which took almost two hours, felt like it was just 10 minutes long. Our tour guide informed us with hundreds of small details, a few of which stuck in my mind in no particular order. Here are some of them (nit: all the photos where shoot with the Leica M11 + 35mm Summilux FLE)\\n\\nSomeone could start living as a single, marry someone, have kids, the kids could move out, the residents could die all in the same place. It has all the amenities someone would need to live there.\\nIt's by design, created like a maze so people get lost. The tour guide even made a joke that there were no thieves in the Barbican, because once in, they don't know how to get out. (nit: our Tour Guide said a few times how he felt like he lives in a Prison where volunteers would pay to live there)\\nThere’s an underground parking garage for the residents, but half of it is empty and filled with 20-30-year-old cars whose owners are no longer known.\\nBuildings are named after famous English people lived in their times (i.e: Shakespeare tower)\\nThe architects were inspired by ancient Egyptians and Battalions. A specific Egyptian Cartouche, resembling a rounded rectangle, is almost universally found.\\n\\nThe rounded cartouche can be seen almost in every detail if you look carefully.\\n\\nThere are places that only residents can enter, some of which are completely hidden from the public. The residents have a key fob that can open doors and hidden gateways, allowing them to enter the Barbican even directly from the underground subway.\\nThe Slow Horses laundry scenes were shot in Barbican.\\nThe Laundry in the Slow Horses TV Show takes place in the Barbican\\nIt was literally built on Roman and the Medieval ruins.\\nA corner of the Roman city Londonium can be found here. The Roman ruins were heavily modified though in the middle age. So the ruins have layers spanning hundreds of years.\\nIt contains a A 1000 year old Jewish burial ground as well.\\nJewish burial ground remains can be seen in the bottom left part.\\nThere is central heating only, residents can't turn them off in the winter, leading to weird states where it gets just too hot or too cold sometimes.\\nThe residents even have their own online forum sharing news/issues and recommendations between each other: barbicantalk.com\\nEach building has details that are an ode to certain famous architects and designers, such as Le Corbusier.\\n\\nLook carefully and you see various hints \\n\\nIt's popular among media, architects and designers. Hence there is always a public photo or video shooting.\\nThere is a branch of a Music school inside Barbican, and some parts of the building resembling a tuning fork.\\n\\nBarbican is full of treasures.\\n\\nAfter reading this you might be interested to learn more. Here are a few Book recommendations:\\n\\nBarbican Residents: The book is mostly an interior design book, but only from people living in the various apartments in the Barbican Estate. Definitely a must buy if you're interested how the residents live there.\\nBarbican Estate: Released in 2019, it's a heavy coffee table book with lots of gorgeous photos about the Barbican\\nBuilding Utopia: The Barbican Centre: This book was released in 2022, and is currently the most up-to-date book about the Barbican. It is compiled by Nicholas Kenyon, the Barbican Centre's Managing Director 2007–2021, hence contains a lot of unknown information.\\nEngineer with a passion for Design, Dieter Rams, Watches, Coffee and Bauhaus\\nSubscribe\\n\\nNo spam, no sharing to third party. Only you and me.\\n\\nSIMILAR THOUGHTS\\nA month in Munich\\nWe stayed with the family (two kids and my wife) for several weeks in Munich. I took hundreds of photos. Here is how it went.\\n31 Aug\\nA morning in Nymphenburg Palace Park\\nThe Nymphenburg Palace Park ranks among Germany's finest and most important garden design examples. It's also my favorite one in Munich.\\n22 May\\nFaculty of Architecture, METU Ankara\\nThe Faculty of Architecture of the METU (one of Turkey's elite universities) was always something that piqued my interest. It was built in 1960's, during the Brutalism era. It's one of the most sophisticated and well-known brutalist buildings in Turkey, especially in Ankara.\\n13 Apr\\nUlus, the old town of Ankara\\nLast year, I had an off day (November 2022). I picked up my Fuji X100V and walked with my wife through the old town of Ankara, Ulus. These are the photos from that day.\\n19 Nov\\nFrom Fujifilm to Leica: My Experience with the M11\\nMy journey from using Fujifilm cameras for a decade to using Leica's latest digital Rangefinder, the M11.\\n06 Jan\\nFatih Arslan © 2025. Published with Ghost & Kyoto\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075071632,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 18220,
+          "completion_tokens": 67,
+          "total_tokens": 18287,
+          "prompt_tokens_details": {
+            "cached_tokens": 18112
+          },
+          "prompt_cache_hit_tokens": 18112,
+          "prompt_cache_miss_tokens": 108
+        }
+      }
+    },
+    {
+      "role": "tool",
+      "index": 1,
+      "tool_call_id": "call_1_2c41def1-2eb9-4abd-aab4-b52345a330c4",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"Fatih Arslan\\nHome\\nDesign & Works\\nThoughts\\nAbout\\nMay 12, 2025\\nPhotography\\nThe Barbican\\n\\nThree years ago, while searching for Vitsoe setups, I stumbled upon Barbican. I delved deeper and discovered a building complex that was beyond my imaginations.\\n\\nYoung Fatih would definitely find it ugly; current me finds it beautiful. The estate was built between 1965 and 1976. And, since I first saw it, I started watching and reading everything I could find. There are a few YouTube videos where you can peek into the lives of the residents. And there are a few books as well.\\n\\nOf course, my dream was to visit the actual place. Stay there for a few hours, and discover more about this grandiose place. When I had a chance to visit London a few weeks ago, I planned to visit the estate. I had to.\\n\\nWhile researching, I discovered that Barbican was far more than I had imagined. The residents offered architecture tours, and I couldn’t resist the opportunity to attend one. I invited two friends along, and we embarked on a 2-hour-long tour.\\n\\nThe tour, which took almost two hours, felt like it was just 10 minutes long. Our tour guide informed us with hundreds of small details, a few of which stuck in my mind in no particular order. Here are some of them (nit: all the photos where shoot with the Leica M11 + 35mm Summilux FLE)\\n\\nSomeone could start living as a single, marry someone, have kids, the kids could move out, the residents could die all in the same place. It has all the amenities someone would need to live there.\\nIt's by design, created like a maze so people get lost. The tour guide even made a joke that there were no thieves in the Barbican, because once in, they don't know how to get out. (nit: our Tour Guide said a few times how he felt like he lives in a Prison where volunteers would pay to live there)\\nThere’s an underground parking garage for the residents, but half of it is empty and filled with 20-30-year-old cars whose owners are no longer known.\\nBuildings are named after famous English people lived in their times (i.e: Shakespeare tower)\\nThe architects were inspired by ancient Egyptians and Battalions. A specific Egyptian Cartouche, resembling a rounded rectangle, is almost universally found.\\n\\nThe rounded cartouche can be seen almost in every detail if you look carefully.\\n\\nThere are places that only residents can enter, some of which are completely hidden from the public. The residents have a key fob that can open doors and hidden gateways, allowing them to enter the Barbican even directly from the underground subway.\\nThe Slow Horses laundry scenes were shot in Barbican.\\nThe Laundry in the Slow Horses TV Show takes place in the Barbican\\nIt was literally built on Roman and the Medieval ruins.\\nA corner of the Roman city Londonium can be found here. The Roman ruins were heavily modified though in the middle age. So the ruins have layers spanning hundreds of years.\\nIt contains a A 1000 year old Jewish burial ground as well.\\nJewish burial ground remains can be seen in the bottom left part.\\nThere is central heating only, residents can't turn them off in the winter, leading to weird states where it gets just too hot or too cold sometimes.\\nThe residents even have their own online forum sharing news/issues and recommendations between each other: barbicantalk.com\\nEach building has details that are an ode to certain famous architects and designers, such as Le Corbusier.\\n\\nLook carefully and you see various hints \\n\\nIt's popular among media, architects and designers. Hence there is always a public photo or video shooting.\\nThere is a branch of a Music school inside Barbican, and some parts of the building resembling a tuning fork.\\n\\nBarbican is full of treasures.\\n\\nAfter reading this you might be interested to learn more. Here are a few Book recommendations:\\n\\nBarbican Residents: The book is mostly an interior design book, but only from people living in the various apartments in the Barbican Estate. Definitely a must buy if you're interested how the residents live there.\\nBarbican Estate: Released in 2019, it's a heavy coffee table book with lots of gorgeous photos about the Barbican\\nBuilding Utopia: The Barbican Centre: This book was released in 2022, and is currently the most up-to-date book about the Barbican. It is compiled by Nicholas Kenyon, the Barbican Centre's Managing Director 2007–2021, hence contains a lot of unknown information.\\nEngineer with a passion for Design, Dieter Rams, Watches, Coffee and Bauhaus\\nSubscribe\\n\\nNo spam, no sharing to third party. Only you and me.\\n\\nSIMILAR THOUGHTS\\nA month in Munich\\nWe stayed with the family (two kids and my wife) for several weeks in Munich. I took hundreds of photos. Here is how it went.\\n31 Aug\\nA morning in Nymphenburg Palace Park\\nThe Nymphenburg Palace Park ranks among Germany's finest and most important garden design examples. It's also my favorite one in Munich.\\n22 May\\nFaculty of Architecture, METU Ankara\\nThe Faculty of Architecture of the METU (one of Turkey's elite universities) was always something that piqued my interest. It was built in 1960's, during the Brutalism era. It's one of the most sophisticated and well-known brutalist buildings in Turkey, especially in Ankara.\\n13 Apr\\nUlus, the old town of Ankara\\nLast year, I had an off day (November 2022). I picked up my Fuji X100V and walked with my wife through the old town of Ankara, Ulus. These are the photos from that day.\\n19 Nov\\nFrom Fujifilm to Leica: My Experience with the M11\\nMy journey from using Fujifilm cameras for a decade to using Leica's latest digital Rangefinder, the M11.\\n06 Jan\\nFatih Arslan © 2025. Published with Ghost & Kyoto\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075071639,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 18220,
+          "completion_tokens": 67,
+          "total_tokens": 18287,
+          "prompt_tokens_details": {
+            "cached_tokens": 18112
+          },
+          "prompt_cache_hit_tokens": 18112,
+          "prompt_cache_miss_tokens": 108
+        }
+      }
+    },
+    {
+      "role": "tool",
+      "index": 2,
+      "tool_call_id": "call_2_4e96bad1-a280-4dea-96f2-463ae42fc5a2",
+      "content": [
+        {
+          "type": "text",
+          "text": "Execution result:\n\"Fatih Arslan\\nHome\\nDesign & Works\\nThoughts\\nAbout\\nMay 12, 2025\\nPhotography\\nThe Barbican\\n\\nThree years ago, while searching for Vitsoe setups, I stumbled upon Barbican. I delved deeper and discovered a building complex that was beyond my imaginations.\\n\\nYoung Fatih would definitely find it ugly; current me finds it beautiful. The estate was built between 1965 and 1976. And, since I first saw it, I started watching and reading everything I could find. There are a few YouTube videos where you can peek into the lives of the residents. And there are a few books as well.\\n\\nOf course, my dream was to visit the actual place. Stay there for a few hours, and discover more about this grandiose place. When I had a chance to visit London a few weeks ago, I planned to visit the estate. I had to.\\n\\nWhile researching, I discovered that Barbican was far more than I had imagined. The residents offered architecture tours, and I couldn’t resist the opportunity to attend one. I invited two friends along, and we embarked on a 2-hour-long tour.\\n\\nThe tour, which took almost two hours, felt like it was just 10 minutes long. Our tour guide informed us with hundreds of small details, a few of which stuck in my mind in no particular order. Here are some of them (nit: all the photos where shoot with the Leica M11 + 35mm Summilux FLE)\\n\\nSomeone could start living as a single, marry someone, have kids, the kids could move out, the residents could die all in the same place. It has all the amenities someone would need to live there.\\nIt's by design, created like a maze so people get lost. The tour guide even made a joke that there were no thieves in the Barbican, because once in, they don't know how to get out. (nit: our Tour Guide said a few times how he felt like he lives in a Prison where volunteers would pay to live there)\\nThere’s an underground parking garage for the residents, but half of it is empty and filled with 20-30-year-old cars whose owners are no longer known.\\nBuildings are named after famous English people lived in their times (i.e: Shakespeare tower)\\nThe architects were inspired by ancient Egyptians and Battalions. A specific Egyptian Cartouche, resembling a rounded rectangle, is almost universally found.\\n\\nThe rounded cartouche can be seen almost in every detail if you look carefully.\\n\\nThere are places that only residents can enter, some of which are completely hidden from the public. The residents have a key fob that can open doors and hidden gateways, allowing them to enter the Barbican even directly from the underground subway.\\nThe Slow Horses laundry scenes were shot in Barbican.\\nThe Laundry in the Slow Horses TV Show takes place in the Barbican\\nIt was literally built on Roman and the Medieval ruins.\\nA corner of the Roman city Londonium can be found here. The Roman ruins were heavily modified though in the middle age. So the ruins have layers spanning hundreds of years.\\nIt contains a A 1000 year old Jewish burial ground as well.\\nJewish burial ground remains can be seen in the bottom left part.\\nThere is central heating only, residents can't turn them off in the winter, leading to weird states where it gets just too hot or too cold sometimes.\\nThe residents even have their own online forum sharing news/issues and recommendations between each other: barbicantalk.com\\nEach building has details that are an ode to certain famous architects and designers, such as Le Corbusier.\\n\\nLook carefully and you see various hints \\n\\nIt's popular among media, architects and designers. Hence there is always a public photo or video shooting.\\nThere is a branch of a Music school inside Barbican, and some parts of the building resembling a tuning fork.\\n\\nBarbican is full of treasures.\\n\\nAfter reading this you might be interested to learn more. Here are a few Book recommendations:\\n\\nBarbican Residents: The book is mostly an interior design book, but only from people living in the various apartments in the Barbican Estate. Definitely a must buy if you're interested how the residents live there.\\nBarbican Estate: Released in 2019, it's a heavy coffee table book with lots of gorgeous photos about the Barbican\\nBuilding Utopia: The Barbican Centre: This book was released in 2022, and is currently the most up-to-date book about the Barbican. It is compiled by Nicholas Kenyon, the Barbican Centre's Managing Director 2007–2021, hence contains a lot of unknown information.\\nEngineer with a passion for Design, Dieter Rams, Watches, Coffee and Bauhaus\\nSubscribe\\n\\nNo spam, no sharing to third party. Only you and me.\\n\\nSIMILAR THOUGHTS\\nA month in Munich\\nWe stayed with the family (two kids and my wife) for several weeks in Munich. I took hundreds of photos. Here is how it went.\\n31 Aug\\nA morning in Nymphenburg Palace Park\\nThe Nymphenburg Palace Park ranks among Germany's finest and most important garden design examples. It's also my favorite one in Munich.\\n22 May\\nFaculty of Architecture, METU Ankara\\nThe Faculty of Architecture of the METU (one of Turkey's elite universities) was always something that piqued my interest. It was built in 1960's, during the Brutalism era. It's one of the most sophisticated and well-known brutalist buildings in Turkey, especially in Ankara.\\n13 Apr\\nUlus, the old town of Ankara\\nLast year, I had an off day (November 2022). I picked up my Fuji X100V and walked with my wife through the old town of Ankara, Ulus. These are the photos from that day.\\n19 Nov\\nFrom Fujifilm to Leica: My Experience with the M11\\nMy journey from using Fujifilm cameras for a decade to using Leica's latest digital Rangefinder, the M11.\\n06 Jan\\nFatih Arslan © 2025. Published with Ghost & Kyoto\"\n\nConsole output:\n"
+        }
+      ],
+      "extraInfo": {
+        "created": 1747075071645,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 18220,
+          "completion_tokens": 67,
+          "total_tokens": 18287,
+          "prompt_tokens_details": {
+            "cached_tokens": 18112
+          },
+          "prompt_cache_hit_tokens": 18112,
+          "prompt_cache_miss_tokens": 108
+        }
+      }
+    },
+    {
+      "role": "assistant",
+      "content": "⌨️ 今日份 AI & CS 技术文章分享\n\n📌 [我黑了一个约会应用（以及如何不对待安全研究人员）]\n摘要：作者分享了他如何发现并利用一个约会应用的安全漏洞，并呼吁初创公司应更重视安全问题。\n作者：bearsyankees\n发布时间：1小时前\n链接：https://alexschapiro.com/blog/security/vulnerability/2025/04/21/startups-need-to-take-security-seriously\n\n📌 [嵌入技术被低估了]\n摘要：文章探讨了嵌入技术在机器学习和自然语言处理中的重要性及其被低估的潜力。\n作者：jxmorris12\n发布时间：3小时前\n链接：https://technicalwriting.dev/ml/embeddings/overview.html\n\n📌 [巴比肯庄园]\n摘要：作者分享了他对伦敦巴比肯庄园的探索，包括其独特的设计、历史和居民生活。\n作者：farslan\n发布时间：3小时前\n链接：https://arslan.io/2025/05/12/barbican-estate/",
+      "extraInfo": {
+        "created": 1747075100729,
+        "state": "success",
+        "serverName": "deepseek",
+        "usage": {
+          "prompt_tokens": 22510,
+          "completion_tokens": 223,
+          "total_tokens": 22733,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 22510
+        }
+      }
+    }
+  ],
+  "settings": {
+    "temperature": 0.7,
+    "enableTools": [
+      {
+        "name": "k_navigate",
+        "description": "Navigate to a URL",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "URL to navigate to"
+            },
+            "launchOptions": {
+              "type": "object",
+              "description": "PuppeteerJS LaunchOptions. Default null. If changed and not null, browser restarts. Example: { headless: true, args: ['--no-sandbox'] }"
+            },
+            "allowDangerous": {
+              "type": "boolean",
+              "description": "Allow dangerous LaunchOptions that reduce security. When false, dangerous args like --no-sandbox will throw errors. Default false."
+            }
+          },
+          "required": [
+            "url"
+          ]
+        },
+        "enabled": true
+      },
+      {
+        "name": "k_screenshot",
+        "description": "Take a screenshot of the current page or a specific element",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Name for the screenshot"
+            },
+            "selector": {
+              "type": "string",
+              "description": "CSS selector for element to screenshot"
+            },
+            "width": {
+              "type": "number",
+              "description": "Width in pixels (default: 800)"
+            },
+            "height": {
+              "type": "number",
+              "description": "Height in pixels (default: 600)"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "enabled": true
+      },
+      {
+        "name": "k_click",
+        "description": "Click an element on the page",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "string",
+              "description": "CSS selector for element to click"
+            }
+          },
+          "required": [
+            "selector"
+          ]
+        },
+        "enabled": true
+      },
+      {
+        "name": "k_fill",
+        "description": "Fill out an input field",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "string",
+              "description": "CSS selector for input field"
+            },
+            "value": {
+              "type": "string",
+              "description": "Value to fill"
+            }
+          },
+          "required": [
+            "selector",
+            "value"
+          ]
+        },
+        "enabled": true
+      },
+      {
+        "name": "k_select",
+        "description": "Select an element on the page with Select tag",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "string",
+              "description": "CSS selector for element to select"
+            },
+            "value": {
+              "type": "string",
+              "description": "Value to select"
+            }
+          },
+          "required": [
+            "selector",
+            "value"
+          ]
+        },
+        "enabled": true
+      },
+      {
+        "name": "k_hover",
+        "description": "Hover an element on the page",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "selector": {
+              "type": "string",
+              "description": "CSS selector for element to hover"
+            }
+          },
+          "required": [
+            "selector"
+          ]
+        },
+        "enabled": true
+      },
+      {
+        "name": "k_evaluate",
+        "description": "Execute JavaScript in the browser console",
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "script": {
+              "type": "string",
+              "description": "JavaScript code to execute"
+            }
+          },
+          "required": [
+            "script"
+          ]
+        },
+        "enabled": true
+      }
+    ],
+    "systemPrompt": "",
+    "contextLength": 20
+  },
+  "mcp": {
+    "connectionType": "STDIO",
+    "command": "node",
+    "args": [
+      "~/project/Lagrange.RagBot/node/servers/my-browser/dist/browser.js"
+    ]
+  }
+}

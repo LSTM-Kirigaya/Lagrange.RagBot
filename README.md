@@ -4,28 +4,19 @@
 > 简体中文 < | <a href="https://www.google.com/search?q=best+website+to+learn+chinese&newwindow=1&sca_esv=a76695392a9980a7&rlz=1C1CHBD_zh-HKHK1072HK1072&sxsrf=ADLYWIKib09skMzGw8JqpTv2AWB6Xk8uZQ%3A1716986674152&ei=MiNXZsP3COrk2roPt-SrgA0&oq=best+website+to+learn+chin&gs_lp=Egxnd3Mtd2l6LXNlcnAiGmJlc3Qgd2Vic2l0ZSB0byBsZWFybiBjaGluKgIIADIIEAAYgAQYywEyCBAAGIAEGMsBMggQABiABBiiBDIIEAAYgAQYogQyCBAAGIAEGKIEMggQABiABBiiBDIIEAAYgAQYogRItDNQtgNY3C5wAXgAkAEFmAHMBKABlzaqAQwwLjE4LjUuNC4wLjK4AQPIAQD4AQGYAhigAosmwgINECMYgAQYsAMYJxiKBcICDBAAGIAEGLADGAoYDMICERAuGIAEGLADGMcBGMsBGK8BwgIHEAAYsAMYHsICCRAAGLADGAgYHsICBBAjGCfCAhAQLhiABBjRAxhDGMcBGIoFwgIFEAAYgATCAgsQABiABBixAxiDAcICExAuGIAEGNEDGMcBGMkDGAoYywHCAgsQABiABBiSAxiKBcICBhAAGAgYHsICIhAuGIAEGNEDGMcBGMkDGAoYywEYlwUY3AQY3gQY4ATYAQHCAhcQLhiABBjHARiYBRiZBRjLARieBRivAcICERAuGIAEGNEDGMcBGMkDGMsBwgImEC4YgAQYxwEYmAUYmQUYywEYngUYrwEYlwUY3AQY3gQY4ATYAQHCAgYQABgeGA-YAwCIBgGQBgq6BgYIARABGBSSBwoxLjE2LjUuMS4xoAf2rwE&sclient=gws-wiz-serp" target="_blank">English</a>
 </div>
 
+## 结构
 
-## 环境搭建
+每一个服务都放在 ./node 中，根据各自的 readme 分别配置。
+
+你需要准备的环境变量：
 
 ```bash
-git clone xxxxxx
-npm install pm2 -g
-yarn
-pip install -r requirements.txt
+export DEEPSEEK_API_TOKEN=xxx
+export OMCP_DISCORD_SERVER_IP=xxx
+export OMCP_DISCORD_SERVER_PORT=xxx
+export OMCP_DISCORD_TOKEN=xxx
 ```
 
-下载最新版本的 Lagrange.core ，并完成初始化。完成后根目录为
-
-```
-📁bot
-📁rag
-📁app
-   ├─📁publish
-   │  ├─🏷️...
-   │  ├─🏷️appsettings.json
-   │  └─🪛Lagrange.OneBot
-   └─🎗️...
-```
 
 ---
 

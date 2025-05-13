@@ -1,5 +1,5 @@
 {
-  "name": "mcp-server",
+  "name": "faas",
   "version": "1.0.0",
   "description": "执行 mcp 部分的模块",
   "main": "index.js",
@@ -13,12 +13,14 @@
     "bson": "^6.10.3",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "js-yaml": "^4.1.0",
     "morgan": "^1.10.0",
     "openmcp-sdk": "^0.0.4"
   },
   "devDependencies": {
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
+    "@types/js-yaml": "^4.0.9",
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.15.17",
     "ts-node": "^10.9.2",

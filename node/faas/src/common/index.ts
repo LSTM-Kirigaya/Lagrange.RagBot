@@ -8,6 +8,9 @@ const corsOptions = {
 };
 
 export const app = express();
+export const testRouter = express.Router();
+
 app.use(express.json());
 app.use(cors(corsOptions));
 app.use(morgan('dev'));
+app.use('/test', testRouter);

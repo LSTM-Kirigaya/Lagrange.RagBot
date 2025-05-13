@@ -3,10 +3,6 @@ import axios from 'axios';
 
 import { mapper, plugins, LagrangeContext, PrivateMessage, GroupMessage, Send, logger } from 'lagrange.onebot'
 
-import { apiGetIntentRecogition, apiQueryVecdb } from '../api/vecdb';
-
-import { handleGroupIntent } from './intent';
-
 console.log('activate ' + __filename);
 
 export class Impl {
@@ -78,6 +74,29 @@ export class Impl {
 
 
 async function getNews(c: LagrangeContext<PrivateMessage>) {
+    const res = await axios.post('http://localhost:3000/get-news-from-towards-science');
+    const data = res.data;
+    const message = data.msg;
+    console.log('message', message);
+    
+    c.sendMessage(message);
+}
+
+
+async function getFile(c: LagrangeContext<PrivateMessage>) {
+    c.sendMessage([
+        // {
+        //     type: 'text',
+        //     data: {
+        //         file: 'file:///data/zhelonghuang/project/rag-llm/images/bird.png',
+        //         timeout: 10000
+        //     }
+        // }
+    ])
+}
+
+
+async function publishOpenMCP(c: LagrangeContext<PrivateMessage>) {
     const res = await axios.post('http://localhost:3000/get-news-from-towards-science');
     const data = res.data;
     const message = data.msg;
