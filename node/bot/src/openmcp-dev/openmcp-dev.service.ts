@@ -23,10 +23,9 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
     
     const { vsix, content } = message;
 
-    await c.uploadGroupFile(c.message.group_id, vsix, path.basename(vsix));
-    await wait(2000);
-
     await c.sendGroupNotice(c.message.group_id, content);
+    await wait(2000);
+    await c.uploadGroupFile(c.message.group_id, vsix, path.basename(vsix));
 
     await sendMessageToDiscord(content);
 }
