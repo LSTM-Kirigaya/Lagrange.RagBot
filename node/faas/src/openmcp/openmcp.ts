@@ -51,4 +51,19 @@ app.post('/publish-openmcp-client', async (req: Request, res: Response) => {
         console.log(error);
         res.send(error.toString());
     }
-})
+});
+
+
+app.post('/publish-vsix', async (req: Request, res: Response) => {
+    try {
+        const { vsix, tool }  = req.body;
+        const result = execSync(tool + ' publish -i ' + vsix, { cwd: OPENMCP_CLIENT });
+        res.send({
+            code: 200,
+            msg: result
+        });
+    } catch (error) {
+        console.log(error);
+        res.send(error.toString());
+    }
+});

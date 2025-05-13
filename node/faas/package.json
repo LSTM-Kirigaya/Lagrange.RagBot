@@ -11,6 +11,7 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "bson": "^6.10.3",
+    "collections": "^5.1.13",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "js-yaml": "^4.1.0",
@@ -18,6 +19,7 @@
     "openmcp-sdk": "^0.0.4"
   },
   "devDependencies": {
+    "@types/collections": "^5.1.5",
     "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
     "@types/js-yaml": "^4.0.9",

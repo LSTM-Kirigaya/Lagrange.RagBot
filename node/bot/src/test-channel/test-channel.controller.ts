@@ -3,8 +3,9 @@ import * as path from 'path';
 
 import { mapper, plugins, LagrangeContext, PrivateMessage, GroupMessage, Send, logger, ApproveMessage, Message } from 'lagrange.onebot';
 import { getNews, publishOpenMCP } from './test-channel.service';
-import { qq_groups, qq_users } from '../global';
-import { parseCommand, sendMessageToDiscord } from '../util';
+import { es_db, qq_groups, qq_users } from '../global';
+import { parseCommand, sendMessageToDiscord } from '../hook/util';
+import { walktalk } from './bug-logger.service';
 
 console.log('activate ' + path.basename(__filename));
 
@@ -40,7 +41,7 @@ export class TestChannel {
         c.finishSession();
     }
 
-    @mapper.onGroup(qq_groups.TEST_CHANNEL, { onlyAdmin: true })
+    @mapper.onGroup(qq_groups.TEST_CHANNEL, { memorySize: 100 })
     async handleTestChannel(c: LagrangeContext<GroupMessage>) {
         const text = c.getRawText();
 
@@ -99,6 +100,10 @@ export class TestChannel {
 
                 case 'discord':
                     await sendMessageToDiscord('hello from qq');
+                    break;
+
+                case 'wt':
+                    walktalk(c, es_db.WT_TEST_INDEX, args[0]);
                     break;
 
                 default:

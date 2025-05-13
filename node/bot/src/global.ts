@@ -14,5 +14,15 @@ export const qq_users = {
     /**
      * 锦恢 dayo !
      */
-    JIN_HUI: 1193466151 
+    JIN_HUI: 1193466151,
+
+    /**
+     * TIP dayo !
+     */
+    TIP: 1542544558
+};
+
+export const es_db = {
+    WT_OMCP_INDEX: 'openmcp-debug-collection.openmcp',
+    WT_TEST_INDEX: 'openmcp-debug-collection.test'
 };

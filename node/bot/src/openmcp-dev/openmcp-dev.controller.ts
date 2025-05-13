@@ -1,11 +1,13 @@
 import '../plugins/image';
 import * as path from 'path';
 
-import { mapper, plugins, LagrangeContext, PrivateMessage, GroupMessage, Send, logger, ApproveMessage, Message } from 'lagrange.onebot';
-import { getNews, publishOpenMCP } from './openmcp-dev.service';
-import { qq_groups, qq_users } from '../global';
-import { parseCommand, sendMessageToDiscord } from '../util';
+import { mapper, LagrangeContext, GroupMessage, ApproveMessage, Message } from 'lagrange.onebot';
+import { getNews } from './openmcp-dev.service';
+import { es_db, qq_groups, qq_users } from '../global';
+import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import axios from 'axios';
+import { publishOpenMCP } from '../test-channel/test-channel.service';
+import { walktalk } from '../test-channel/bug-logger.service';
 
 console.log('activate ' + path.basename(__filename));
 
@@ -13,10 +15,12 @@ const visitCache = new Map<string, number>();
 
 export class OpenMcpChannel {
 
-    @mapper.onGroup(qq_groups.OPENMCP_DEV, { onlyAdmin: true })
-    async handleTestChannel(c: LagrangeContext<GroupMessage>) {
-        const text = c.getRawText();
+    @mapper.onGroup(qq_groups.OPENMCP_DEV)
+    async handleOpenMcpChannel(c: LagrangeContext<GroupMessage>) {
 
+
+
+        const text = c.getRawText();
         const commandResult = parseCommand(text);
         if (commandResult !== undefined) {
             // 校验身份
@@ -73,8 +77,13 @@ export class OpenMcpChannel {
                 case 'discord':
                     await sendMessageToDiscord('hello from qq');
                     break;
+                
+                case 'wt':
+                    walktalk(c, es_db.WT_OMCP_INDEX, args[0]);
+                    break;
 
                 default:
+                    
                     break;
             }
         }
