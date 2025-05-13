@@ -21,6 +21,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
     const message = data.msg;
     console.log('message', message);
     
+    
     const { vsix, content } = message;
 
     await c.sendGroupNotice(c.message.group_id, content);
