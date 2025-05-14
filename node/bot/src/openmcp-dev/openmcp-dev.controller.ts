@@ -15,10 +15,8 @@ const visitCache = new Map<string, number>();
 
 export class OpenMcpChannel {
 
-    @mapper.onGroup(qq_groups.OPENMCP_DEV)
+    @mapper.onGroup(qq_groups.OPENMCP_DEV, { memorySize: 50 })
     async handleOpenMcpChannel(c: LagrangeContext<GroupMessage>) {
-
-
 
         const text = c.getRawText();
         const commandResult = parseCommand(text);
@@ -37,6 +35,9 @@ export class OpenMcpChannel {
                     c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));
                     visitCache.set(c.message.user_id.toString(), now);
                 }
+            } else {
+                c.sendMessage('非法请求，TIP 系统拒绝访问');
+                return;
             }
 
             const { command, args } = commandResult;

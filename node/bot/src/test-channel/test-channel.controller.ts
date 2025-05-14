@@ -6,6 +6,7 @@ import { getNews, publishOpenMCP } from './test-channel.service';
 import { es_db, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import { walktalk } from './bug-logger.service';
+import axios from 'axios';
 
 console.log('activate ' + path.basename(__filename));
 
@@ -48,7 +49,6 @@ export class TestChannel {
         const commandResult = parseCommand(text);
         if (commandResult !== undefined) {
             // 校验身份
-
             if (c.message.user_id === qq_users.JIN_HUI) {
                 const now = Date.now();
                 const lastVisit = visitCache.get(c.message.user_id.toString());
@@ -61,6 +61,9 @@ export class TestChannel {
                     c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));
                     visitCache.set(c.message.user_id.toString(), now);
                 }
+            } else {
+                c.sendMessage('非法请求，TIP 系统拒绝访问');
+                return;
             }
 
             const { command, args } = commandResult;
@@ -119,8 +122,11 @@ export class TestChannel {
         c.setGroupAddRequest('', c.message.sub_type, true, '');
     }
 
-    @mapper.createTimeSchedule('0 11 20 * * *')
+    @mapper.createTimeSchedule('0 40 16 * * *')
     async handleTestChannelSchedule(c: LagrangeContext<Message>) {
-        c.sendPrivateMsg(qq_users.JIN_HUI, 'hello');
+        const res = await axios.post('http://localhost:3000/get-news-from-hack-news');
+        const data = res.data;
+        const message = data.msg;
+        c.sendGroupMsg(qq_groups.TEST_CHANNEL, message);
     }
 }
