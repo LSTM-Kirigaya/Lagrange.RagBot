@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { app } from "../common";
-import { executeCommand } from "../util";
 import * as fs from 'fs';
 import * as path from 'path';
 import { execSync, spawnSync } from 'child_process';
@@ -50,7 +49,10 @@ app.post('/publish-openmcp-client', async (req: Request, res: Response) => {
         })
     } catch (error) {
         console.log(error);
-        res.send(error.toString());
+        res.send({
+            code: 501,
+            msg: error.toString()
+        });
     }
 });
 
@@ -83,14 +85,26 @@ async function getChangeLogEnglish(updateContent: string) {
 app.post('/publish-vsix', async (req: Request, res: Response) => {
     try {
         const { vsix, tool }  = req.body;
-        const result = execSync(tool + ' publish -i ' + vsix, { cwd: OPENMCP_CLIENT });
+        
+        if (!fs.existsSync(vsix)) {
+            res.send({
+                code: 501,
+                msg: 'vsix 文件不存在'
+            });
+            return;
+        }
+
+        const buffer = execSync(tool + ' publish -i ' + vsix, { cwd: OPENMCP_CLIENT });
         res.send({
             code: 200,
-            msg: result
+            msg: buffer.toString('utf-8').trim()
         });
     } catch (error) {
         console.log(error);
-        res.send(error.toString());
+        res.send({
+            code: 501,
+            msg: error.toString()
+        });
     }
 });
 
@@ -98,24 +112,35 @@ app.post('/publish-github-release', async (req: Request, res: Response) => {
     try {
         const { vsix }  = req.body;
 
+        if (!fs.existsSync(vsix)) {
+            res.send({
+                code: 501,
+                msg: 'vsix 文件不存在'
+            });
+            return;
+        }
+
         // 从 $OPENMCP_CLIENT/changelog.md 中读取 version
         const changelog = fs.readFileSync(path.join(OPENMCP_CLIENT, 'CHANGELOG.md'), { encoding: 'utf-8' });
         const newContent = changelog.split('## [main]')[1];
-        const version = newContent.split('\n')[0];
-        const tag = 'v'+ version;
-        const title = 'openmcp client '+ tag;
+        const version = newContent.split('\n')[0].trim();
+        const tag = 'v' + version;
+        const title = 'openmcp client ' + tag;
         const updateContent = newContent.split('\n').slice(1).join('\n');
         const notes = await getChangeLogEnglish(updateContent);
 
-        const tool = 'gh release create ' + tag + ' ' + vsix + ' --title ' + title + ' --notes ' + notes;
+        const tool = `gh release create ${tag} ${vsix} --title "${title}" --notes "${notes}"`; // 使用模板字符串和引号
 
-        const result = execSync(tool + ' publish -i ' + vsix, { cwd: OPENMCP_CLIENT });
+        const buffer = execSync(tool, { cwd: OPENMCP_CLIENT });
         res.send({
             code: 200,
-            msg: result
+            msg: buffer.toString('utf-8').trim()
         });
     } catch (error) {
         console.log(error);
-        res.send(error.toString());
+        res.send({
+            code: 501,
+            msg: error.toString()
+        });
     }
 });
