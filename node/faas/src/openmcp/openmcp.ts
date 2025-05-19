@@ -13,6 +13,9 @@ async function publishOpenMCP() {
     const updateResult = execSync('git pull origin main', { cwd: OPENMCP_CLIENT, env: process.env });
     console.log(updateResult.toString());
 
+    const buildResult = execSync('npm run serve', { cwd: OPENMCP_CLIENT });
+    console.log(buildResult.toString());
+
     const rmResult = execSync('rm *.vsix', { cwd: OPENMCP_CLIENT });
     console.log(rmResult.toString());
 
