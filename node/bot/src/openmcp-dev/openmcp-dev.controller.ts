@@ -12,6 +12,7 @@ import { walktalk } from '../test-channel/bug-logger.service';
 console.log('activate ' + path.basename(__filename));
 
 const visitCache = new Map<string, number>();
+let groupIncreaseCache = 0;
 
 export class OpenMcpChannel {
 
@@ -94,7 +95,32 @@ export class OpenMcpChannel {
     @mapper.onGroupIncrease(qq_groups.OPENMCP_DEV)
     async handleTestChannelIncrease(c: LagrangeContext<ApproveMessage>) {
         console.log(c.message);
-        // c.setGroupAddRequest('', c.message.sub_type, true, '');
+
+        c.setGroupAddRequest('', c.message.sub_type, true, '');
+        const now = Date.now();
+
+        // 30s 为间隔
+        if ((now - groupIncreaseCache) > 30 * 1000) {
+            c.sendGroupMsg(
+                c.message.group_id,
+                [
+                    {
+                        type: 'at',
+                        data: {
+                            qq: c.message.user_id.toString()
+                        }
+                    },
+                    {
+                        type: 'text',
+                        data: {
+                            text: ` 欢迎加入 OpenMCP 开发群，OpenMCP 学习资料请看群公告置顶。插件右下角也会有资源的导航。\n如果觉得好用，还请为我们的项目点个 star： https://github.com/LSTM-Kirigaya/openmcp-client， 您的 star 是我们更新的动力 :D`
+                        }
+                    }
+                ]
+            )
+
+            groupIncreaseCache = now;
+        }
     }
 
     @mapper.createTimeSchedule('0 0 10 * * *')

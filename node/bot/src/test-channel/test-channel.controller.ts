@@ -52,7 +52,7 @@ export class TestChannel {
             if (c.message.user_id === qq_users.JIN_HUI) {
                 const now = Date.now();
                 const lastVisit = visitCache.get(c.message.user_id.toString());
-                
+                                
                 const info = await c.getGroupMemberInfo(c.message.group_id, c.message.user_id);
                 const role = info['data'].role;
                 const name = info['data'].nickname;
@@ -124,9 +124,9 @@ export class TestChannel {
 
     @mapper.createTimeSchedule('0 40 16 * * *')
     async handleTestChannelSchedule(c: LagrangeContext<Message>) {
-        const res = await axios.post('http://localhost:3000/get-news-from-hack-news');
-        const data = res.data;
-        const message = data.msg;
-        c.sendGroupMsg(qq_groups.TEST_CHANNEL, message);
+        // const res = await axios.post('http://localhost:3000/get-news-from-hack-news');
+        // const data = res.data;
+        // const message = data.msg;
+        // c.sendGroupMsg(qq_groups.TEST_CHANNEL, message);
     }
 }
