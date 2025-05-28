@@ -113,7 +113,7 @@ export class OpenMcpChannel {
                     {
                         type: 'text',
                         data: {
-                            text: ` 欢迎加入 OpenMCP 开发群，OpenMCP 学习资料请看群公告置顶。插件右下角也会有资源的导航。\n如果觉得好用，还请为我们的项目点个 star： https://github.com/LSTM-Kirigaya/openmcp-client， 您的 star 是我们更新的动力 :D`
+                            text: ` 欢迎加入 OpenMCP 开发群，OpenMCP 官方文档已经上线：https://kirigaya.cn/openmcp。插件右下角也会有资源的导航。\n如果觉得好用，还请为我们的项目点个 star： https://github.com/LSTM-Kirigaya/openmcp-client， 您的 star 是我们更新的动力 :D`
                         }
                     }
                 ]

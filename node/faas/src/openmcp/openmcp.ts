@@ -9,6 +9,8 @@ import { createTaskContext } from "../service/common";
 export const OPENMCP_CLIENT = os.homedir() + '/project/openmcp-client';
 
 async function publishOpenMCP() {
+    const stashResult = execSync('git stash', { cwd: OPENMCP_CLIENT, env: process.env });
+    console.log(stashResult.toString())
 
     const updateResult = execSync('git pull origin main', { cwd: OPENMCP_CLIENT, env: process.env });
     console.log(updateResult.toString());
