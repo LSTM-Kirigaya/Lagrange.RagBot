@@ -1,5 +1,72 @@
 {
   "version": "0.0.1",
   "name": "kpipe",
-  "scopes": {}
+  "scopes": {
+    "0.1.4": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1748953019361,
+        "endTime": 1748953073713,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.4.vsix",
+          "content": "✴️ openmcp client  0.1.4 更新内容\n\n- 重新实现 openai 协议的底层网络实现，从而支持 Google Gemini 全系列模型。\n- 实现 index 适配器，从而支持 Grok3 全系列模型。\n- 解决 issue#23 插件创建连接时报错“Cannot read properties of undefined (reading 'name')”\n- 在填写 apikey 和 baseurl 的情况下，现在可以一键刷新模型列表，避免用户手动输入模型列表。\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "failed",
+        "startTime": 1748953079491,
+        "endTime": 1748953019360,
+        "result": null,
+        "error": {},
+        "retryCount": 3,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "failed",
+        "startTime": 1748953129699,
+        "endTime": 1748953019360,
+        "result": null,
+        "error": {},
+        "retryCount": 3,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "failed",
+        "startTime": 1748953209446,
+        "endTime": 1748953019360,
+        "result": null,
+        "error": {},
+        "retryCount": 3,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1748953223658,
+        "endTime": 1748953231659,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
+    ]
+  }
 }

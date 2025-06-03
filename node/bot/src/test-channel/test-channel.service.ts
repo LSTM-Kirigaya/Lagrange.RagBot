@@ -60,7 +60,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
         const vscodePlatformResult = await axios.post(api + '/publish-vsix', { tool: 'vsce', vsix });
         if (containError(vscodePlatformResult)) {
             c.sendMessage('vscode 平台发布失败 ❌\n' + vscodePlatformResult.data.msg);
-            throw new Error('x');
+            throw new Error(vscodePlatformResult.data.msg);
 
         } else {
             c.sendMessage('vscode 平台发布成功 ✅ https://marketplace.visualstudio.com/items?itemName=kirigaya.openmcp');
@@ -73,7 +73,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
         const openvsxPlatformResult = await axios.post(api + '/publish-vsix', { tool: 'ovsx', vsix });
         if (containError(openvsxPlatformResult)) {
             c.sendMessage('openvsx 平台发布失败 ❌\n' + openvsxPlatformResult.data.msg);
-            throw new Error('x');
+            throw new Error(openvsxPlatformResult.data.msg);
         } else {
             c.sendMessage('openvsx 平台发布成功 ✅ https://open-vsx.org/extension/kirigaya/openmcp');
         }    
@@ -86,7 +86,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
         const githubReleaseResult = await axios.post(api + '/publish-github-release', { vsix });
         if (containError(githubReleaseResult)) {
             c.sendMessage('github release 发布失败 ❌\n' + githubReleaseResult.data.msg);
-            throw new Error('x');
+            throw new Error(githubReleaseResult.data.msg);
         } else {
             c.sendMessage('github release 发布成功 ✅ ' + githubReleaseResult.data.msg);
         }
