@@ -22,6 +22,7 @@
         "json-bigint": "^1.0.0",
         "lagrange.onebot": "^1.0.9",
         "node-schedule": "^2.1.1",
+        "ompipe": "^1.0.1",
         "ws": "^8.17.0",
         "yaml": "^2.4.2"
     },

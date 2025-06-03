@@ -8,7 +8,7 @@ import { createTaskContext } from "../service/common";
 
 export const OPENMCP_CLIENT = os.homedir() + '/project/openmcp-client';
 
-async function publishOpenMCP() {
+async function updateOpenMCP() {
     const stashResult = execSync('git stash', { cwd: OPENMCP_CLIENT, env: process.env });
     console.log(stashResult.toString())
 
@@ -17,7 +17,9 @@ async function publishOpenMCP() {
 
     const installResult = execSync('npm i', { cwd: OPENMCP_CLIENT });
     console.log(installResult.toString());
+}
 
+async function buildOpenMCP() {
     const buildResult = execSync('npm run build', { cwd: OPENMCP_CLIENT });
     console.log(buildResult.toString());
 
@@ -43,10 +45,35 @@ function getLastChangeLog() {
     return content;
 }
 
+function getVersion() {
+    const changelog = fs.readFileSync(path.join(OPENMCP_CLIENT, 'CHANGELOG.md'), { encoding: 'utf-8' });
+    const newContent = changelog.split('## [main]')[1];
+    const version = newContent.split('\n')[0];
+    return version;
+}
 
-app.post('/publish-openmcp-client', async (req: Request, res: Response) => {
+
+app.post('/get-version', async (req: Request, res: Response) => {
     try {
-        const filePath = await publishOpenMCP();
+        await updateOpenMCP();
+        const version = getVersion();
+
+        res.send({
+            code: 200,
+            msg: version
+        })
+    } catch (error) {
+        console.log(error);
+        res.send({
+            code: 501,
+            msg: error.toString()
+        });
+    }
+});
+
+app.post('/build-openmcp', async (req: Request, res: Response) => {
+    try {
+        const filePath = await buildOpenMCP();
         const updateContent = getLastChangeLog();
         res.send({
             code: 200,
@@ -136,8 +163,14 @@ app.post('/publish-github-release', async (req: Request, res: Response) => {
         const title = 'openmcp client ' + tag;
         const updateContent = newContent.split('\n').slice(1).join('\n');
         const notes = await getChangeLogEnglish(updateContent);
+        const escapedNotes = notes
+            .replace(/"/g, '\\"')  // 转义双引号
+            .replace(/\(/g, '\\(')  // 转义左括号
+            .replace(/\)/g, '\\)')  // 转义右括号
+            .replace(/`/g, '\\`')   // 转义反引号
+            .replace(/\$/g, '\\$');  // 转义美元符号
 
-        const tool = `gh release create ${tag} ${vsix} --title "${title}" --notes "${notes}"`; // 使用模板字符串和引号
+        const tool = `gh release create ${tag} ${vsix} --title "${title}" --notes "${escapedNotes}"`; // 使用模板字符串和引号
 
         const buffer = execSync(tool, { cwd: OPENMCP_CLIENT });
         res.send({
