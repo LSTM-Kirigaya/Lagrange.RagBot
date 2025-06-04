@@ -3,11 +3,11 @@ import { TaskLoopAdapter } from 'openmcp-sdk/service';
 
 export async function createTaskContext() {
     const adapter = new TaskLoopAdapter();
-
-    await adapter.connectMcpServer({
+    
+    adapter.addMcp({
         connectionType: 'STDIO',
-        command: 'node',
-        args: ['~/project/Lagrange.RagBot/node/servers/my-browser/dist/browser.js']
+        commandString: 'node browser.js',
+        cwd: '~/project/Lagrange.RagBot/node/servers/my-browser/dist'
     });
 
     const taskLoop = new TaskLoop({ adapter });

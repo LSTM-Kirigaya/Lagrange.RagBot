@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { app, testRouter } from './common';
+import { app } from './common';
 
 import "./service/news";
 import "./service/web-summary";

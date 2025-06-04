@@ -8,7 +8,7 @@ import { markdownToPlainText, getFormatedTime } from '../util';
 export async function getNewsFromTowardsScience() {
     const { taskLoop, adapter } = await createTaskContext();
 
-    const tools = await adapter.listTools();
+    const tools = await taskLoop.listTools();
 
     // 创建当前事件循环对应的上下文，并且配置当前上下文的设置
     const storage = {
@@ -76,7 +76,7 @@ export async function getNewsFromTowardsScience() {
 export async function getNewsFromHackNews() {
     const { taskLoop, adapter } = await createTaskContext();
 
-    const tools = await adapter.listTools();
+    const tools = await taskLoop.listTools();
 
     // 创建当前事件循环对应的上下文，并且配置当前上下文的设置
     const storage = {
