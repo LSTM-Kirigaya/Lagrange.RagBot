@@ -6,18 +6,18 @@ import * as path from 'path';
 import { markdownToPlainText, getFormatedTime } from '../util';
 import { TaskLoop } from 'openmcp-sdk/task-loop';
 import { TaskLoopAdapter } from 'openmcp-sdk/service';
-import { McpOptions } from 'openmcp-sdk/service/mcp/client.dto';
+import { IConnectionArgs } from 'openmcp-sdk/service/hook/adapter';
 
 const mcpOption = {
     connectionType: 'STDIO',
-    command: 'uv',
-    args: ['run', 'mcp', 'run', '~/project/openmcp-tutorial/crawl4ai-mcp/main.py']
-} as McpOptions;
+    commandString: 'uv run mcp run main.py',
+    cwd: '~/project/openmcp-tutorial/crawl4ai-mcp/'
+} as IConnectionArgs;
 
 export async function summaryWebsite(url: string) {
     const adapter = new TaskLoopAdapter();
 
-    await adapter.connectMcpServer(mcpOption);
+    adapter.addMcp(mcpOption);
 
     const taskLoop = new TaskLoop({ adapter });
 
@@ -29,7 +29,7 @@ export async function summaryWebsite(url: string) {
     });
 
 
-    const tools = await adapter.listTools();
+    const tools = await taskLoop.listTools();
 
     // 创建当前事件循环对应的上下文，并且配置当前上下文的设置
     const storage = {
@@ -43,8 +43,10 @@ export async function summaryWebsite(url: string) {
     };
 
     // 本次发出的问题
-    const message = `请帮我搜集当前网页的信息并整理成简体中文 ${url}`;
+    const message = `总结一下 ${url}`;
 
+    console.log('question: ', message);
+    
     // 开启事件循环
     await taskLoop.start(storage, message);
 
