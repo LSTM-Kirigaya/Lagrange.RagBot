@@ -8,6 +8,7 @@ import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import axios from 'axios';
 import { publishOpenMCP } from '../test-channel/test-channel.service';
 import { walktalk } from '../test-channel/bug-logger.service';
+import { summaryWebsite } from '../test-channel/website-summary.service';
 
 console.log('activate ' + path.basename(__filename));
 
@@ -82,6 +83,10 @@ export class OpenMcpChannel {
                 
                 case 'wt':
                     walktalk(c, es_db.WT_OMCP_INDEX, args[0]);
+                    break;
+                    
+                case 'sum':
+                    summaryWebsite(c, args[0]);
                     break;
 
                 default:

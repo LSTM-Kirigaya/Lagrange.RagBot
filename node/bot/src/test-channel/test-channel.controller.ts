@@ -7,6 +7,7 @@ import { es_db, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import { walktalk } from './bug-logger.service';
 import axios from 'axios';
+import { summaryWebsite } from './website-summary.service';
 
 console.log('activate ' + path.basename(__filename));
 
@@ -107,6 +108,10 @@ export class TestChannel {
 
                 case 'wt':
                     walktalk(c, es_db.WT_TEST_INDEX, args[0]);
+                    break;
+                
+                case 'sum':
+                    summaryWebsite(c, args[0]);
                     break;
 
                 default:

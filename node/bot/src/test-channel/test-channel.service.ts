@@ -7,8 +7,7 @@ import path from 'path';
 import { sendMessageToDiscord, wait } from '../hook/util';
 
 import { OmPipe } from 'ompipe';
-
-const api = 'http://localhost:3000';
+import { api } from '../api/faas';
 
 export async function getNews(c: LagrangeContext<PrivateMessage | GroupMessage>) {
     const res = await axios.post(api + '/get-news-from-hack-news');
