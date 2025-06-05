@@ -6,9 +6,12 @@ import { getNews, publishOpenMCP } from './test-channel.service';
 import { es_db, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import { walktalk } from './bug-logger.service';
-import axios from 'axios';
 import { summaryWebsite } from './website-summary.service';
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 console.log('activate ' + path.basename(__filename));
 
 const visitCache = new Map<string, number>();

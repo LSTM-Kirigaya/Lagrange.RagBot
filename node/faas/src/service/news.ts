@@ -5,8 +5,13 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { markdownToPlainText, getFormatedTime } from '../util';
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 export async function getNewsFromTowardsScience() {
-    const { taskLoop, adapter } = await createTaskContext();
+    const { taskLoop } = await createTaskContext();
 
     const tools = await taskLoop.listTools();
 
@@ -74,7 +79,7 @@ export async function getNewsFromTowardsScience() {
 
 
 export async function getNewsFromHackNews() {
-    const { taskLoop, adapter } = await createTaskContext();
+    const { taskLoop } = await createTaskContext();
 
     const tools = await taskLoop.listTools();
 
@@ -82,12 +87,13 @@ export async function getNewsFromHackNews() {
     const storage = {
         messages: [],
         settings: {
-            temperature: 0.7,
+            temperature: 0.6,
             enableTools: tools,
             systemPrompt: '',
             contextLength: 20
         }
     };
+
 
     // 本次发出的问题
     const message = `
@@ -106,13 +112,18 @@ export async function getNewsFromHackNews() {
 发布时间：[若存在]
 链接：[文章URL]`.trim();
 
-
     // 开启事件循环
     await taskLoop.start(storage, message);
 
+    console.log('task loop finish');
+    console.log(storage.messages.at(-1));
+    
     // 保存数据到本地
     const filename = getFormatedTime();
-    const savePath = path.join(__dirname, '..', '..', 'runtime-data', 'get-news-from-towards-science', `${filename}.json`);
+    const savePath = path.join(__dirname, '..', '..', 'runtime-data', 'get-news-from-hack-news', `${filename}.json`);
+    if (!fs.existsSync(path.dirname(savePath))) {
+        fs.mkdirSync(path.dirname(savePath), { recursive: true });
+    }
 
     console.log('savePath', savePath);
 
@@ -156,7 +167,7 @@ app.post('/get-news-from-towards-science', async (req: Request, res: Response) =
 
     } catch (error) {
         res.send(error);
-    } 
+    }
 });
 
 
@@ -169,8 +180,9 @@ app.post('/get-news-from-hack-news', async (req: Request, res: Response) => {
         });
 
     } catch (error) {
+        console.error(error);        
         res.send(error);
-    } 
+    }
 });
 
 testRouter.post('/get-news-from-towards-science', async (req: Request, res: Response) => {
@@ -190,6 +202,9 @@ testRouter.post('/get-news-from-towards-science', async (req: Request, res: Resp
 由于技术原因，未能成功获取第一条咨询的详细内容。如果需要进一步帮助，请告诉我！`
         });
     } catch (error) {
-        res.send(error);
+        res.send({
+            code: 500,
+            msg: 'error happen' + JSON.stringify(error.message)
+        });
     }
 });

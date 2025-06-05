@@ -10,7 +10,7 @@ export async function createTaskContext() {
         cwd: '~/project/Lagrange.RagBot/node/servers/my-browser/dist'
     });
 
-    const taskLoop = new TaskLoop({ adapter });
+    const taskLoop = new TaskLoop({ adapter, verbose: 1 });
 
     taskLoop.setLlmConfig({
         id: 'deepseek',

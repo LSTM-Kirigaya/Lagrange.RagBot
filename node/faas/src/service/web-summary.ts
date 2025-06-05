@@ -8,6 +8,11 @@ import { TaskLoop } from 'openmcp-sdk/task-loop';
 import { TaskLoopAdapter } from 'openmcp-sdk/service';
 import { IConnectionArgs } from 'openmcp-sdk/service/hook/adapter';
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 const mcpOption = {
     connectionType: 'STDIO',
     commandString: 'uv run mcp run main.py',

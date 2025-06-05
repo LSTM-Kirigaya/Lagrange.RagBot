@@ -1,5 +1,36 @@
 import axios from "axios";
 
+import { exec } from 'node:child_process';
+import { promisify } from 'node:util';
+
+const execAsync = promisify(exec);
+
+export async function checkAndKillProcessOnPort(port: number) {
+    try {
+        // 查找占用端口的进程
+        const { stdout } = await execAsync(`lsof -i :${port}`);
+        const lines = stdout.trim().split('\n');
+        
+        if (lines.length > 1) {
+            // 第一行是标题行，第二行是进程信息
+            const processInfo = lines[1].split(/\s+/);
+            const pid = processInfo[1];
+            
+            console.log(`Killing process with PID ${pid} on port ${port}`);
+            await execAsync(`kill -9 ${pid}`);
+            console.log(`Process with PID ${pid} killed successfully.`);
+        } else {
+            console.log(`No process found on port ${port}.`);
+        }
+    } catch (error) {
+        if (error instanceof Error && error.message.includes('command not found')) {
+            console.error('lsof command not found. Please install lsof to use this script.');
+        } else {
+            console.error(`Error checking or killing process on port ${port}:`, error);
+        }
+    }
+}
+
 export function parseCommand(text: string) {
     if (text.startsWith(':')) {
         text = text.substring(1);

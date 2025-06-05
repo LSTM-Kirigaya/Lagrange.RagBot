@@ -5,6 +5,7 @@ import { server } from 'lagrange.onebot';
 import { TestChannel } from './test-channel/test-channel.controller';
 import { OpenMcpChannel } from './openmcp-dev/openmcp-dev.controller';
 import { qq_users } from './global';
+import { registerTipHttpServer } from './hook/http-server';
 
 // 注册的模块
 export const InstallChannels = [
@@ -14,6 +15,7 @@ export const InstallChannels = [
 
 server.onMounted(c => {
     c.sendPrivateMsg(qq_users.JIN_HUI, '成功上线');
+    registerTipHttpServer(c);
 });
 
 server.onUnmounted(c => {

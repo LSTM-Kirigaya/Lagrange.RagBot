@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "执行 mcp 部分的模块",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +12,7 @@
   "dependencies": {
     "body-parser": "^2.2.0",
     "bson": "^6.10.3",
+    "chalk": "^5.4.1",
     "collections": "^5.1.13",
     "cors": "^2.8.5",
     "express": "^5.1.0",

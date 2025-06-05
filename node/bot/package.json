@@ -1,6 +1,7 @@
 {
     "name": "qq-rag-llm",
     "version": "1.0.0",
+    "type": "module",
     "author": {
         "name": "锦恢",
         "email": "1193466151@qq.com"
@@ -18,9 +19,14 @@
         "@ptkdev/logger": "^1.8.0",
         "@types/node": "^20.12.12",
         "axios": "^1.7.2",
+        "chalk": "^5.4.1",
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
         "fs": "^0.0.1-security",
         "json-bigint": "^1.0.0",
+        "kill-port": "^2.0.1",
         "lagrange.onebot": "^1.0.9",
+        "morgan": "^1.10.0",
         "node-schedule": "^2.1.1",
         "ompipe": "^1.0.1",
         "ws": "^8.17.0",
@@ -28,6 +34,10 @@
     },
     "devDependencies": {
         "@sinonjs/referee-sinon": "^12.0.0",
+        "@types/cors": "^2.8.18",
+        "@types/express": "^5.0.2",
+        "@types/kill-port": "^2.0.3",
+        "@types/morgan": "^1.9.9",
         "@types/node-schedule": "^2.1.7",
         "@types/ws": "^8.5.10",
         "chai": "4.3.4",

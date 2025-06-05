@@ -10,6 +10,10 @@ import { publishOpenMCP } from '../test-channel/test-channel.service';
 import { walktalk } from '../test-channel/bug-logger.service';
 import { summaryWebsite } from '../test-channel/website-summary.service';
 
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 console.log('activate ' + path.basename(__filename));
 
 const visitCache = new Map<string, number>();
