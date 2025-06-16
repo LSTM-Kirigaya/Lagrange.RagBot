@@ -20,14 +20,18 @@ async function updateOpenMCP() {
 }
 
 async function buildOpenMCP() {
-    const buildResult = execSync('npm run build', { cwd: OPENMCP_CLIENT });
-    console.log(buildResult.toString());
+    const commands = [
+        'rm -rf openmcp-sdk',
+        'npm run build',
+        'rm *.vsix',
+        'tsc',
+        'vsce package'
+    ];
 
-    const rmResult = execSync('rm *.vsix', { cwd: OPENMCP_CLIENT });
-    console.log(rmResult.toString());
-
-    const packageResult = execSync('vsce package', { cwd: OPENMCP_CLIENT });
-    console.log(packageResult.toString());
+    commands.forEach(command => {
+        const result = execSync(command, { cwd: OPENMCP_CLIENT });
+        console.log(result.toString());
+    })
 
     // 找到 OPENMCP_CLIENT 下的第一个 vsix 文件，返回绝对路径
     const vsixFile = fs.readdirSync(OPENMCP_CLIENT).find(file => file.endsWith('.vsix'));

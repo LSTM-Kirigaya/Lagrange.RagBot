@@ -4,7 +4,7 @@ import cors from 'cors';
 import { LagrangeContext, Message } from 'lagrange.onebot';
 import { authenticate } from './middleware';
 import chalk from 'chalk';
-import { checkAndKillProcessOnPort } from './util';
+import { checkAndKillProcessOnPort, sendMessageToDiscord } from './util';
 
 const corsOptions = {
     // 一些旧版浏览器（如 IE11、各种 SmartTV）在 204 状态下会有问题
@@ -31,7 +31,7 @@ export async function registerTipHttpServer(c: LagrangeContext<Message>) {
         });
     });
 
-
+    // TODO: 走 faas，不要直接暴露在外面
     app.post('/tip/send-group', authenticate, async (req, res) => {
         try {
             // 业务逻辑
@@ -46,6 +46,7 @@ export async function registerTipHttpServer(c: LagrangeContext<Message>) {
             }
             
             await c.sendGroupMsg(groupId, message);
+            await sendMessageToDiscord(message);
             
             res.send({
                 code: 200,

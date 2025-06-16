@@ -67,6 +67,72 @@
         "retryCount": 0,
         "option": {}
       }
+    ],
+    "0.1.5": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1749756662995,
+        "endTime": 1749756731991,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.5.vsix",
+          "content": "✴️ openmcp client  0.1.5 更新内容\n\n- 修复 gemini 获取模型列表时存在 models 前缀的问题\n- 增加 web api 功能\n- 修复无法在对话框中使用 mcp resource 的 bug\n- 调试结果的工作区从 .vscode 迁移到 .openmcp，连接配置文件从 .vscode/openmcp_connection.json 迁移到 .openmcp/connection.json\n- 技术栈更新：openmcp 全链路组件切换为 esm\n- 优化引导界面文字布局。\n- 文档和软件本体支持其他国家语言。\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "success",
+        "startTime": 1749756731992,
+        "endTime": 1749756741947,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "success",
+        "startTime": 1749756741947,
+        "endTime": 1749756751227,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "success",
+        "startTime": 1749756751227,
+        "endTime": 1749756776577,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1749756776578,
+        "endTime": 1749756785135,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
     ]
   }
 }
