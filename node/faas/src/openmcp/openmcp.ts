@@ -23,10 +23,8 @@ async function updateOpenMCP() {
 async function buildOpenMCP() {
     const commands = [
         'rm -rf openmcp-sdk',
-        'npm run build',
         'npm run build:news',
         'rm *.vsix',
-        'tsc',
         'npm run build:plugin'
     ];
 
