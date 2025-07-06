@@ -46,7 +46,6 @@ export async function registerTipHttpServer(c: LagrangeContext<Message>) {
             }
             
             await c.sendGroupMsg(groupId, message);
-            await sendMessageToDiscord(message);
             
             res.send({
                 code: 200,

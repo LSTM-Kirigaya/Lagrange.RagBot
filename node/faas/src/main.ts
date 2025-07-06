@@ -5,6 +5,7 @@ import "./service/news";
 import "./service/web-summary";
 import "./openmcp/openmcp";
 import "./crawl4ai/crawl4ai";
+import "./service/pm2-summary";
 
 import chalk from 'chalk';
 

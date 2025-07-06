@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 import { app } from "../common";
 import * as fs from 'fs';
 import * as path from 'path';
-import { execSync, spawnSync } from 'child_process';
-import os from 'os';
-import { createTaskContext } from "../service/common";
+import { execSync } from 'child_process';
+import os, { platform } from 'os';
+
+import { OmAgent } from 'openmcp-sdk/service/sdk';
 
 export const OPENMCP_CLIENT = os.homedir() + '/project/openmcp-client';
 
@@ -23,9 +24,10 @@ async function buildOpenMCP() {
     const commands = [
         'rm -rf openmcp-sdk',
         'npm run build',
+        'npm run build:news',
         'rm *.vsix',
         'tsc',
-        'vsce package'
+        'npm run build:plugin'
     ];
 
     commands.forEach(command => {
@@ -97,24 +99,18 @@ app.post('/build-openmcp', async (req: Request, res: Response) => {
 
 
 async function getChangeLogEnglish(updateContent: string) {
-    const { taskLoop } = await createTaskContext();
-
-    const storage = {
-        messages: [],
-        settings: {
-            temperature: 0.7,
-            enableTools: [],
-            systemPrompt: '',
-            contextLength: 20
-        }
-    };
+    const agent = new OmAgent();
+    agent.setDefaultLLM({
+        baseURL: 'https://api.deepseek.com',
+        model: 'deepseek-chat',
+        apiToken: process.env['DEEPSEEK_API_TOKEN']
+    })
 
     const message = '请将下面的更新日志翻译成 GitHub release 风格的英文说明，请只返回翻译后的结果，不要出现任何多余的前缀：\n' + updateContent;
 
     try {
-        await taskLoop.start(storage, message);
-        const lastMessage = storage.messages.at(-1);
-        return lastMessage.content;
+        const result = await agent.ainvoke({ messages: message });
+        return result.toString();
     } catch (error) {
         return updateContent;   
     }
@@ -137,6 +133,28 @@ app.post('/publish-vsix', async (req: Request, res: Response) => {
         res.send({
             code: 200,
             msg: buffer.toString('utf-8').trim()
+        });
+    } catch (error) {
+        console.log(error);
+        res.send({
+            code: 501,
+            msg: error.toString()
+        });
+    }
+});
+
+app.post('/get-openmcp-changelog', async (req: Request, res: Response) => {
+    try {
+        const changelog = fs.readFileSync(path.join(OPENMCP_CLIENT, 'CHANGELOG.md'), { encoding: 'utf-8' });
+        const newContent = changelog.split('## [main]')[1];
+        const version = newContent.split('\n')[0].trim();
+        const tag = 'v' + version;
+        const updateContent = newContent.split('\n').slice(1).join('\n');
+        const notes = await getChangeLogEnglish(updateContent);
+
+        res.send({
+            code: 200,
+            msg: notes
         });
     } catch (error) {
         console.log(error);

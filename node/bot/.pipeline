@@ -133,6 +133,72 @@
         "retryCount": 0,
         "option": {}
       }
+    ],
+    "0.1.8": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1750593923459,
+        "endTime": 1750593981357,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.8.vsix",
+          "content": "✴️ openmcp client  0.1.8 更新内容\n\n- 增加 STDIO 下的热更新，现在用户修改 mcp 代码，openmcp 会自动完成一切相关功能的热更新，无需用户手动重启。\n- 完成 mcpconfig.json 的导出功能，导出的 配置文件 可以通过 openmcp-sdk 框架完成低代码 agent 部署；也可以直接载入 Claude Desktop 等等 MCP 客户端中，实现 MCP 的快速部署和使用。\n- 修复若干 vscode 插件端 bug\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "success",
+        "startTime": 1750593981358,
+        "endTime": 1750593992191,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "success",
+        "startTime": 1750593992191,
+        "endTime": 1750594004471,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "success",
+        "startTime": 1750594004472,
+        "endTime": 1750594019329,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1750594019330,
+        "endTime": 1750594022269,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
     ]
   }
 }
