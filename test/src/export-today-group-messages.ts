@@ -1,37 +1,64 @@
-import { unpackMultiple } from 'msgpackr';
 import * as path from 'path';
 import * as fs from 'fs';
+import Realm from 'realm';
+import { unpack, unpackMultiple } from 'msgpackr';
 import { fileURLToPath } from 'url';
-import { DecodedMessage, ExportMessage, GroupMessagesExport, MessageEntity, MessageRecord } from './realm.dto';
-import { qq_users } from '../global';
-import { GroupMessage, LagrangeContext } from 'lagrange.onebot';
-
-// 动态导入realm，避免在不支持的环境下报错
-let Realm: any;
-try {
-    Realm = (await import('realm')).default;
-} catch (e) {
-    console.warn('Realm数据库模块未安装或不支持当前环境:', e);
-}
+import { dirname } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = dirname(__filename);
 
-
-// Realm数据库配置
+// Realm 数据库配置
 const REALM_CONFIG = {
-    // 数据库文件路径
-    path: path.join(__dirname, '../../../Lagrange.Core/lagrange-0-db/.realm'),
-    // 数据库模式版本
+    path: path.join(__dirname, '../../node/Lagrange.Core/lagrange-0-db/.realm'),
     schemaVersion: 0,
-    // 数据库加密密钥（如果需要的话）
     encryptionKey: undefined as undefined | Uint8Array,
 };
 
+interface MessageEntity {
+    Text?: string;
+    ImageUrl?: string;
+    Payload?: string;
+    Uin?: number;
+    Name?: string;
+}
+
+interface DecodedMessage {
+    replyName?: string;
+    replyText?: string;
+    text: string;
+}
+
+interface MessageRecord {
+    FromUin: number;
+    Time: Date;
+    Entities: ArrayBuffer;
+    Type: number;
+    ToUin: number;
+}
+
+interface ExportMessage {
+    id: number;
+    sender: number;
+    timestamp: string;
+    replyName?: string;
+    replyText?: string;
+    content: string;
+}
+
+interface GroupMessagesExport {
+    groupId: number;
+    exportTime: string;
+    messageCount: number;
+    messages: ExportMessage[];
+}
+
+/**
+ * 检查 Realm 数据库文件是否存在
+ */
 function checkRealmFileExists(): boolean {
     return fs.existsSync(REALM_CONFIG.path);
 }
-
 
 /**
  * 获取 Realm 数据库实例
@@ -60,7 +87,7 @@ async function getRealmInstance(): Promise<Realm> {
 /**
  * 解码消息实体内容
  */
-async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Array): Promise<DecodedMessage | undefined> {
+function decodeEntities(buffer: Uint8Array): DecodedMessage | undefined {
     try {
         const pkgs = unpackMultiple(buffer);
         let rawText = '';
@@ -71,7 +98,7 @@ async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Arr
         for (const pkg of pkgs) {
             // 如果是 Uint8Array，则递归解码
             if (pkg instanceof Uint8Array) {
-                const result = await decodeEntities(c, pkg);
+                const result = decodeEntities(pkg);
                 if (result) {
                     payloadText += result.text;
                 }
@@ -86,11 +113,9 @@ async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Arr
             if (entity.Text && (!entity.Text.includes('�') || entity.Text.includes('\\x'))) {
                 rawText += entity.Text + '\n';
             } else if (entity.ImageUrl) {
-                const image = await c.getImage(entity.FilePath);
-                if (!(image instanceof Error)) {
-                    const filepath = image.data.file;
-                    rawText += `![IMAGE](${filepath})\n`;
-                }
+                console.log(entity);
+                
+                rawText += `![K_IMAGE_URL](${entity.ImageUrl})\n`;
             } else if (entity.Payload) {
                 rawText += entity.Payload + '\n';
             } else if (entity.Uin && entity.Name) {
@@ -122,7 +147,7 @@ function formatTimestamp(timestamp: number): string {
 /**
  * 获取今天的消息并导出为 JSON 格式
  */
-async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupId: number): Promise<GroupMessagesExport | undefined> {
+async function exportTodayGroupMessages(groupId: number): Promise<void> {
     try {
         const realm = await getRealmInstance();
         const MessageRecord = realm.objects<MessageRecord>("MessageRecord");
@@ -155,20 +180,18 @@ async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupI
             messages: []
         };
 
-        
-
         // 处理每条消息
         let messageCount = 0;
         for (let i = 0; i < groupMessages.length; i++) {
             const msg = groupMessages[i];
             
             // 跳过特定发送者
-            if (msg.FromUin === qq_users.TIP) {
+            if (msg.FromUin === 1542544558) {
                 continue;
             }
 
             const payloadBuffer = new Uint8Array(msg.Entities as any);
-            const decodeResult = await decodeEntities(c, payloadBuffer);
+            const decodeResult = decodeEntities(payloadBuffer);
 
             if (decodeResult === undefined || decodeResult.text.trim().length === 0) {
                 continue;
@@ -194,10 +217,24 @@ async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupI
         }
 
         exportData.messageCount = messageCount;
-        realm.close();
 
-        return exportData;
+        // 保存到 JSON 文件
+        const fileName = `group-${groupId}-messages-${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}.json`;
+        const filePath = path.join(__dirname, fileName);
+
+        fs.writeFileSync(filePath, JSON.stringify(exportData, null, 2), 'utf-8');
+        console.log(`消息已导出到: ${filePath}`);
+
+        realm.close();
     } catch (error) {
         console.error('导出消息时出错:', error);
     }
 }
+
+// 执行导出函数
+(async () => {
+    const GROUP_ID = 782833642;
+    console.log(`开始导出群 ${GROUP_ID} 的今日消息...`);
+    await exportTodayGroupMessages(GROUP_ID);
+    console.log('导出完成');
+})();

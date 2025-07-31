@@ -1,9 +1,14 @@
 export interface MessageEntity {
     Text?: string;
     ImageUrl?: string;
+    PictureSize?: any;
+    FilePath?: string;
+    ImageSize?: number;
+    ImageUuid?: string;
     Payload?: string;
     Uin?: number;
     Name?: string;
+    SubType?: number;
 }
 
 export interface DecodedMessage {

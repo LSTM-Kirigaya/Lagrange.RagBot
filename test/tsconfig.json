@@ -7,9 +7,9 @@
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "declaration": true,
-        "declarationDir": "dist",
-        "typeRoots": ["./types"]
+        "declarationDir": "dist"
     },
     "include": [
+        "src/**/*"
     ]
 }

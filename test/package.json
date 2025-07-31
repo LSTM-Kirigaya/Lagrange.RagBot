@@ -8,13 +8,22 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "analyze-entities": "tsx analyze-entities.ts",
     "test-realm": "tsx test-realm.ts",
-    "export-today": "node export-today-group-messages.js"
+    "export-today": "tsx export-today-group-messages.ts",
+    "get-today": "tsx simple-test.ts",
+    "realm-test": "tsx realm-test.ts",
+    "compile": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "msgpackr": "^1.11.5",
     "protobufjs": "^7.2.4",
     "realm": "^12.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.9",
+    "tsx": "^4.7.1",
+    "typescript": "^5.4.5"
   }
 }
