@@ -1,0 +1,20 @@
+{
+  "name": "test-realm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "analyze-entities": "tsx analyze-entities.ts",
+    "test-realm": "tsx test-realm.ts",
+    "export-today": "node export-today-group-messages.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "protobufjs": "^7.2.4",
+    "realm": "^12.2.0"
+  }
+}

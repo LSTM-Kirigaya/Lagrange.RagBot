@@ -8,6 +8,7 @@ import { sendMessageToDiscord, wait } from '../hook/util';
 
 import { OmPipe } from 'ompipe';
 import { api } from '../api/faas';
+import { qq_groups } from '../global';
 
 export async function getNews(c: LagrangeContext<PrivateMessage | GroupMessage>) {
     const res = await axios.post(api + '/get-news-from-hack-news');
@@ -27,13 +28,13 @@ function containError(axiosResult: AxiosResponse) {
     return axiosResult.data.code !== 200 || msg.toLowerCase().startsWith('error');
 }
 
-export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
+export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMessage>) {
 
     const res = await axios.post(api + '/get-version');
     const { code, msg } = res.data;
 
     if (code !== 200) {
-        c.sendMessage('无法拉取最新代码 ❌\n' + msg);
+        c.sendGroupMsg(qq_groups.OPENMCP_DEV, '无法拉取最新代码 ❌\n' + msg);
         return;
     }
 
@@ -43,11 +44,11 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
     pipe.add('build-openmcp', async () => {
         const res = await axios.post(api + '/build-openmcp');
         if (containError(res)) {
-            c.sendMessage('编译失败 ❌\n' + res.data.msg);
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, '编译失败 ❌\n' + res.data.msg);
             throw new Error('x');
             
         } else {
-            c.sendMessage('openmcp 完成编译');
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'openmcp 完成编译');
             return res.data.msg;
         }
     }, { critical: true });
@@ -58,11 +59,11 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
 
         const vscodePlatformResult = await axios.post(api + '/publish-vsix', { tool: 'vsce', vsix });
         if (containError(vscodePlatformResult)) {
-            c.sendMessage('vscode 平台发布失败 ❌\n' + vscodePlatformResult.data.msg);
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'vscode 平台发布失败 ❌\n' + vscodePlatformResult.data.msg);
             throw new Error(vscodePlatformResult.data.msg);
 
         } else {
-            c.sendMessage('vscode 平台发布成功 ✅ https://marketplace.visualstudio.com/items?itemName=kirigaya.openmcp');
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'vscode 平台发布成功 ✅ https://marketplace.visualstudio.com/items?itemName=kirigaya.openmcp');
         }
     }, { retryInterval: 200, maxRetryCount: 3 });
 
@@ -71,10 +72,10 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
         const { vsix, content } = store.getTaskResult('build-openmcp');
         const openvsxPlatformResult = await axios.post(api + '/publish-vsix', { tool: 'ovsx', vsix });
         if (containError(openvsxPlatformResult)) {
-            c.sendMessage('openvsx 平台发布失败 ❌\n' + openvsxPlatformResult.data.msg);
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'openvsx 平台发布失败 ❌\n' + openvsxPlatformResult.data.msg);
             throw new Error(openvsxPlatformResult.data.msg);
         } else {
-            c.sendMessage('openvsx 平台发布成功 ✅ https://open-vsx.org/extension/kirigaya/openmcp');
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'openvsx 平台发布成功 ✅ https://open-vsx.org/extension/kirigaya/openmcp');
         }    
     }, { retryInterval: 200, maxRetryCount: 3 });    
 
@@ -84,10 +85,10 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
 
         const githubReleaseResult = await axios.post(api + '/publish-github-release', { vsix });
         if (containError(githubReleaseResult)) {
-            c.sendMessage('github release 发布失败 ❌\n' + githubReleaseResult.data.msg);
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'github release 发布失败 ❌\n' + githubReleaseResult.data.msg);
             throw new Error(githubReleaseResult.data.msg);
         } else {
-            c.sendMessage('github release 发布成功 ✅ ' + githubReleaseResult.data.msg);
+            c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'github release 发布成功 ✅ ' + githubReleaseResult.data.msg);
         }
 
     }, { retryInterval: 200, maxRetryCount: 3 });
@@ -96,12 +97,11 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage>) {
     pipe.add('publish-qq', async store => {
         const { vsix, content } = store.getTaskResult('build-openmcp');
 
-        await c.sendGroupNotice(c.message.group_id, content);
+        await c.sendGroupNotice(qq_groups.OPENMCP_DEV, content);
         await wait(2000);
-        await c.uploadGroupFile(c.message.group_id, vsix, path.basename(vsix));
+        await c.uploadGroupFile(qq_groups.OPENMCP_DEV, vsix, path.basename(vsix));
         await sendMessageToDiscord(content);
     });
-
 
     await pipe.start();
 }

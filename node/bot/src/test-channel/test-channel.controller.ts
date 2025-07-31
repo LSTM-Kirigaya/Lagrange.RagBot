@@ -12,7 +12,6 @@ import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-console.log('activate ' + path.basename(__filename));
 
 const visitCache = new Map<string, number>();
 
@@ -36,6 +35,10 @@ export class TestChannel {
                 
                 case 'ping':
                     c.sendMessage('ping');
+                    break;
+
+                case 'pub':
+                    await publishOpenMCP(c);
                     break;
 
                 default:

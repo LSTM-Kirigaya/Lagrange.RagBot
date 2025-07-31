@@ -199,6 +199,204 @@
         "retryCount": 0,
         "option": {}
       }
+    ],
+    "0.1.9": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1751832010772,
+        "endTime": 1751832103642,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.9.vsix",
+          "content": "✴️ openmcp client  0.1.9 更新内容\n\n- 增加 mook 功能：可以利用随机种子或者AI生成来自动化填充测试 tool 的表单数据\n- 增加工具自检功能：openmcp 的 tool 下可以点击「工具模块」 右侧的 「工具自检」进入自检模式，该模式下，用户可以自己定义工具执行的拓扑顺序，然后一次性进行自动检测。\n- 修复 issue #44: 完成链接跳转的平台适配\n- 修复 issue #36: 完成非文件夹打开下的成功启动\n- 修复 issue #45: 数组类型参数不支持\n- 修复多行对话粘贴进入对话框样式异常的问题\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "success",
+        "startTime": 1751832103643,
+        "endTime": 1751832114136,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "success",
+        "startTime": 1751832114137,
+        "endTime": 1751832122422,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "success",
+        "startTime": 1751832122423,
+        "endTime": 1751832138354,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1751832138355,
+        "endTime": 1751832141406,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
+    ],
+    "0.1.10": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1752592567431,
+        "endTime": 1752592670329,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.10.vsix",
+          "content": "✴️ openmcp client  0.1.10 更新内容\n\n- 修复 issue #48: 修复错误的引导路径。\n- 支持 kimi 的 usage 计数 + 支持 kimi 的 system prompt。\n- 实现 openmcp 工具测试的并行执行和暂停功能。 https://picx.zhimg.com/80/v2-4e09958d91dcf561c578294d8b6f3349_1440w.png\n- 修正 API 测速中算法，剥离为 tps + 排队时间两部分。 https://picx.zhimg.com/80/v2-1cc3044a3ec3d5d21cb265dd67518ca0_1440w.png\n- 大模型 api 测速目前可以自定义 prompt 了。 https://picx.zhimg.com/80/v2-ff70af72254b82c11a941fe9cc29eeb8_1440w.png\n- 实现 issue#49，工具模块，调试希望支持markdown渲染回显。 https://picx.zhimg.com/80/v2-5d708ccab00f33fdf63a656a0066bf23_1440w.png\n- 实现 issue#54，右击服务器列表名，可以重命名服务器。 https://picx.zhimg.com/80/v2-87c2a29abdd2dd56a4d18cc4a8b946ff_1440w.png\n- 修复 resources 和 prompts 有关热更新的一些问题。\n- 更新 vscode 创建的标签栏的标题。 https://picx.zhimg.com/80/v2-4d40c20f3eaa032573e4de58298c859f_1440w.png\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "success",
+        "startTime": 1752592670349,
+        "endTime": 1752592681808,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "success",
+        "startTime": 1752592681808,
+        "endTime": 1752592690792,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "success",
+        "startTime": 1752592690808,
+        "endTime": 1752592723698,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1752592723699,
+        "endTime": 1752592734289,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
+    ],
+    "0.1.11": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1753787950429,
+        "endTime": 1753788068449,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.11.vsix",
+          "content": "✴️ openmcp client  0.1.11 更新内容\n\n- 添加新功能：并行对话。在交互测试中，用户可以点击左上角的 switch to single chat 来切换到并行对话窗口，这个窗口，你可以让大模型同时回答同一个问题，用于并行测试。 https://picx.zhimg.com/80/v2-92807279c2dcbbf7808b483f0141f592_1440w.png\n- 修改 issue #50: 修复 vscode 插件端下，无法将对象复制进入 object 输入框的问题。 https://picx.zhimg.com/80/v2-1098d1931dd6bc13372d1611d8494e32_1440w.png\n- 修复 vscode 插件端下 mook 无法使用的问题。现在 mook 的数据条目更加精确。\n- 添加新的链接形式，允许通过导入 claude command 或者 claude 兼容性的 json 的方式来创建新的链接。 https://pic1.zhimg.com/80/v2-9e47bf3591472fc04ba0d7c2986f66e3_1440w.png\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "success",
+        "startTime": 1753788068460,
+        "endTime": 1753788080000,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "success",
+        "startTime": 1753788080001,
+        "endTime": 1753788090126,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "success",
+        "startTime": 1753788090126,
+        "endTime": 1753788114076,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1753788114095,
+        "endTime": 1753788116994,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
     ]
   }
 }
