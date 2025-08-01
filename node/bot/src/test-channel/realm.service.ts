@@ -2,7 +2,7 @@ import { unpackMultiple } from 'msgpackr';
 import * as path from 'path';
 import * as fs from 'fs';
 import { fileURLToPath } from 'url';
-import { DecodedMessage, ExportMessage, GroupMessagesExport, MessageEntity, MessageRecord } from './realm.dto';
+import { DecodedMessage, ExportMessage, GroupMessagesExport, MessageEntity, MessageRecord, UserInfo } from './realm.dto';
 import { qq_users } from '../global';
 import { GroupMessage, LagrangeContext } from 'lagrange.onebot';
 
@@ -86,11 +86,16 @@ async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Arr
             if (entity.Text && (!entity.Text.includes('�') || entity.Text.includes('\\x'))) {
                 rawText += entity.Text + '\n';
             } else if (entity.ImageUrl) {
-                const image = await c.getImage(entity.FilePath);
-                if (!(image instanceof Error)) {
-                    const filepath = image.data.file;
-                    rawText += `![IMAGE](${filepath})\n`;
-                }
+                // TODO: 等待 core 的回复
+
+                // const image = await c.getImage(entity.FilePath);
+                // console.log(entity);
+                // console.log(image);
+                
+                // if (!(image instanceof Error)) {
+                //     const filepath = image.data.file;
+                //     rawText += `![IMAGE](${filepath})\n`;
+                // }
             } else if (entity.Payload) {
                 rawText += entity.Payload + '\n';
             } else if (entity.Uin && entity.Name) {
@@ -113,19 +118,23 @@ async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Arr
 }
 
 /**
- * 格式化时间戳为 ISO 字符串
+ * 只需要返回小时，分钟即可
  */
 function formatTimestamp(timestamp: number): string {
-    return new Date(timestamp).toISOString();
+    const date = new Date(timestamp);
+    return `${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`;
 }
 
 /**
  * 获取今天的消息并导出为 JSON 格式
  */
-async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupId: number): Promise<GroupMessagesExport | undefined> {
+export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupId: number): Promise<GroupMessagesExport | undefined> {
     try {
         const realm = await getRealmInstance();
         const MessageRecord = realm.objects<MessageRecord>("MessageRecord");
+        
+        // 初始化用户映射
+        const userMap = {} as Record<number, UserInfo>;
 
         // 计算今天的开始和结束时间戳
         const now = new Date();
@@ -150,22 +159,38 @@ async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupI
         // 构建 JSON 数据结构
         const exportData: GroupMessagesExport = {
             groupId,
-            exportTime: new Date().toISOString(),
+            exportTime: new Date().toDateString(),
             messageCount: 0,
-            messages: []
+            messages: [],
+            users: {} // 初始化用户映射对象
         };
 
+        const groupInfo = await c.getGroupInfo(groupId);
+        if (!(groupInfo instanceof Error)) {
+            exportData.groupName = groupInfo.data?.group_name;
+            exportData.memberCount = groupInfo.data?.member_count;
+        }
         
-
         // 处理每条消息
         let messageCount = 0;
         for (let i = 0; i < groupMessages.length; i++) {
             const msg = groupMessages[i];
-            
-            // 跳过特定发送者
-            if (msg.FromUin === qq_users.TIP) {
+            const senderUin = msg.FromUin;
+
+            if (!senderUin || senderUin === qq_users.TIP) {
                 continue;
             }
+
+            if (userMap[senderUin] === undefined) {
+                const user = await c.getGroupMemberInfo(groupId, senderUin);
+                userMap[senderUin] = {
+                    name: user.data?.card || user.data?.nickname || (senderUin + ''),
+                    qq: senderUin,
+                    avatar: `https://q1.qlogo.cn/g?b=qq&nk=${senderUin}&s=640`
+                };
+            }
+            
+            const userInfo = userMap[senderUin]!;
 
             const payloadBuffer = new Uint8Array(msg.Entities as any);
             const decodeResult = await decodeEntities(c, payloadBuffer);
@@ -173,11 +198,10 @@ async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupI
             if (decodeResult === undefined || decodeResult.text.trim().length === 0) {
                 continue;
             }
-
+            
             const exportMessage: ExportMessage = {
-                id: messageCount + 1,
-                sender: msg.FromUin,
-                timestamp: formatTimestamp(msg.Time.getTime()),
+                sender: userInfo.name,
+                time: formatTimestamp(msg.Time.getTime()),
                 content: decodeResult.text.trim()
             };
 
@@ -193,8 +217,11 @@ async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupI
             messageCount ++;
         }
 
+        exportData.users = userMap;
         exportData.messageCount = messageCount;
         realm.close();
+
+        fs.writeFileSync('./test-data.json', JSON.stringify(exportData, null, 2));
 
         return exportData;
     } catch (error) {

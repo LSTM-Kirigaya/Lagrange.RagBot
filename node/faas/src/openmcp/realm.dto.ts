@@ -36,7 +36,7 @@ export interface ExportMessage {
 // 添加用户信息接口
 export interface UserInfo {
     name: string;
-    qq: number;
+    uin: number;
     avatar?: string;
 }
 
@@ -49,4 +49,8 @@ export interface GroupMessagesExport {
     messages: ExportMessage[];
     // 添加用户映射字段
     users: Record<number, UserInfo>;
+}
+
+export interface SummaryItem {
+
 }

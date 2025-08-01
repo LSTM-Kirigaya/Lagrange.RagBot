@@ -16,11 +16,8 @@ const __dirname = dirname(__filename);
 export async function summaryWebsite(url: string) {
     const agent = new OmAgent();
     agent.loadMcpConfig('./openmcp/crawl4ai.mcp.json');
-
     const prompt = await agent.getPrompt('summary-website', { url });
-    
     const result = await agent.ainvoke({ messages: prompt });
-    
     return markdownToPlainText(result.toString());
 }
 
