@@ -40,6 +40,19 @@ export interface UserInfo {
     avatar?: string;
 }
 
+export interface UserStats {
+    qq: number;
+    name: string;
+    messageCount: number;
+    wordCount: number;
+}
+
+export interface GroupStats {
+    totalMessages: number;
+    totalWordCount: number;
+    users: UserStats[];
+}
+
 export interface GroupMessagesExport {
     groupId: number;
     groupName?: string;
@@ -47,6 +60,6 @@ export interface GroupMessagesExport {
     exportTime: string;
     messageCount: number;
     messages: ExportMessage[];
-    // 添加用户映射字段
     users: Record<number, UserInfo>;
+    stats?: GroupStats;
 }

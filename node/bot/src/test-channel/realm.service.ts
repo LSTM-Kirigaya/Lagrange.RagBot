@@ -3,8 +3,10 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { fileURLToPath } from 'url';
 import { DecodedMessage, ExportMessage, GroupMessagesExport, MessageEntity, MessageRecord, UserInfo } from './realm.dto';
-import { qq_users } from '../global';
-import { GroupMessage, LagrangeContext } from 'lagrange.onebot';
+import { qq_groups, qq_users } from '../global';
+import { GroupMessage, LagrangeContext, PrivateMessage } from 'lagrange.onebot';
+import axios from 'axios';
+import { api } from '../api/faas';
 
 // 动态导入realm，避免在不支持的环境下报错
 let Realm: any;
@@ -60,7 +62,7 @@ async function getRealmInstance(): Promise<Realm> {
 /**
  * 解码消息实体内容
  */
-async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Array): Promise<DecodedMessage | undefined> {
+async function decodeEntities(c: LagrangeContext<GroupMessage | PrivateMessage>, buffer: Uint8Array): Promise<DecodedMessage | undefined> {
     try {
         const pkgs = unpackMultiple(buffer);
         let rawText = '';
@@ -86,6 +88,9 @@ async function decodeEntities(c: LagrangeContext<GroupMessage>, buffer: Uint8Arr
             if (entity.Text && (!entity.Text.includes('�') || entity.Text.includes('\\x'))) {
                 rawText += entity.Text + '\n';
             } else if (entity.ImageUrl) {
+                
+                rawText += `![图片](${entity.ImageUrl})\n`;
+
                 // TODO: 等待 core 的回复
 
                 // const image = await c.getImage(entity.FilePath);
@@ -128,7 +133,7 @@ function formatTimestamp(timestamp: number): string {
 /**
  * 获取今天的消息并导出为 JSON 格式
  */
-export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>, groupId: number): Promise<GroupMessagesExport | undefined> {
+export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage | PrivateMessage>, groupId: number): Promise<GroupMessagesExport | undefined> {
     try {
         const realm = await getRealmInstance();
         const MessageRecord = realm.objects<MessageRecord>("MessageRecord");
@@ -162,7 +167,7 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>,
             exportTime: new Date().toDateString(),
             messageCount: 0,
             messages: [],
-            users: {} // 初始化用户映射对象
+            users: {}
         };
 
         const groupInfo = await c.getGroupInfo(groupId);
@@ -183,14 +188,17 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>,
 
             if (userMap[senderUin] === undefined) {
                 const user = await c.getGroupMemberInfo(groupId, senderUin);
-                userMap[senderUin] = {
-                    name: user.data?.card || user.data?.nickname || (senderUin + ''),
-                    qq: senderUin,
-                    avatar: `https://q1.qlogo.cn/g?b=qq&nk=${senderUin}&s=640`
-                };
+                const username = user.data?.card || user.data?.nickname;
+                if (username) {
+                    userMap[senderUin] = {
+                        name: user.data?.card || user.data?.nickname || (senderUin + ''),
+                        qq: senderUin,
+                        avatar: `https://q1.qlogo.cn/g?b=qq&nk=${senderUin}&s=640`
+                    };
+                }
             }
             
-            const userInfo = userMap[senderUin]!;
+            const userInfo = userMap[senderUin];
 
             const payloadBuffer = new Uint8Array(msg.Entities as any);
             const decodeResult = await decodeEntities(c, payloadBuffer);
@@ -198,9 +206,13 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>,
             if (decodeResult === undefined || decodeResult.text.trim().length === 0) {
                 continue;
             }
+
+            if (senderUin === qq_users.JIN_HUI && decodeResult.text.trim().startsWith(':')) {
+                continue;
+            }
             
             const exportMessage: ExportMessage = {
-                sender: userInfo.name,
+                sender: userInfo?.name || senderUin + '',
                 time: formatTimestamp(msg.Time.getTime()),
                 content: decodeResult.text.trim()
             };
@@ -221,10 +233,53 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage>,
         exportData.messageCount = messageCount;
         realm.close();
 
-        fs.writeFileSync('./test-data.json', JSON.stringify(exportData, null, 2));
+        if (!fs.existsSync('log')) {
+            fs.mkdirSync('log');
+        }
+
+        let totalWordCount = 0;
+        const userStats: Record<number, { messageCount: number; wordCount: number }> = {};
+
+        for (const msg of exportData.messages) {
+            const senderEntry = Object.values(exportData.users).find(u => u.name === msg.sender);
+            if (!senderEntry) continue;
+            
+            const senderUin = senderEntry.qq;
+            const wordCount = msg.content.length;
+            totalWordCount += wordCount;
+
+            if (!userStats[senderUin]) {
+                userStats[senderUin] = { messageCount: 0, wordCount: 0 };
+            }
+            userStats[senderUin].messageCount++;
+            userStats[senderUin].wordCount += wordCount;
+        }
+
+        exportData.stats = {
+            totalMessages: exportData.messageCount,
+            totalWordCount,
+            users: Object.entries(userStats).map(([uin, stats]) => ({
+                qq: Number(uin),
+                name: exportData.users[Number(uin)].name,
+                messageCount: stats.messageCount,
+                wordCount: stats.wordCount,
+            }))
+        };
+
+        const savePath = path.join('log', `${groupId}_${new Date().toISOString().slice(0, 10)}.json`);
+        fs.writeFileSync(savePath, JSON.stringify(exportData, null, 2));
 
         return exportData;
     } catch (error) {
         console.error('导出消息时出错:', error);
+    }
+}
+
+export async function exportTodayGroupMessagesPdf(c: LagrangeContext<GroupMessage | PrivateMessage>, groupId: number) {
+    const json = await exportTodayGroupMessages(c, groupId);
+    const response = await axios.post(api + '/qq-group-summary-to-pdf', { json });
+    if (response.data.code === 200) {
+        const pdfPath = response.data.msg;
+        await c.uploadGroupFile(qq_groups.TEST_CHANNEL, pdfPath, path.basename(pdfPath));
     }
 }

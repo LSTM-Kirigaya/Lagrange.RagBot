@@ -10,7 +10,7 @@ import { summaryWebsite } from './website-summary.service';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { exportTodayGroupMessages } from './realm.service';
+import { exportTodayGroupMessagesPdf } from './realm.service';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -122,7 +122,7 @@ export class TestChannel {
                     break;
 
                 case 'sum-openmcp':
-                    exportTodayGroupMessages(c, qq_groups.OPENMCP_DEV);
+                    exportTodayGroupMessagesPdf(c, qq_groups.OPENMCP_DEV);
                     break;
 
                 default:

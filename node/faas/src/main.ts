@@ -4,6 +4,7 @@ import { app } from './common';
 import "./service/news";
 import "./service/web-summary";
 import "./openmcp/openmcp";
+import "./openmcp/group-summary";
 import "./crawl4ai/crawl4ai";
 import "./service/pm2-summary";
 
