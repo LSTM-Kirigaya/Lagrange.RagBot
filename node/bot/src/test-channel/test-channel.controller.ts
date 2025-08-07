@@ -52,6 +52,7 @@ export class TestChannel {
 
     @mapper.onGroup(qq_groups.TEST_CHANNEL, { memorySize: 100 })
     async handleTestChannel(c: LagrangeContext<GroupMessage>) {
+        console.log(c.message.message);
         const text = c.getRawText();
 
         const commandResult = parseCommand(text);
@@ -62,8 +63,8 @@ export class TestChannel {
                 const lastVisit = visitCache.get(c.message.user_id.toString());
                                 
                 const info = await c.getGroupMemberInfo(c.message.group_id, c.message.user_id);
-                const role = info['data'].role;
-                const name = info['data'].nickname;
+                // const role = info['data'].role;
+                // const name = info['data'].nickname;
 
                 if (!lastVisit || (now - lastVisit) > 10 * 60 * 1000) {
                     c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));

@@ -18,9 +18,11 @@ const REALM_CONFIG = {
 interface MessageEntity {
     Text?: string;
     ImageUrl?: string;
+    FilePath?: string;
     Payload?: string;
     Uin?: number;
     Name?: string;
+    SubType?: number;
 }
 
 interface DecodedMessage {
@@ -95,6 +97,9 @@ function decodeEntities(buffer: Uint8Array): DecodedMessage | undefined {
         let replyName = '';
         let replyText = '';
 
+        console.log(pkgs);
+        
+
         for (const pkg of pkgs) {
             // 如果是 Uint8Array，则递归解码
             if (pkg instanceof Uint8Array) {
@@ -110,12 +115,12 @@ function decodeEntities(buffer: Uint8Array): DecodedMessage | undefined {
             }
 
             const entity = pkg as MessageEntity;
-            console.log(entity);
             
             if (entity.Text && (!entity.Text.includes('�') || entity.Text.includes('\\x'))) {
                 rawText += entity.Text + '\n';
-            } else if (entity.ImageUrl) {                
-                rawText += `![K_IMAGE_URL](${entity.ImageUrl})\n`;
+            } else if (entity.ImageUrl) {
+                const type = entity.SubType === 0 ? '图片' : '动画表情';        
+                rawText += `![${type}](${entity.FilePath})\n`;
             } else if (entity.Payload) {
                 rawText += entity.Payload + '\n';
             } else if (entity.Uin && entity.Name) {

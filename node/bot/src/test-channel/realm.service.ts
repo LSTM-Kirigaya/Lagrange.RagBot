@@ -89,18 +89,9 @@ async function decodeEntities(c: LagrangeContext<GroupMessage | PrivateMessage>,
                 rawText += entity.Text + '\n';
             } else if (entity.ImageUrl) {
                 
-                rawText += `![图片](${entity.ImageUrl})\n`;
+                const type = entity.SubType === 0 ? '图片' : '动画表情';
+                rawText += `![${type}](${entity.FilePath})\n`;
 
-                // TODO: 等待 core 的回复
-
-                // const image = await c.getImage(entity.FilePath);
-                // console.log(entity);
-                // console.log(image);
-                
-                // if (!(image instanceof Error)) {
-                //     const filepath = image.data.file;
-                //     rawText += `![IMAGE](${filepath})\n`;
-                // }
             } else if (entity.Payload) {
                 rawText += entity.Payload + '\n';
             } else if (entity.Uin && entity.Name) {

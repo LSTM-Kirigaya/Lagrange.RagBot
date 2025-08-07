@@ -1,0 +1,993 @@
+{
+  "groupId": 782833642,
+  "exportTime": "2025-08-07T10:37:50.127Z",
+  "messageCount": 161,
+  "messages": [
+    {
+      "id": 1,
+      "sender": 1837687575,
+      "timestamp": "2025-08-06T16:27:42.000Z",
+      "content": "谷歌又出新模型了，像小宇宙爆发啊"
+    },
+    {
+      "id": 2,
+      "sender": 1837687575,
+      "timestamp": "2025-08-06T16:27:50.000Z",
+      "content": "国内的显得都不够看了"
+    },
+    {
+      "id": 3,
+      "sender": 447906798,
+      "timestamp": "2025-08-06T16:28:00.000Z",
+      "content": "什么",
+      "replyName": "@动漫男主不是我",
+      "replyText": "谷歌又出新模型了，像小宇宙爆发啊"
+    },
+    {
+      "id": 4,
+      "sender": 447906798,
+      "timestamp": "2025-08-06T16:28:02.000Z",
+      "content": "哪个"
+    },
+    {
+      "id": 5,
+      "sender": 2574915403,
+      "timestamp": "2025-08-06T16:28:40.000Z",
+      "content": "那个世界模型吧"
+    },
+    {
+      "id": 6,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:28:56.000Z",
+      "content": "![图片](EF70C7DB4F0DC7D91535B9D677D368E6.png)"
+    },
+    {
+      "id": 7,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:28:59.000Z",
+      "content": "这家公司还在上海"
+    },
+    {
+      "id": 8,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:29:05.000Z",
+      "content": "没有去新加坡"
+    },
+    {
+      "id": 9,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:29:09.000Z",
+      "content": "![动画表情](01B72A35C4FCE8BD9FCEB386D1AECD2A.jpg)"
+    },
+    {
+      "id": 10,
+      "sender": 447906798,
+      "timestamp": "2025-08-06T16:32:59.000Z",
+      "content": "aug 7th"
+    },
+    {
+      "id": 11,
+      "sender": 447906798,
+      "timestamp": "2025-08-06T16:33:01.000Z",
+      "content": "真能发布吗"
+    },
+    {
+      "id": 12,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:38:05.000Z",
+      "content": "![图片](76EBBB6E98DAD3D83165D31BACC713BA.png)"
+    },
+    {
+      "id": 13,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:38:11.000Z",
+      "content": "看看4b效果如何"
+    },
+    {
+      "id": 14,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:38:22.000Z",
+      "content": "真能发布吗\n 今晚蹲一下咯",
+      "replyName": "@院止."
+    },
+    {
+      "id": 15,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:38:33.000Z",
+      "content": "反正刚刚已经爆料出图标了"
+    },
+    {
+      "id": 16,
+      "sender": 447906798,
+      "timestamp": "2025-08-06T16:38:37.000Z",
+      "content": "qwen 4b"
+    },
+    {
+      "id": 17,
+      "sender": 447906798,
+      "timestamp": "2025-08-06T16:38:39.000Z",
+      "content": "可以的"
+    },
+    {
+      "id": 18,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:38:47.000Z",
+      "content": "我可以本地部署了"
+    },
+    {
+      "id": 19,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:38:59.000Z",
+      "content": "感觉我10b都有的吃力，本地的话"
+    },
+    {
+      "id": 20,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T16:39:05.000Z",
+      "content": "还是7b左右好一些"
+    },
+    {
+      "id": 21,
+      "sender": 906593393,
+      "timestamp": "2025-08-06T16:57:42.000Z",
+      "content": "4b我之前test了一下，感觉本地部署够用了"
+    },
+    {
+      "id": 22,
+      "sender": 906593393,
+      "timestamp": "2025-08-06T16:58:20.000Z",
+      "content": "就日常的应用情景而言，套几个常见MCP做一下网页总结文档处理什么的，或者纯聊天也差不多"
+    },
+    {
+      "id": 23,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:21:27.000Z",
+      "content": "![图片](64219806ECCC4E167F56C8AD8035DC54.png)"
+    },
+    {
+      "id": 24,
+      "sender": 3358919370,
+      "timestamp": "2025-08-06T17:22:36.000Z",
+      "content": "终于发 GPT5 了"
+    },
+    {
+      "id": 25,
+      "sender": 3358919370,
+      "timestamp": "2025-08-06T17:22:40.000Z",
+      "content": "泪目了😭"
+    },
+    {
+      "id": 26,
+      "sender": 3951001763,
+      "timestamp": "2025-08-06T17:25:32.000Z",
+      "content": "现在美国时间几点？"
+    },
+    {
+      "id": 27,
+      "sender": 1837687575,
+      "timestamp": "2025-08-06T17:26:03.000Z",
+      "content": "so？"
+    },
+    {
+      "id": 28,
+      "sender": 1837687575,
+      "timestamp": "2025-08-06T17:26:05.000Z",
+      "content": "会更贵？"
+    },
+    {
+      "id": 29,
+      "sender": 3358919370,
+      "timestamp": "2025-08-06T17:27:27.000Z",
+      "content": "现在是太平洋时间 10:27 分"
+    },
+    {
+      "id": 30,
+      "sender": 3358919370,
+      "timestamp": "2025-08-06T17:27:36.000Z",
+      "content": "就是 OpenAI 办公室的时间😁"
+    },
+    {
+      "id": 31,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:34:55.000Z",
+      "content": "现在美国时间几点？\n 我们这边凌晨两点",
+      "replyName": "@星弧梦影"
+    },
+    {
+      "id": 32,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:35:02.000Z",
+      "content": "qwen的4b发货了"
+    },
+    {
+      "id": 33,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:35:12.000Z",
+      "content": "这位是flowith的员工"
+    },
+    {
+      "id": 34,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:35:57.000Z",
+      "content": "![图片](12DF38FCB21881FC7CE32D1305861736.png)"
+    },
+    {
+      "id": 35,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:35:59.000Z",
+      "content": "我想买了"
+    },
+    {
+      "id": 36,
+      "sender": 707534106,
+      "timestamp": "2025-08-06T17:37:36.000Z",
+      "content": "之前一个月5刀的方案爽买，20刀值不了一点"
+    },
+    {
+      "id": 37,
+      "sender": 707534106,
+      "timestamp": "2025-08-06T17:37:45.000Z",
+      "content": "![动画表情](5B15948E00B476AB31DADD9339598A08.jpg)"
+    },
+    {
+      "id": 38,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:37:52.000Z",
+      "content": "但是他应该比Manus好一点"
+    },
+    {
+      "id": 39,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:38:06.000Z",
+      "content": "只不过Manus营销这块赢麻了"
+    },
+    {
+      "id": 40,
+      "sender": 707534106,
+      "timestamp": "2025-08-06T17:40:30.000Z",
+      "content": "flowith的产品定力太弱了，原则上光画布这一点打磨好就有基本盘，结果整了画布整了agent整了知识花园但除了ui样式一样在运行逻辑上基本没有半毛钱关系（"
+    },
+    {
+      "id": 41,
+      "sender": 707534106,
+      "timestamp": "2025-08-06T17:40:31.000Z",
+      "content": "![动画表情](6EC394F923B3D8F991F62CE0CF2241A6.jpg)"
+    },
+    {
+      "id": 42,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:42:02.000Z",
+      "content": "好家伙，你跟他们cmo反馈啊"
+    },
+    {
+      "id": 43,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:42:06.000Z",
+      "content": "人家就在x上，挺活跃的"
+    },
+    {
+      "id": 44,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:42:25.000Z",
+      "content": "Manus绑定Claude，估计flowith就是gpt了"
+    },
+    {
+      "id": 45,
+      "sender": 707534106,
+      "timestamp": "2025-08-06T17:43:03.000Z",
+      "content": "之前discord反馈过，回头有空完整写套锐评吧（"
+    },
+    {
+      "id": 46,
+      "sender": 707534106,
+      "timestamp": "2025-08-06T17:43:04.000Z",
+      "content": "![动画表情](3817AFF298BC06D37ABB1124A827D69F.jpg)"
+    },
+    {
+      "id": 47,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:43:12.000Z",
+      "content": "![图片](A6538DAC09D407E4579B4FBB490FC222.png)"
+    },
+    {
+      "id": 48,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:43:13.000Z",
+      "content": "好抽象啊"
+    },
+    {
+      "id": 49,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:43:15.000Z",
+      "content": "这算是什么"
+    },
+    {
+      "id": 50,
+      "sender": 1970959556,
+      "timestamp": "2025-08-06T17:50:42.000Z",
+      "content": "![图片](81B182F647EE4B0878767443B31E46A0.png)"
+    },
+    {
+      "id": 51,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T19:13:19.000Z",
+      "content": "![图片](F63AC1545EF4ADCCEE170E0DFEFBA744.png)"
+    },
+    {
+      "id": 52,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T19:13:40.000Z",
+      "content": "有点意思，原来 GRM 的概念， deepseek 在今年 4 月份就提出了，但是彼时的 bench 并不大"
+    },
+    {
+      "id": 53,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T19:14:09.000Z",
+      "content": "看来 openai 在 scaleai 上下了血本做出来的 GRM benchmark 确实是这次 gpt5 的核心壁垒"
+    },
+    {
+      "id": 54,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T19:18:02.000Z",
+      "content": "qwen image 技术报告出了：https://www.alphaxiv.org/abs/2508.02324"
+    },
+    {
+      "id": 55,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T19:21:15.000Z",
+      "content": "看完了，dit 上改了 rope，加上一些数据上的创新"
+    },
+    {
+      "id": 56,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T19:28:47.000Z",
+      "content": "GRM 前导知识强烈推荐这篇文章：\n\nDeepSeek的新论文：通用奖励模型的新范式——DeepSeek-GRM技术解析 - 北方的郎的文章 - 知乎\nhttps://zhuanlan.zhihu.com/p/1891510512497446981"
+    },
+    {
+      "id": 57,
+      "sender": 30558099,
+      "timestamp": "2025-08-06T20:04:52.000Z",
+      "content": "看不懂啊，需要学习哪些前置知识"
+    },
+    {
+      "id": 58,
+      "sender": 30558099,
+      "timestamp": "2025-08-06T20:04:56.000Z",
+      "content": "![动画表情](12427B14561D3BF568E9D31647AA4F1F.png)"
+    },
+    {
+      "id": 59,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T20:05:14.000Z",
+      "content": "nlp"
+    },
+    {
+      "id": 60,
+      "sender": 30558099,
+      "timestamp": "2025-08-06T20:07:48.000Z",
+      "content": "大佬，四张3080 20g能做什么方向，发什么文章"
+    },
+    {
+      "id": 61,
+      "sender": 30558099,
+      "timestamp": "2025-08-06T20:07:59.000Z",
+      "content": "![动画表情](E535F1D9E90AA5942BEDAD90710A65FC.png)"
+    },
+    {
+      "id": 62,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T20:09:02.000Z",
+      "content": "感觉能做 agent 相关的研究"
+    },
+    {
+      "id": 63,
+      "sender": 1193466151,
+      "timestamp": "2025-08-06T20:09:09.000Z",
+      "content": "在常规的开源模型上做"
+    },
+    {
+      "id": 64,
+      "sender": 30558099,
+      "timestamp": "2025-08-06T20:10:14.000Z",
+      "content": "![动画表情](12427B14561D3BF568E9D31647AA4F1F.png)"
+    },
+    {
+      "id": 65,
+      "sender": 30558099,
+      "timestamp": "2025-08-06T20:10:18.000Z",
+      "content": "![动画表情](40C431AE9A345F73775BAF13F0243A0E.png)"
+    },
+    {
+      "id": 66,
+      "sender": 448885,
+      "timestamp": "2025-08-06T20:18:00.000Z",
+      "content": "![图片](A55B19E9EBD3B99CD49C2375155B64F4.png)"
+    },
+    {
+      "id": 67,
+      "sender": 448885,
+      "timestamp": "2025-08-06T20:18:07.000Z",
+      "content": "![图片](68EF25E133118DFABCDA73C6680594E8.png)"
+    },
+    {
+      "id": 68,
+      "sender": 448885,
+      "timestamp": "2025-08-06T20:19:29.000Z",
+      "content": "我想再给图结构的 Node  加个向量，图遍历的时候 再多搞点  相近的Node 的一些数据？"
+    },
+    {
+      "id": 69,
+      "sender": 448885,
+      "timestamp": "2025-08-06T20:21:43.000Z",
+      "content": "怎么决定查询策略  也是个问题，  可能可以把用户反馈加上  自动优化 某类问题的 策略选择"
+    },
+    {
+      "id": 70,
+      "sender": 3558823613,
+      "timestamp": "2025-08-07T01:47:57.000Z",
+      "content": "Neo4j的5.x版本可以直接添加向量索引吧，查询策略到没细想过("
+    },
+    {
+      "id": 71,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:05:04.000Z",
+      "content": "![图片](BF927F7BCCB212B98736315E22E7FAF2.png)"
+    },
+    {
+      "id": 72,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:05:10.000Z",
+      "content": "有人搞过阿里的这个吗"
+    },
+    {
+      "id": 73,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:11:52.000Z",
+      "content": "群里谁能辅助我开发个mcp啊😂小白一个"
+    },
+    {
+      "id": 74,
+      "sender": 2826225698,
+      "timestamp": "2025-08-07T02:12:52.000Z",
+      "content": "你不是已经工作了吗还算是小白？"
+    },
+    {
+      "id": 75,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:13:34.000Z",
+      "content": "我是前端开发 不太懂这些"
+    },
+    {
+      "id": 76,
+      "sender": 2826225698,
+      "timestamp": "2025-08-07T02:13:44.000Z",
+      "content": "不是理由"
+    },
+    {
+      "id": 77,
+      "sender": 30558099,
+      "timestamp": "2025-08-07T02:14:42.000Z",
+      "content": "m4 mac 16g内存跑gpt-oss-20b有20多tokens每秒"
+    },
+    {
+      "id": 78,
+      "sender": 30558099,
+      "timestamp": "2025-08-07T02:14:50.000Z",
+      "content": "![图片](B6332E864CBC17D3CFB0674A02A079BA.png)"
+    },
+    {
+      "id": 79,
+      "sender": 30558099,
+      "timestamp": "2025-08-07T02:14:53.000Z",
+      "content": "![动画表情](12427B14561D3BF568E9D31647AA4F1F.png)"
+    },
+    {
+      "id": 80,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:15:36.000Z",
+      "content": "😂你要这么想 就算我是计算机出身 也不可能所有都了解"
+    },
+    {
+      "id": 81,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:15:56.000Z",
+      "content": "就像我一开始都不会写后端代码一样"
+    },
+    {
+      "id": 82,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:18:28.000Z",
+      "content": "我先调用一下这个api"
+    },
+    {
+      "id": 83,
+      "sender": 1837687575,
+      "timestamp": "2025-08-07T02:47:13.000Z",
+      "content": "qianwen模型和aisdk5.0版本不兼容 好烦"
+    },
+    {
+      "id": 84,
+      "sender": 448885,
+      "timestamp": "2025-08-07T04:53:43.000Z",
+      "content": "我要纯血 Rust",
+      "replyName": "@云",
+      "replyText": "Neo4j的5.x版本可以直接添加向量索引吧，查询策略到没细想过("
+    },
+    {
+      "id": 85,
+      "sender": 2917800178,
+      "timestamp": "2025-08-07T05:02:42.000Z",
+      "content": "大家好"
+    },
+    {
+      "id": 86,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:50:42.000Z",
+      "content": "Error executing tool summarize_chat: 1270 validation errors for summarize_chatArguments\nparams.groupId\n  Input should be a valid string [type=string_type, input_value=782833642, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.11/v/string_type\nparams.messages.0.topic\n  Field required [type=missing, input_value={'id': 1, 'sender': 11934...际争霸，舒服了'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.0.contributors\n  Field required [type=missing, input_value={'id': 1, 'sender': 11934...际争霸，舒服了'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.0.detail\n  Field required [type=missing, input_value={'id': 1, 'sender': 11934...际争霸，舒服了'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.1.topic\n  Field required [type=missing, input_value={'id': 2, 'sender': 11934...ontent': '继续干活'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.1.contributors\n  Field required [type=missing, input_value={'id': 2, 'sender': 11934...ontent': '继续干活'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.1.detail\n  Field required [type=missing, input_value={'id': 2, 'sender': 11934...ontent': '继续干活'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.2.topic\n  Field required [type=missing, input_value={'id': 3, 'sender': 11934...vdpmi3zLgxh6iTUQkJQOv)'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.2.contributors\n  Field required [type=missing, input_value={'id': 3, 'sender': 11934...vdpmi3zLgxh6iTUQkJQOv)'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.11/v/missing\nparams.messages.2.detail\n  Field required [type=missing, input_value={'id': 3, 'sender': 11934...vdpmi3zLgxh6iTUQkJQOv)'}, input_type=dict]"
+    },
+    {
+      "id": 87,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:51:12.000Z",
+      "content": "有人知道这个qq群聊消息总结插件的报错怎么解决吗"
+    },
+    {
+      "id": 88,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:52:07.000Z",
+      "content": "错误信息分为两个主要部分，指出了你传入的数据与 SummarizeChatParams 数据模型不匹配的地方：\n\nparams.groupId 错误\n\nInput should be a valid string [type=string_type, input_value=782833642, input_type=int]\n\n问题: groupId 字段的预期类型是 字符串 (string)，但你传入了一个 整数 (int) 值 782833642。\n\n解决方案: 你需要确保 groupId 的值被正确地转换为字符串，例如 '782833642'。\n\nparams.messages.x.topic/contributors/detail 错误\n\nField required [type=missing, input_value={'id': 1, ...}, input_type=dict]\n\n问题: messages 列表中的每个字典都缺少了 topic、contributors 和 detail 这三个必需的字段。\n\n从 input_value 中可以看出，你传入的字典结构只包含了 id、sender 和 content 等字段，这与 SummaryTopic 模型（SummarizeChatParams 的 messages 字段所要求的）不符。SummaryTopic 模型明确要求这三个字段必须存在。\n\n解决方案: 在构造 messages 列表时，你需要为每个元素（即每个聊天话题）都提供 topic（主题）、contributors（贡献者）和 detail（详细内容）这三个字段。\n\n总结\n要解决这个错误，你需要修正调用 summarize_chat 函数时传递的参数，确保其严格遵循 SummarizeChatParams 模型的定义。具体来说：\n\n将 groupId 的值从整数改为字符串。\n\n为 messages 列表中的每个元素补充 topic, contributors, 和 detail 这三个必填字段。"
+    },
+    {
+      "id": 89,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:53:36.000Z",
+      "content": "你用的什么模型呀"
+    },
+    {
+      "id": 90,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:53:55.000Z",
+      "content": "我部署侧用的是V3"
+    },
+    {
+      "id": 91,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:54:32.000Z",
+      "content": "你使用的时候是不是没有加入prompt"
+    },
+    {
+      "id": 92,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:55:04.000Z",
+      "content": "你是如何启动的使用的，是我的mcp客户端还是使用的别的agent框架"
+    },
+    {
+      "id": 93,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:55:29.000Z",
+      "content": "![图片](4B909894C6520F0A221FFF09903EC8AB.png)"
+    },
+    {
+      "id": 94,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:55:36.000Z",
+      "content": "mcp启动的"
+    },
+    {
+      "id": 95,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:56:07.000Z",
+      "content": "你询问问题的时候，有没有提前塞入名为lead guide的prompt"
+    },
+    {
+      "id": 96,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:56:29.000Z",
+      "content": "然后我塞入的是我的框架所导出的一个json"
+    },
+    {
+      "id": 97,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:57:42.000Z",
+      "content": "没看到在哪里可以添加",
+      "replyName": "@锦恢",
+      "replyText": "你询问问题的时候，有没有提前塞入名为lead guide的prompt"
+    },
+    {
+      "id": 98,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T05:57:58.000Z",
+      "content": "你看一下我们的文档文档里面有"
+    },
+    {
+      "id": 99,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:59:40.000Z",
+      "content": "好"
+    },
+    {
+      "id": 100,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T05:59:43.000Z",
+      "content": "![图片](592850CB51140F3CF89C236E45C3AABB.png)"
+    },
+    {
+      "id": 101,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:00:35.000Z",
+      "content": "我的聊天记录的原始数据是用这个export-today-group-messages导出来的",
+      "replyName": "@锦恢",
+      "replyText": "然后我塞入的是我的框架所导出的一个json"
+    },
+    {
+      "id": 102,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:01:05.000Z",
+      "content": "有点差异，这个我是用来测试用的"
+    },
+    {
+      "id": 103,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:01:19.000Z",
+      "content": "和真正导出的略微有点不同"
+    },
+    {
+      "id": 104,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:01:26.000Z",
+      "content": "比如拿不到真人名字"
+    },
+    {
+      "id": 105,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:01:38.000Z",
+      "content": "不过差不多可以"
+    },
+    {
+      "id": 106,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:01:42.000Z",
+      "content": "我的理解是先拿到原始聊天数据，再放到mcp上面去总结"
+    },
+    {
+      "id": 107,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:01:53.000Z",
+      "content": "对话框的下面有一排按钮",
+      "replyName": "@你以为你以为的是你以为的",
+      "replyText": "没看到在哪里可以添加"
+    },
+    {
+      "id": 108,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:02:09.000Z",
+      "content": "从左往右差不多第四个的样子"
+    },
+    {
+      "id": 109,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:02:18.000Z",
+      "content": "你自己点点看"
+    },
+    {
+      "id": 110,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:02:29.000Z",
+      "content": "有一个和prompt有关的"
+    },
+    {
+      "id": 111,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:02:43.000Z",
+      "content": "![图片](84EDA0B5D0BF29AE9E8881F1BD6A3512.png)"
+    },
+    {
+      "id": 112,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:02:57.000Z",
+      "content": "对"
+    },
+    {
+      "id": 113,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:03:02.000Z",
+      "content": "就是这个"
+    },
+    {
+      "id": 114,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:03:08.000Z",
+      "content": "![图片](1A39AB05F3C6775F174C522805F19B40.png)"
+    },
+    {
+      "id": 115,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:03:53.000Z",
+      "content": "但是我刚刚报错那里是工具tool那个页面，我是把json文件的内容复制到了params里面，然后点击了运行"
+    },
+    {
+      "id": 116,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:04:12.000Z",
+      "content": "真正导出是怎么操作的",
+      "replyName": "@锦恢",
+      "replyText": "和真正导出的略微有点不同"
+    },
+    {
+      "id": 117,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:04:54.000Z",
+      "content": "你全局搜索一下这个函数"
+    },
+    {
+      "id": 118,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:07:13.000Z",
+      "content": "![图片](E37CA0BA52AF8D9B0A8992A408A03732.png)"
+    },
+    {
+      "id": 119,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:28:26.000Z",
+      "content": "https://github.com/LSTM-Kirigaya/Lagrange.RagBot/blob/main/node/bot/src/test-channel/realm.service.ts"
+    },
+    {
+      "id": 120,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:34:05.000Z",
+      "content": "ok，我去试试用这个导出聊天记录"
+    },
+    {
+      "id": 121,
+      "sender": 1748651038,
+      "timestamp": "2025-08-07T06:35:32.000Z",
+      "content": "不是用这个导出聊天记录吗",
+      "replyName": "@锦恢",
+      "replyText": "https://github.com/LSTM-Kirigaya/Lagrange.RagBot/blob/main/node/bot/src/test-channel/realm.service.ts"
+    },
+    {
+      "id": 122,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:43:52.000Z",
+      "content": "依赖的东西有点多，你看不懂的话就 deepwiki 一下"
+    },
+    {
+      "id": 123,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T06:43:57.000Z",
+      "content": "我这个项目好像还没被 index"
+    },
+    {
+      "id": 124,
+      "sender": 2826225698,
+      "timestamp": "2025-08-07T07:44:35.000Z",
+      "content": "![图片](6616E51507033E70DB9CBD78A0481268.jpg)"
+    },
+    {
+      "id": 125,
+      "sender": 2826225698,
+      "timestamp": "2025-08-07T07:45:01.000Z",
+      "content": "claude code砍额度了"
+    },
+    {
+      "id": 126,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:49:47.000Z",
+      "content": "我20刀目前改个功能还行"
+    },
+    {
+      "id": 127,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:50:43.000Z",
+      "content": "今天给串流软件适配了一下iPadOS26的顶部菜单"
+    },
+    {
+      "id": 128,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:51:02.000Z",
+      "content": "便于窗口模式退出到设置页面"
+    },
+    {
+      "id": 129,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:52:05.000Z",
+      "content": "![图片](1E19CE7B0DFDAC98E87A008A1C38ECAE.png)"
+    },
+    {
+      "id": 130,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:52:10.000Z",
+      "content": "![动画表情](A9FFB12C43ADA809179DCC48EA45F9DD.jpg)"
+    },
+    {
+      "id": 131,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:53:16.000Z",
+      "content": "我负责指挥提需求，cc改"
+    },
+    {
+      "id": 132,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T07:53:46.000Z",
+      "content": "用的objective-c"
+    },
+    {
+      "id": 133,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T07:59:41.000Z",
+      "content": "![图片](F128662381D63CDA614DCE5DA3F9DC8D.png)"
+    },
+    {
+      "id": 134,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T07:59:43.000Z",
+      "content": "南大这速度。。。"
+    },
+    {
+      "id": 135,
+      "sender": 1193466151,
+      "timestamp": "2025-08-07T08:00:05.000Z",
+      "content": "我现在挺好奇的，oss 120b 接到 cc 上效果如何"
+    },
+    {
+      "id": 136,
+      "sender": 1223963660,
+      "timestamp": "2025-08-07T08:24:40.000Z",
+      "content": "这是哪个 website，ui 看着挺舒适"
+    },
+    {
+      "id": 137,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T08:32:52.000Z",
+      "content": "alphaxiv"
+    },
+    {
+      "id": 138,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T08:33:51.000Z",
+      "content": "Google一下就知道了"
+    },
+    {
+      "id": 139,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T08:33:56.000Z",
+      "content": "![动画表情](A9FFB12C43ADA809179DCC48EA45F9DD.jpg)"
+    },
+    {
+      "id": 140,
+      "sender": 1223963660,
+      "timestamp": "2025-08-07T09:06:43.000Z",
+      "content": "alphaxiv\n👍"
+    },
+    {
+      "id": 141,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:47:50.000Z",
+      "content": "怎么使用？"
+    },
+    {
+      "id": 142,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:48:14.000Z",
+      "content": "什么提示词才能让模型调这个？"
+    },
+    {
+      "id": 143,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T09:48:29.000Z",
+      "content": "![动画表情](FE739BD9EA30CB0F790FB0069887E8B8.png)"
+    },
+    {
+      "id": 144,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T09:48:34.000Z",
+      "content": "还没用过resource"
+    },
+    {
+      "id": 145,
+      "sender": 1985682903,
+      "timestamp": "2025-08-07T09:49:17.000Z",
+      "content": "刚刚阿里巴巴蚂蚁集团给我打电话了"
+    },
+    {
+      "id": 146,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:49:25.000Z",
+      "content": "从mcp的示例中弄的"
+    },
+    {
+      "id": 147,
+      "sender": 1985682903,
+      "timestamp": "2025-08-07T09:49:33.000Z",
+      "content": "然后我没接 怎么办"
+    },
+    {
+      "id": 148,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:49:34.000Z",
+      "content": "不知道怎么样才能让这个调用"
+    },
+    {
+      "id": 149,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:49:54.000Z",
+      "content": "配置成功了"
+    },
+    {
+      "id": 150,
+      "sender": 1542767141,
+      "timestamp": "2025-08-07T09:50:30.000Z",
+      "content": "然后我没接 怎么办\n 等他再打给你",
+      "replyName": "@星辰之子"
+    },
+    {
+      "id": 151,
+      "sender": 2945294768,
+      "timestamp": "2025-08-07T09:51:07.000Z",
+      "content": "模型没办法直接调",
+      "replyName": "@吃不饱",
+      "replyText": "什么提示词才能让模型调这个？"
+    },
+    {
+      "id": 152,
+      "sender": 324677869,
+      "timestamp": "2025-08-07T09:51:11.000Z",
+      "content": "不知道怎么样才能让这个调用\n好像不能，这是给客户端开发者准备的",
+      "replyName": "@吃不饱"
+    },
+    {
+      "id": 153,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T09:51:41.000Z",
+      "content": "发现Gemini似乎更适合函数fc"
+    },
+    {
+      "id": 154,
+      "sender": 2574915403,
+      "timestamp": "2025-08-07T09:51:54.000Z",
+      "content": "提示词fc它容易出问题"
+    },
+    {
+      "id": 155,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:52:08.000Z",
+      "content": "好吧"
+    },
+    {
+      "id": 156,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:52:23.000Z",
+      "content": "那这个怎么用？"
+    },
+    {
+      "id": 157,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:52:31.000Z",
+      "content": "就是resource"
+    },
+    {
+      "id": 158,
+      "sender": 2945294768,
+      "timestamp": "2025-08-07T09:52:39.000Z",
+      "content": "cherry里面有"
+    },
+    {
+      "id": 159,
+      "sender": 2945294768,
+      "timestamp": "2025-08-07T09:52:49.000Z",
+      "content": "就是塞进上下文了吧"
+    },
+    {
+      "id": 160,
+      "sender": 594529181,
+      "timestamp": "2025-08-07T09:53:32.000Z",
+      "content": "有使用示例吗？我瞅瞅"
+    },
+    {
+      "id": 161,
+      "sender": 2826225698,
+      "timestamp": "2025-08-07T09:56:55.000Z",
+      "content": "Cheey我也没找到可以使用resource和prompt的地方"
+    }
+  ]
+}
