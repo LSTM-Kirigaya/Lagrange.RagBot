@@ -1,7 +1,7 @@
 import '../plugins/image';
 import * as path from 'path';
 
-import { mapper, LagrangeContext, GroupMessage, ApproveMessage, Message } from 'lagrange.onebot';
+import { mapper, LagrangeContext, GroupMessage, ApproveMessage, Message, PrivateMessage } from 'lagrange.onebot';
 import { getNews } from './openmcp-dev.service';
 import { es_db, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
@@ -12,6 +12,7 @@ import { summaryWebsite } from '../test-channel/website-summary.service';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
+import { exportTodayGroupMessagesPdf } from '../test-channel/realm.service';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 console.log('activate ' + path.basename(__filename));
@@ -133,10 +134,15 @@ export class OpenMcpChannel {
     }
 
     @mapper.createTimeSchedule('0 0 10 * * *')
-    async handleTestChannelSchedule(c: LagrangeContext<Message>) {
+    async publishNewsTimer(c: LagrangeContext<Message>) {
         const res = await axios.post('http://localhost:3000/get-news-from-hack-news');
         const data = res.data;
         const message = data.msg;
         c.sendGroupMsg(qq_groups.OPENMCP_DEV, message);
+    }
+
+    @mapper.createTimeSchedule('0 0 23 * * *')
+    async groupSummaryTimer(c: LagrangeContext<GroupMessage | PrivateMessage>) {
+        await exportTodayGroupMessagesPdf(c, qq_groups.OPENMCP_DEV);
     }
 }

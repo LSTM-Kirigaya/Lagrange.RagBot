@@ -110,11 +110,11 @@ function decodeEntities(buffer: Uint8Array): DecodedMessage | undefined {
             }
 
             const entity = pkg as MessageEntity;
+            console.log(entity);
+            
             if (entity.Text && (!entity.Text.includes('�') || entity.Text.includes('\\x'))) {
                 rawText += entity.Text + '\n';
-            } else if (entity.ImageUrl) {
-                console.log(entity);
-                
+            } else if (entity.ImageUrl) {                
                 rawText += `![K_IMAGE_URL](${entity.ImageUrl})\n`;
             } else if (entity.Payload) {
                 rawText += entity.Payload + '\n';

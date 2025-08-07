@@ -42,13 +42,19 @@ export interface UserInfo {
     wordCount: number;
 }
 
+
+export interface GroupStats {
+    totalMessages: number;
+    totalWordCount: number;
+}
+
 export interface GroupMessagesExport {
     groupId: number;
     groupName?: string;
     memberCount?: number;
     exportTime: string;
     messageCount: number;
-    wordCount: number;
     messages: ExportMessage[];
     users: Record<number, UserInfo>;
+    stats?: GroupStats;
 }

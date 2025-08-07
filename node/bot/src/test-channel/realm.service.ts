@@ -166,6 +166,7 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage |
             groupId,
             exportTime: new Date().toDateString(),
             messageCount: 0,
+            wordCount: 0,
             messages: [],
             users: {}
         };
@@ -178,6 +179,8 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage |
         
         // 处理每条消息
         let messageCount = 0;
+        let wordCount = 0;
+
         for (let i = 0; i < groupMessages.length; i++) {
             const msg = groupMessages[i];
             const senderUin = msg.FromUin;
@@ -188,14 +191,13 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage |
 
             if (userMap[senderUin] === undefined) {
                 const user = await c.getGroupMemberInfo(groupId, senderUin);
-                const username = user.data?.card || user.data?.nickname;
-                if (username) {
-                    userMap[senderUin] = {
-                        name: user.data?.card || user.data?.nickname || (senderUin + ''),
-                        qq: senderUin,
-                        avatar: `https://q1.qlogo.cn/g?b=qq&nk=${senderUin}&s=640`
-                    };
-                }
+                userMap[senderUin] = {
+                    name: user.data?.card || user.data?.nickname || (senderUin + ''),
+                    qq: senderUin,
+                    avatar: `https://q1.qlogo.cn/g?b=qq&nk=${senderUin}&s=640`,
+                    messageCount: 0,
+                    wordCount: 0
+                };
             }
             
             const userInfo = userMap[senderUin];
@@ -225,46 +227,28 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage |
                 exportMessage.replyText = decodeResult.replyText;
             }
 
+            userMap[senderUin].messageCount ++;
+            if (decodeResult.text.startsWith('![图片]') && decodeResult.text.endsWith(')')) {
+                userMap[senderUin].wordCount ++;
+                wordCount ++;
+            } else {
+                userMap[senderUin].wordCount += decodeResult.text.trim().length;
+                wordCount += decodeResult.text.trim().length;
+            }
+
             exportData.messages.push(exportMessage);
             messageCount ++;
         }
 
-        exportData.users = userMap;
-        exportData.messageCount = messageCount;
         realm.close();
 
         if (!fs.existsSync('log')) {
             fs.mkdirSync('log');
         }
 
-        let totalWordCount = 0;
-        const userStats: Record<number, { messageCount: number; wordCount: number }> = {};
-
-        for (const msg of exportData.messages) {
-            const senderEntry = Object.values(exportData.users).find(u => u.name === msg.sender);
-            if (!senderEntry) continue;
-            
-            const senderUin = senderEntry.qq;
-            const wordCount = msg.content.length;
-            totalWordCount += wordCount;
-
-            if (!userStats[senderUin]) {
-                userStats[senderUin] = { messageCount: 0, wordCount: 0 };
-            }
-            userStats[senderUin].messageCount++;
-            userStats[senderUin].wordCount += wordCount;
-        }
-
-        exportData.stats = {
-            totalMessages: exportData.messageCount,
-            totalWordCount,
-            users: Object.entries(userStats).map(([uin, stats]) => ({
-                qq: Number(uin),
-                name: exportData.users[Number(uin)].name,
-                messageCount: stats.messageCount,
-                wordCount: stats.wordCount,
-            }))
-        };
+        exportData.users = userMap;
+        exportData.messageCount = messageCount;
+        exportData.wordCount = wordCount;
 
         const savePath = path.join('log', `${groupId}_${new Date().toISOString().slice(0, 10)}.json`);
         fs.writeFileSync(savePath, JSON.stringify(exportData, null, 2));
@@ -280,6 +264,6 @@ export async function exportTodayGroupMessagesPdf(c: LagrangeContext<GroupMessag
     const response = await axios.post(api + '/qq-group-summary-to-pdf', { json });
     if (response.data.code === 200) {
         const pdfPath = response.data.msg;
-        await c.uploadGroupFile(qq_groups.TEST_CHANNEL, pdfPath, path.basename(pdfPath));
+        await c.uploadGroupFile(groupId, pdfPath, path.basename(pdfPath));
     }
 }

@@ -16,3 +16,4 @@ config/*.story.yml
 config/story.yml
 model/*.pth
 config/*.json
+src/*.json
