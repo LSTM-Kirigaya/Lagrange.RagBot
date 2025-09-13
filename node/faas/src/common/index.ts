@@ -12,5 +12,6 @@ export const testRouter = express.Router();
 
 app.use(express.json());
 app.use(cors(corsOptions));
+app.use(express.json({ limit: '20mb' }));
 app.use(morgan('dev'));
 app.use('/test', testRouter);

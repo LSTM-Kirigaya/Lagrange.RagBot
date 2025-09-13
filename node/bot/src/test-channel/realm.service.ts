@@ -250,11 +250,17 @@ export async function exportTodayGroupMessages(c: LagrangeContext<GroupMessage |
     }
 }
 
-export async function exportTodayGroupMessagesPdf(c: LagrangeContext<GroupMessage | PrivateMessage>, groupId: number) {
+export async function exportTodayGroupMessagesPdf(c: LagrangeContext<GroupMessage>, groupId: number) {
     const json = await exportTodayGroupMessages(c, groupId);
     const response = await axios.post(api + '/qq-group-summary-to-pdf', { json });
     if (response.data.code === 200) {
-        const pdfPath = response.data.msg;
-        await c.uploadGroupFile(groupId, pdfPath, path.basename(pdfPath));
+        const { pdfPath, imagePath } = response.data.msg;
+        setTimeout(async () => {
+            await c.uploadGroupFile(c.message.group_id, pdfPath, path.basename(pdfPath));        
+        }, 100);
+
+        setTimeout(async () => {
+            await c.uploadGroupFile(c.message.group_id, imagePath, path.basename(imagePath));
+        }, 1100);
     }
 }

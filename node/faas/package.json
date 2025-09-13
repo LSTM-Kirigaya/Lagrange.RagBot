@@ -18,7 +18,7 @@
     "express": "^5.1.0",
     "js-yaml": "^4.1.0",
     "morgan": "^1.10.0",
-    "openmcp-sdk": "0.0.9"
+    "openmcp-sdk": "^0.1.2"
   },
   "devDependencies": {
     "@types/collections": "^5.1.5",

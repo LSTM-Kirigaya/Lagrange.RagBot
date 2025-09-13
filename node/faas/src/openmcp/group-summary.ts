@@ -8,12 +8,15 @@ export async function qqGroupSummaryPdf(json: any) {
     agent.loadMcpConfig('./openmcp/qq-group-summary.mcp.json');
 
     let pdfPath = '';
+    let imagePath = '';
     const agentLoop = await agent.getLoop();
 
-    agentLoop.registerOnToolCalled(result => {
+
+    agentLoop.registerOnToolCalled(result => {        
         const text = result.content[0]?.text;
         if (fs.existsSync(text)) {
-            pdfPath = text;
+            pdfPath = result.content[0]?.text;
+            imagePath = result.content[1]?.text;
             agentLoop.abort();
         }
         return result;
@@ -23,18 +26,18 @@ export async function qqGroupSummaryPdf(json: any) {
     json = typeof json === 'string' ? json : JSON.stringify(json);
     await agent.ainvoke({ messages: prompt + json });
 
-    return pdfPath;
+    return { pdfPath, imagePath };
 }
 
 
 app.post('/qq-group-summary-to-pdf', async (req: Request, res: Response) => {
     try {
         const json = req.body['json'];
-        const pdfPath = await qqGroupSummaryPdf(json);
+        const { pdfPath, imagePath } = await qqGroupSummaryPdf(json);
 
         res.send({
             code: 200,
-            msg: pdfPath
+            msg: { pdfPath, imagePath }
         });
     } catch (error) {
         res.send({
