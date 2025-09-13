@@ -255,12 +255,18 @@ export async function exportTodayGroupMessagesPdf(c: LagrangeContext<GroupMessag
     const response = await axios.post(api + '/qq-group-summary-to-pdf', { json });
     if (response.data.code === 200) {
         const { pdfPath, imagePath } = response.data.msg;
+
         setTimeout(async () => {
             await c.uploadGroupFile(c.message.group_id, pdfPath, path.basename(pdfPath));        
         }, 100);
 
         setTimeout(async () => {
-            await c.uploadGroupFile(c.message.group_id, imagePath, path.basename(imagePath));
+            c.sendMessage([{
+                type: 'image',
+                data: {
+                    file: 'file://' + imagePath
+                }
+            }]);
         }, 1100);
     }
 }
