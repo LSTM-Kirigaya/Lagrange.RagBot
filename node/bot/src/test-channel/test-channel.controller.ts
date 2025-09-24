@@ -123,7 +123,7 @@ export class TestChannel {
                     break;
 
                 case 'sum-openmcp':
-                    exportTodayGroupMessagesPdf(c, qq_groups.OPENMCP_DEV);
+                    exportTodayGroupMessagesPdf(c, qq_groups.OPENMCP_DEV, qq_groups.TEST_CHANNEL);
                     break;
 
                 default:

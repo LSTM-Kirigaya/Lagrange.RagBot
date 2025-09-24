@@ -142,7 +142,7 @@ export class OpenMcpChannel {
     }
 
     @mapper.createTimeSchedule('0 0 23 * * *')
-    async groupSummaryTimer(c: LagrangeContext<GroupMessage>) {
-        await exportTodayGroupMessagesPdf(c, qq_groups.OPENMCP_DEV);
+    async groupSummaryTimer(c: LagrangeContext<GroupMessage | PrivateMessage>) {
+        await exportTodayGroupMessagesPdf(c, qq_groups.OPENMCP_DEV, qq_groups.OPENMCP_DEV);
     }
 }
