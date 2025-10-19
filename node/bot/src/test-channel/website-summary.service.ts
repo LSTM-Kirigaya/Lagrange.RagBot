@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { api } from '../api/faas';
 import { LagrangeContext, PrivateMessage, GroupMessage } from 'lagrange.onebot';
+import { FAAS_BASE_URL } from '../global';
 
 export async function summaryWebsite(c: LagrangeContext<PrivateMessage | GroupMessage>, url?: string) {
     if (!url || (typeof url === 'string' && !url.startsWith('http'))) {
@@ -8,7 +8,7 @@ export async function summaryWebsite(c: LagrangeContext<PrivateMessage | GroupMe
         return;
     }
 
-    const res = await axios.post(api + '/summary-website', { url });
+    const res = await axios.post(FAAS_BASE_URL + '/summary-website', { url });
     const { code, msg } = res.data;
     if (code !== 200) {
         c.sendMessage('消息聚合失败 ❌\n' + msg);

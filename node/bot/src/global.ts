@@ -26,3 +26,5 @@ export const es_db = {
     WT_OMCP_INDEX: 'openmcp-debug-collection.openmcp',
     WT_TEST_INDEX: 'openmcp-debug-collection.test'
 };
+
+export const FAAS_BASE_URL = 'http://localhost:3000';

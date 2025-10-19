@@ -25,7 +25,7 @@
         "fs": "^0.0.1-security",
         "json-bigint": "^1.0.0",
         "kill-port": "^2.0.1",
-        "lagrange.onebot": "^1.0.9",
+        "lagrange.onebot": "^1.0.12",
         "morgan": "^1.10.0",
         "msgpackr": "^1.11.5",
         "node-schedule": "^2.1.1",

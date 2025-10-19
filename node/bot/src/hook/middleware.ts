@@ -11,9 +11,7 @@ const __dirname = dirname(__filename);
 const configPath = path.resolve(__dirname, '..', '..', 'config', 'tip.json');
 const VALID_AUTH_TOKEN = JSON.parse(fs.readFileSync(configPath, 'utf-8')).authToken;
 
-export const authenticate = (req: Request, res: Response, next: NextFunction): void => {
-    console.log('ready to auth');
-    
+export const authenticate = (req: Request, res: Response, next: NextFunction): void => {    
     const authHeader = req.headers['auth'] || 
                       req.headers['Authorization'] || 
                       req.headers['authorization'];

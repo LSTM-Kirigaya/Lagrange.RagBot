@@ -7,6 +7,7 @@ import "./openmcp/openmcp";
 import "./openmcp/group-summary";
 import "./crawl4ai/crawl4ai";
 import "./service/pm2-summary";
+import "./service/qq-mcp";
 
 import chalk from 'chalk';
 

@@ -7,12 +7,12 @@ import { es_db, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import axios from 'axios';
 import { publishOpenMCP } from '../test-channel/test-channel.service';
-import { walktalk } from '../test-channel/bug-logger.service';
+import { walktalk } from '../utils/bug-logger';
 import { summaryWebsite } from '../test-channel/website-summary.service';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
-import { exportTodayGroupMessagesPdf } from '../test-channel/realm.service';
+import { exportTodayGroupMessagesPdf } from '../utils/realm';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 console.log('activate ' + path.basename(__filename));
@@ -123,7 +123,23 @@ export class OpenMcpChannel {
                     {
                         type: 'text',
                         data: {
-                            text: ` 欢迎加入 OpenMCP 开发群，OpenMCP 官方文档已经上线：https://kirigaya.cn/openmcp。插件右下角也会有资源的导航。\n如果觉得好用，还请为我们的项目点个 star： https://github.com/LSTM-Kirigaya/openmcp-client， 您的 star 是我们更新的动力 :D`
+                            text: `
+<IDENTITY>
+欢迎加入 AnzuLeaf，这是一个主打 Agent 前沿技术交流和开放式项目合作的社群，前身是 OpenMCP 开发交流群。任何有关 AI 及其衍生技术的理论、应用、产品、设计都欢迎在本群讨论。
+</IDENTITY>
+
+<BAD_CASES>
+将技术问题饭圈化讨论。
+讨论任何和计算机技术完全没有关系的话题。
+情绪化讨论问题，就常识性话题展开大范围讨论。
+</BAD_CASES>
+
+<RESOURCES>
+OpenMCP 官方文档：https://openmcp.kirigaya.cn
+求 star 👇
+OpenMCP：https://github.com/LSTM-Kirigaya/openmcp-client
+SlidevAI： https://github.com/LSTM-Kirigaya/slidev-ai
+</RESOURCES>`
                         }
                     }
                 ]

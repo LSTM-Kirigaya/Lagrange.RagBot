@@ -1,17 +1,15 @@
 import '../plugins/image';
 import axios, { AxiosResponse } from 'axios';
-import * as fs from 'fs';
 
 import { LagrangeContext, PrivateMessage, GroupMessage } from 'lagrange.onebot'
 import path from 'path';
 import { sendMessageToDiscord, wait } from '../hook/util';
 
 import { OmPipe } from 'ompipe';
-import { api } from '../api/faas';
-import { qq_groups } from '../global';
+import { FAAS_BASE_URL, qq_groups } from '../global';
 
 export async function getNews(c: LagrangeContext<PrivateMessage | GroupMessage>) {
-    const res = await axios.post(api + '/get-news-from-hack-news');
+    const res = await axios.post(FAAS_BASE_URL + '/get-news-from-hack-news');
     const data = res.data;
     const message = data.msg;
     console.log('message', message);
@@ -30,7 +28,7 @@ function containError(axiosResult: AxiosResponse) {
 
 export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMessage>) {
 
-    const res = await axios.post(api + '/get-version');
+    const res = await axios.post(FAAS_BASE_URL + '/get-version');
     const { code, msg } = res.data;
 
     if (code !== 200) {
@@ -42,7 +40,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMe
     const pipe = new OmPipe(version);
 
     pipe.add('build-openmcp', async () => {
-        const res = await axios.post(api + '/build-openmcp');
+        const res = await axios.post(FAAS_BASE_URL + '/build-openmcp');
         if (containError(res)) {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, '编译失败 ❌\n' + res.data.msg);
             throw new Error('x');
@@ -57,7 +55,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMe
     pipe.add('publish-vscode', async store => {
         const { vsix, content } = store.getTaskResult('build-openmcp');
 
-        const vscodePlatformResult = await axios.post(api + '/publish-vsix', { tool: 'vsce', vsix });
+        const vscodePlatformResult = await axios.post(FAAS_BASE_URL + '/publish-vsix', { tool: 'vsce', vsix });
         if (containError(vscodePlatformResult)) {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'vscode 平台发布失败 ❌\n' + vscodePlatformResult.data.msg);
             throw new Error(vscodePlatformResult.data.msg);
@@ -70,7 +68,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMe
 
     pipe.add('publish-open-vsx', async store => {
         const { vsix, content } = store.getTaskResult('build-openmcp');
-        const openvsxPlatformResult = await axios.post(api + '/publish-vsix', { tool: 'ovsx', vsix });
+        const openvsxPlatformResult = await axios.post(FAAS_BASE_URL + '/publish-vsix', { tool: 'ovsx', vsix });
         if (containError(openvsxPlatformResult)) {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'openvsx 平台发布失败 ❌\n' + openvsxPlatformResult.data.msg);
             throw new Error(openvsxPlatformResult.data.msg);
@@ -83,7 +81,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMe
     pipe.add('publish-github-release', async store => {
         const { vsix, content } = store.getTaskResult('build-openmcp');
 
-        const githubReleaseResult = await axios.post(api + '/publish-github-release', { vsix });
+        const githubReleaseResult = await axios.post(FAAS_BASE_URL + '/publish-github-release', { vsix });
         if (containError(githubReleaseResult)) {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'github release 发布失败 ❌\n' + githubReleaseResult.data.msg);
             throw new Error(githubReleaseResult.data.msg);

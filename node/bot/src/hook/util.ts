@@ -25,8 +25,6 @@ export async function checkAndKillProcessOnPort(port: number) {
     } catch (error) {
         if (error instanceof Error && error.message.includes('command not found')) {
             console.error('lsof command not found. Please install lsof to use this script.');
-        } else {
-            console.error(`Error checking or killing process on port ${port}:`, error);
         }
     }
 }

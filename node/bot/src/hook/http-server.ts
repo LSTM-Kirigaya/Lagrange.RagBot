@@ -4,7 +4,7 @@ import cors from 'cors';
 import { LagrangeContext, Message } from 'lagrange.onebot';
 import { authenticate } from './middleware';
 import chalk from 'chalk';
-import { checkAndKillProcessOnPort, sendMessageToDiscord } from './util';
+import { checkAndKillProcessOnPort } from './util';
 
 const corsOptions = {
     // 一些旧版浏览器（如 IE11、各种 SmartTV）在 204 状态下会有问题
