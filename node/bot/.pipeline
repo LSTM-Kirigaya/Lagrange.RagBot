@@ -463,6 +463,72 @@
         "retryCount": 0,
         "option": {}
       }
+    ],
+    "0.1.13": [
+      {
+        "id": "build-openmcp",
+        "status": "success",
+        "startTime": 1761056188650,
+        "endTime": 1761056277148,
+        "result": {
+          "vsix": "/home/kirigaya/project/openmcp-client/openmcp-0.1.13.vsix",
+          "content": "✴️ openmcp client  0.1.13 更新内容\n\n- 增加工具调用链的可视化\n- 修复工具调用结果中响应的渲染无法切换为 json 的 bug\n- mook -> mock\n- 解决左下角 hover 没有显著字符的 bug\n- 修复 streamable http 模式下导出 type 的问题\n- 数组输入框修改为编辑性更强的对象输入框\n\n在 vscode/trae/cursor 等编辑器的插件商城搜索【openmcp】就可以下载最新的版本了！"
+        },
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "critical": true
+        }
+      },
+      {
+        "id": "publish-vscode",
+        "status": "success",
+        "startTime": 1761056277148,
+        "endTime": 1761056289926,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-open-vsx",
+        "status": "success",
+        "startTime": 1761056289926,
+        "endTime": 1761056302949,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-github-release",
+        "status": "success",
+        "startTime": 1761056302962,
+        "endTime": 1761056370934,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {
+          "retryInterval": 200,
+          "maxRetryCount": 3
+        }
+      },
+      {
+        "id": "publish-qq",
+        "status": "success",
+        "startTime": 1761056370935,
+        "endTime": 1761056373643,
+        "result": null,
+        "error": null,
+        "retryCount": 0,
+        "option": {}
+      }
     ]
   }
 }

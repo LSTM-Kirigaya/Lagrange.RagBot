@@ -16,6 +16,7 @@
     },
     "dependencies": {
         "@elastic/elasticsearch": "^9.0.1",
+        "@langchain/langgraph": "^1.0.0",
         "@ptkdev/logger": "^1.8.0",
         "@types/node": "^20.12.12",
         "axios": "^1.7.2",

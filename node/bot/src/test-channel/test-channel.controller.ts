@@ -60,17 +60,31 @@ export class TestChannel {
         });
     }
 
+    @mapper.onGroup(qq_groups.AGENT_PRACTICE, { at: true })
+    async handleAgentPracticeChannel(c: LagrangeContext<GroupMessage>) {
+        const commonMessages = c.message.message.filter(m => m.type !== 'at' && m.type !== 'reply');
+        const groupId = c.message.group_id;
+        const content = commonMessages.map(m => JSON.stringify(m.data)).join('');
+        const reference = await getReplyMessage(c) || 'none';
+        
+        await axios.post(`${FAAS_BASE_URL}/qq-agent-loop`, {
+            groupId,
+            content,
+            reference
+        });
+    }
+
     @mapper.onGroupIncrease(qq_groups.TEST_CHANNEL)
     async handleTestChannelIncrease(c: LagrangeContext<ApproveMessage>) {
-        console.log(c.message);
         c.setGroupAddRequest('', c.message.sub_type, true, '');
     }
 
-    @mapper.createTimeSchedule('0 40 16 * * *')
+    @mapper.createTimeSchedule('0 0 22 * * *')
     async handleTestChannelSchedule(c: LagrangeContext<Message>) {
         // const res = await axios.post(`${FAAS_BASE_URL}/get-news-from-hack-news`);
         // const data = res.data;
         // const message = data.msg;
         // c.sendGroupMsg(qq_groups.TEST_CHANNEL, message);
+        c.sendGroupMsg(qq_groups.TEST_CHANNEL, '定时器测试，现在 22:00');
     }
 }

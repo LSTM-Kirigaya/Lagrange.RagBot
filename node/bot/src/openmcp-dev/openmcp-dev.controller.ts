@@ -3,7 +3,7 @@ import * as path from 'path';
 
 import { mapper, LagrangeContext, GroupMessage, ApproveMessage, Message, PrivateMessage } from 'lagrange.onebot';
 import { getNews } from './openmcp-dev.service';
-import { es_db, qq_groups, qq_users } from '../global';
+import { es_db, FAAS_BASE_URL, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import axios from 'axios';
 import { publishOpenMCP } from '../test-channel/test-channel.service';
@@ -13,6 +13,7 @@ import { summaryWebsite } from '../test-channel/website-summary.service';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { exportTodayGroupMessagesPdf } from '../utils/realm';
+import { getReplyMessage } from '../utils/reply';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 console.log('activate ' + path.basename(__filename));
@@ -22,90 +23,43 @@ let groupIncreaseCache = 0;
 
 export class OpenMcpChannel {
 
-    @mapper.onGroup(qq_groups.OPENMCP_DEV, { memorySize: 50 })
+    @mapper.onGroup(qq_groups.OPENMCP_DEV, { memorySize: 50, at: true })
     async handleOpenMcpChannel(c: LagrangeContext<GroupMessage>) {
 
-        const text = c.getRawText();
-        const commandResult = parseCommand(text);
-        if (commandResult !== undefined) {
-            // 校验身份
+        if (c.message.user_id === qq_users.JIN_HUI) {
+            const now = Date.now();
+            const lastVisit = visitCache.get(c.message.user_id.toString());
 
-            if (c.message.user_id === qq_users.JIN_HUI) {
-                const now = Date.now();
-                const lastVisit = visitCache.get(c.message.user_id.toString());
+            const info = await c.getGroupMemberInfo(c.message.group_id, c.message.user_id);
+            const role = info['data'].role;
+            const name = info['data'].nickname;
 
-                const info = await c.getGroupMemberInfo(c.message.group_id, c.message.user_id);
-                const role = info['data'].role;
-                const name = info['data'].nickname;
-
-                if (!lastVisit || (now - lastVisit) > 10 * 60 * 1000) {
-                    c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));
-                    visitCache.set(c.message.user_id.toString(), now);
-                }
-            } else {
-                c.sendMessage('非法请求，TIP 系统拒绝访问');
-                return;
+            if (!lastVisit || (now - lastVisit) > 10 * 60 * 1000) {
+                // c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));
+                visitCache.set(c.message.user_id.toString(), now);
             }
-
-            const { command, args } = commandResult;
-
-            switch (command) {
-                case 'news':
-                    await getNews(c);
-                    break;
-
-                case 'ping':
-                    c.sendMessage('ping');
-                    break;
-
-                case 'file':
-                    if (args.length === 0) {
-                        c.sendMessage('usage\n:file filename');
-                    } else {
-                        const filename = args[0];
-                        const file = path.join('/home/kirigaya/download/', filename);
-                        c.uploadGroupFile(c.message.group_id, file, filename);
-                    }
-
-                    break;
-
-                case 'notice':
-                    c.sendGroupNotice(c.message.group_id, 'hello world');
-                    break;
-
-                case 'get-notice':
-                    const notice = await c.getGroupNotice(c.message.group_id);
-                    c.sendMessage('当前的公告内容为：' + JSON.stringify(notice, null, 2));
-                    break;
-
-                case 'pub':
-                    await publishOpenMCP(c);
-                    break;
-
-                case 'discord':
-                    await sendMessageToDiscord('hello from qq');
-                    break;
-                
-                case 'wt':
-                    walktalk(c, es_db.WT_OMCP_INDEX, args[0]);
-                    break;
-                    
-                case 'sum':
-                    summaryWebsite(c, args[0]);
-                    break;
-
-                default:
-                    
-                    break;
-            }
+        } else {
+            c.sendMessage('非法请求，TIP 系统拒绝访问');
+            return;
         }
+
+
+        const commonMessages = c.message.message.filter(m => m.type !== 'at' && m.type !== 'reply');
+        const groupId = c.message.group_id;
+        const content = commonMessages.map(m => JSON.stringify(m.data)).join('');
+        const reference = await getReplyMessage(c) || 'none';
+
+        await axios.post(`${FAAS_BASE_URL}/qq-agent-loop`, {
+            groupId,
+            content,
+            reference
+        });
 
     }
 
     @mapper.onGroupIncrease(qq_groups.OPENMCP_DEV)
     async handleTestChannelIncrease(c: LagrangeContext<ApproveMessage>) {
-        console.log(c.message);
-
+        console.log('group increase', c.message.group_id, 'new user', c.message.user_id);
         c.setGroupAddRequest('', c.message.sub_type, true, '');
         const now = Date.now();
 

@@ -1,0 +1,62 @@
+{
+  "items": [
+    [
+      {
+        "connectionType": "STDIO",
+        "command": "mcp",
+        "args": [
+          "run",
+          "main.py"
+        ],
+        "url": "",
+        "cwd": "/home/kirigaya/project/openmcp-tutorial/crawl4ai-mcp",
+        "oauth": "",
+        "clientName": "openmcp.connect.STDIO",
+        "clientVersion": "0.0.1",
+        "env": {
+          "HOME": "/home/kirigaya",
+          "LOGNAME": "kirigaya",
+          "PATH": "/home/kirigaya/.vscode-server/cli/servers/Stable-0f0d87fa9e96c856c5212fc86db137ac0d783365/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+          "SHELL": "/bin/bash",
+          "TERM": "",
+          "USER": "kirigaya"
+        },
+        "serverInfo": {
+          "name": "crawl4ai-mcp",
+          "version": "1.9.1"
+        },
+        "name": "crawl4ai-mcp",
+        "version": "1.9.1"
+      }
+    ],
+    [
+      {
+        "connectionType": "STDIO",
+        "command": "mcp",
+        "args": [
+          "run",
+          "main.py"
+        ],
+        "url": "",
+        "cwd": "/home/kirigaya/project/openmcp-tutorial/crawl4ai-mcp",
+        "oauth": "",
+        "clientName": "openmcp.connect.STDIO",
+        "clientVersion": "0.0.1",
+        "env": {
+          "HOME": "/home/kirigaya",
+          "LOGNAME": "kirigaya",
+          "PATH": "/home/kirigaya/.vscode-server/cli/servers/Stable-0f0d87fa9e96c856c5212fc86db137ac0d783365/server/bin/remote-cli:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin",
+          "SHELL": "/bin/bash",
+          "TERM": "",
+          "USER": "kirigaya"
+        },
+        "serverInfo": {
+          "name": "crawl4ai-mcp",
+          "version": "1.9.1"
+        },
+        "name": "crawl4ai-mcp",
+        "version": "1.9.1"
+      }
+    ]
+  ]
+}

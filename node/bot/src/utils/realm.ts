@@ -16,22 +16,18 @@ export async function exportTodayGroupMessagesPdf(
     }
 
     const response = await axios.post(`${FAAS_BASE_URL}/qq-group-summary-to-pdf`, { json });
-    console.log(response);
 
     if (response.data.code === 200) {
         const { pdfPath, imagePath } = response.data.msg;
 
-        setTimeout(async () => {
-            await c.uploadGroupFile(targetGroupId, pdfPath, path.basename(pdfPath));        
-        }, 100);
-
-        setTimeout(async () => {
-            c.sendGroupMsg(targetGroupId, [{
-                type: 'image',
-                data: {
-                    file: 'file://' + imagePath
-                }
-            }]);
-        }, 1100);
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        await c.uploadGroupFile(targetGroupId, pdfPath, path.basename(pdfPath));
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        await c.sendGroupMsg(targetGroupId, [{
+            type: 'image',
+            data: {
+                file: 'file://' + imagePath
+            }
+        }]);
     }
 }

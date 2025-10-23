@@ -7,7 +7,12 @@ export const qq_groups = {
     /**
      * Tiphereth 测试频道
      */
-    TEST_CHANNEL: 1046693162
+    TEST_CHANNEL: 1046693162,
+
+    /**
+     * Agent 实践
+     */
+    AGENT_PRACTICE: 1058464614,
 };
 
 export const qq_users = {
