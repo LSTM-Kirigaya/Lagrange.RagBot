@@ -2,7 +2,7 @@ import * as path from 'path';
 import { FAAS_BASE_URL } from '../global';
 import { GroupMessage, LagrangeContext, PrivateMessage } from 'lagrange.onebot';
 import axios from 'axios';
-
+import fs from 'fs';
 export async function exportTodayGroupMessagesPdf(
     c: LagrangeContext<GroupMessage | PrivateMessage>,
     sourceGroupId: number,
@@ -14,6 +14,10 @@ export async function exportTodayGroupMessagesPdf(
         c.sendMessage('无法从 realm 数据库中获取信息，请求技术支持');
         return;
     }
+
+    const date = new Date();
+    const formatted = date.toISOString().split('T')[0];
+    fs.writeFileSync(`./log/${sourceGroupId}_${formatted}.json`, JSON.stringify(json, null, 2));
 
     const response = await axios.post(`${FAAS_BASE_URL}/qq-group-summary-to-pdf`, { json });
 

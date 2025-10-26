@@ -26,22 +26,22 @@ export class OpenMcpChannel {
     @mapper.onGroup(qq_groups.OPENMCP_DEV, { memorySize: 50, at: true })
     async handleOpenMcpChannel(c: LagrangeContext<GroupMessage>) {
 
-        if (c.message.user_id === qq_users.JIN_HUI) {
-            const now = Date.now();
-            const lastVisit = visitCache.get(c.message.user_id.toString());
+        // if (c.message.user_id === qq_users.JIN_HUI) {
+        //     const now = Date.now();
+        //     const lastVisit = visitCache.get(c.message.user_id.toString());
 
-            const info = await c.getGroupMemberInfo(c.message.group_id, c.message.user_id);
-            const role = info['data'].role;
-            const name = info['data'].nickname;
+        //     const info = await c.getGroupMemberInfo(c.message.group_id, c.message.user_id);
+        //     const role = info['data'].role;
+        //     const name = info['data'].nickname;
 
-            if (!lastVisit || (now - lastVisit) > 10 * 60 * 1000) {
-                // c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));
-                visitCache.set(c.message.user_id.toString(), now);
-            }
-        } else {
-            c.sendMessage('非法请求，TIP 系统拒绝访问');
-            return;
-        }
+        //     if (!lastVisit || (now - lastVisit) > 10 * 60 * 1000) {
+        //         // c.sendMessage('检测到超级管理员，TIP 系统允许访问，正在执行 ' + JSON.stringify(commandResult));
+        //         visitCache.set(c.message.user_id.toString(), now);
+        //     }
+        // } else {
+        //     c.sendMessage('非法请求，TIP 系统拒绝访问');
+        //     return;
+        // }
 
 
         const commonMessages = c.message.message.filter(m => m.type !== 'at' && m.type !== 'reply');
@@ -80,6 +80,7 @@ export class OpenMcpChannel {
                             text: `
 <IDENTITY>
 欢迎加入 AnzuLeaf，这是一个主打 Agent 前沿技术交流和开放式项目合作的社群，前身是 OpenMCP 开发交流群。任何有关 AI 及其衍生技术的理论、应用、产品、设计都欢迎在本群讨论。
+有什么学习资源或者技术上的疑问，欢迎 @我 提问。
 </IDENTITY>
 
 <BAD_CASES>
