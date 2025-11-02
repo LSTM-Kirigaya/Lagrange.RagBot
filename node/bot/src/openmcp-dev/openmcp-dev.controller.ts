@@ -6,9 +6,6 @@ import { getNews } from './openmcp-dev.service';
 import { es_db, FAAS_BASE_URL, qq_groups, qq_users } from '../global';
 import { parseCommand, sendMessageToDiscord } from '../hook/util';
 import axios from 'axios';
-import { publishOpenMCP } from '../test-channel/test-channel.service';
-import { walktalk } from '../utils/bug-logger';
-import { summaryWebsite } from '../test-channel/website-summary.service';
 
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';

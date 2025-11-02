@@ -26,7 +26,13 @@ export async function qqAgentLoop(
         reference: reference.toString(),
     });
 
-    await agent.ainvoke({ messages: [systemPrompt, queryPrompt].join('\n') });
+    await agent.ainvoke({
+        messages: [systemPrompt, queryPrompt].join('\n'),
+        reflux: {
+            enabled: true,
+            saveDir: './dataset/tip'
+        }    
+    });
 }
 
 

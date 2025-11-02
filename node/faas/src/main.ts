@@ -1,11 +1,11 @@
 import express, { Request, Response } from 'express';
 import { app } from './common';
 
-import "./service/news";
+import "./service/qq-daily-news";
 import "./service/web-summary";
-import "./openmcp/openmcp";
-import "./openmcp/group-summary";
-import "./crawl4ai/crawl4ai";
+import "./service/build-publish-openmcp";
+import "./service/qq-group-summary";
+import "./service/crawl4ai";
 import "./service/pm2-summary";
 import "./service/qq-mcp";
 

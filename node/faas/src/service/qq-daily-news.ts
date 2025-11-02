@@ -1,16 +1,8 @@
 import { Request, Response } from 'express';
 import { app } from "../common";
-import * as fs from 'fs';
-import * as path from 'path';
 import { OmAgent } from 'openmcp-sdk/service/sdk';
 
 import { markdownToPlainText, getFormatedTime } from '../util';
-
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
 
 export async function getNewsFromHackNews() {
 

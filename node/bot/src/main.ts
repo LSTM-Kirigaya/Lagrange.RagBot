@@ -11,7 +11,7 @@ const server = LagrangeFactory.create([
     OpenMcpChannel
 ]);
 
-server.onMounted(c => {
+server.onMounted(c => {    
     c.sendPrivateMsg(qq_users.JIN_HUI, 'Successfully Login, TIP online');
     registerTipHttpServer(c);
 });
