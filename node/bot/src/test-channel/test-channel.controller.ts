@@ -6,7 +6,7 @@ import { es_db, FAAS_BASE_URL, qq_groups, qq_users } from '../global';
 
 import axios from 'axios';
 import { getReplyMessage } from '../utils/reply';
-import { exportTodayGroupMessagesPdf } from '../utils/realm';
+import { exportTodayGroupMessagesPdf } from '../utils/historyMessages';
 
 export class TestChannel {
 
