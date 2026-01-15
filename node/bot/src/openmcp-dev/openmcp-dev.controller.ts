@@ -103,10 +103,32 @@ SlidevAI： https://github.com/LSTM-Kirigaya/slidev-ai
 
     @mapper.createTimeSchedule('0 0 10 * * *')
     async publishNewsTimer(c: LagrangeContext<Message>) {
-        const res = await axios.post('http://localhost:3000/get-news-from-hack-news');
+        const res = await axios.post(FAAS_BASE_URL + '/get-news-from-hack-news');
         const data = res.data;
-        const message = data.msg;
-        c.sendGroupMsg(qq_groups.OPENMCP_DEV, message);
+        const imagePath = data.msg;
+        if (imagePath) {
+            await c.sendGroupMsg(qq_groups.OPENMCP_DEV, [{
+                type: 'image',
+                data: {
+                    file: 'file://' + imagePath
+                }
+            }]);
+        }
+    }
+
+    @mapper.createTimeSchedule('0 0 12 * * *')
+    async publishGithubTrendingTimer(c: LagrangeContext<Message>) {
+        const res = await axios.post(FAAS_BASE_URL + '/get-github-trending');
+        const data = res.data;
+        const imagePath = data.msg;
+        if (imagePath) {
+            await c.sendGroupMsg(qq_groups.OPENMCP_DEV, [{
+                type: 'image',
+                data: {
+                    file: 'file://' + imagePath
+                }
+            }]);
+        }
     }
 
     @mapper.createTimeSchedule('0 0 23 * * *')

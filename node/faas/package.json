@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@instructor-ai/instructor": "^1.7.0",
+    "@resvg/resvg-js": "^2.6.2",
     "body-parser": "^2.2.0",
     "bson": "^6.10.3",
     "chalk": "^5.4.1",
@@ -17,8 +19,12 @@
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "js-yaml": "^4.1.0",
+    "lucide-react": "^0.562.0",
     "morgan": "^1.10.0",
-    "openmcp-sdk": "^0.1.5"
+    "openai": "^6.16.0",
+    "openmcp-sdk": "^0.1.5",
+    "satori": "^0.18.3",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@types/collections": "^5.1.5",

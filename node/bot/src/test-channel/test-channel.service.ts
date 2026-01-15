@@ -6,15 +6,20 @@ import path from 'path';
 import { sendMessageToDiscord, wait } from '../hook/util';
 
 import { OmPipe } from 'ompipe';
-import { FAAS_BASE_URL, qq_groups } from '../global';
+import { FAAS_BASE_URL, qq_groups, qq_users } from '../global';
 
-export async function getNews(c: LagrangeContext<PrivateMessage | GroupMessage>) {
+export async function sendNewsToJinhui(c: LagrangeContext<PrivateMessage | GroupMessage>) {
     const res = await axios.post(FAAS_BASE_URL + '/get-news-from-hack-news');
     const data = res.data;
-    const message = data.msg;
-    console.log('message', message);
-    
-    c.sendMessage(message);
+    const imagePath = data.msg;
+    if (imagePath) {
+        await c.sendPrivateMsg(qq_users.JIN_HUI, [{
+            type: 'image',
+            data: {
+                file: 'file://' + imagePath
+            }
+        }]);
+    }
 }
 
 function containError(axiosResult: AxiosResponse) {
@@ -44,7 +49,7 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMe
         if (containError(res)) {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, '编译失败 ❌\n' + res.data.msg);
             throw new Error('x');
-            
+
         } else {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'openmcp 完成编译');
             return res.data.msg;
@@ -74,8 +79,8 @@ export async function publishOpenMCP(c: LagrangeContext<GroupMessage | PrivateMe
             throw new Error(openvsxPlatformResult.data.msg);
         } else {
             c.sendGroupMsg(qq_groups.OPENMCP_DEV, 'openvsx 平台发布成功 ✅ https://open-vsx.org/extension/kirigaya/openmcp');
-        }    
-    }, { retryInterval: 200, maxRetryCount: 3 });    
+        }
+    }, { retryInterval: 200, maxRetryCount: 3 });
 
 
     pipe.add('publish-github-release', async store => {

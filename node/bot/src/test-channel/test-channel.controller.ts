@@ -1,7 +1,7 @@
 import '../plugins/image';
 
 import { mapper, plugins, LagrangeContext, PrivateMessage, GroupMessage, Send, logger, ApproveMessage, Message } from 'lagrange.onebot';
-import { getNews, publishOpenMCP } from './test-channel.service';
+import { sendNewsToJinhui, publishOpenMCP } from './test-channel.service';
 import { es_db, FAAS_BASE_URL, qq_groups, qq_users } from '../global';
 
 import axios from 'axios';
@@ -23,7 +23,7 @@ export class TestChannel {
             const command = text.substring(1);
             switch (command) {
                 case 'news':
-                    await getNews(c);
+                    await sendNewsToJinhui(c);
                     break;
                 
                 case 'ping':
@@ -81,10 +81,7 @@ export class TestChannel {
 
     @mapper.createTimeSchedule('0 0 22 * * *')
     async handleTestChannelSchedule(c: LagrangeContext<Message>) {
-        // const res = await axios.post(`${FAAS_BASE_URL}/get-news-from-hack-news`);
-        // const data = res.data;
-        // const message = data.msg;
-        // c.sendGroupMsg(qq_groups.TEST_CHANNEL, message);
+
         c.sendGroupMsg(qq_groups.TEST_CHANNEL, '定时器测试，现在 22:00');
     }
 }
